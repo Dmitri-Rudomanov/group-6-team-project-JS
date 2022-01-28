@@ -1,0 +1,8 @@
+{{#each this}}
+<li class="movie-item">
+    <a href="#" class="movie-link">
+        <img src="https://image.tmdb.org/t/p/original{{poster_path}}" alt={{title}} srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}} 2x" class="movie-img" >
+        <p class="movie-name">{{title}}</p>
+        <p class="genre" data-genres={{genre_ids}}></p>
+        </a></li>
+{{/each}}
