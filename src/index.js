@@ -48,7 +48,7 @@ function genresCheck(ids) {
         console.log(genreData)
         for (let i of parsedStorage) {
             if (genreData.includes(i.id.toString())) {
-                item.textContent += `${i.name};`
+                item.textContent += `${i.name},`
             }
         }
     }

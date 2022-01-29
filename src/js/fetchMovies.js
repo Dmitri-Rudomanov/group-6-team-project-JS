@@ -16,9 +16,9 @@ function fetchGenres() {
 
   return fetch(`
     https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`)
-    .then(response1 => {
-      if (response1.ok) {
-        return response1.json();
+    .then(response => {
+      if (response.ok) {
+        return response.json();
       }
     })
     .then(({ genres }) => {
