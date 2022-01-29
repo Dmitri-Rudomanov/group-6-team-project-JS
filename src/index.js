@@ -1,5 +1,5 @@
 import './sass/main.scss';
-import { fetchMovies } from './js/fetchMovies';
+import { fetchGenres, fetchMovies } from './js/fetchMovies';
 //import { fetchGenres } from './js/fetchMovies';
 import { GENRES_STORAGE } from './js/fetchMovies';
 // import countryMarkupHbs from './templates/movie.hbs';
@@ -20,6 +20,7 @@ function onSearchInput(e) {
         fetchMovies(movieInput)
             .then(({ results }) => {
                 listMarkup(results);
+                fetchGenres();
                 setTimeout(() => genresCheck(results.genre_ids), 300)
             }
             )
