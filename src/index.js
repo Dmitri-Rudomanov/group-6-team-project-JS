@@ -12,44 +12,43 @@ const refs = {
     movieList: document.querySelector(".movie-list"),
 }
 
-refs.searchBox.addEventListener("input",debounce(onSearchInput,DEBOUNCE_DELAY))
+refs.searchBox.addEventListener("input", debounce(onSearchInput, DEBOUNCE_DELAY))
 
-function onSearchInput(e) { 
+function onSearchInput(e) {
     if (e.target.value !== "") {
         const movieInput = e.target.value.trim()
         fetchMovies(movieInput)
-            .then(({results}) =>
-            {
-                listMarkup(results); 
-                setTimeout(()=>genresCheck(results.genre_ids),600)
-                }
+            .then(({ results }) => {
+                listMarkup(results);
+                setTimeout(() => genresCheck(results.genre_ids), 300)
+            }
             )
     }
-    else { 
-    clearArea()
+    else {
+        clearArea()
     }
 
 }
 
 
-function listMarkup(r) { 
+function listMarkup(r) {
     const markup = movieListMarkupHbs(r)
     refs.movieList.innerHTML = markup
 }
 
-function genresCheck(ids) { 
+function genresCheck(ids) {
     let genreHtml = document.querySelectorAll('.genre')
-    console.log(genreHtml)
+    // console.log(genreHtml)
     let genreData
     let storageItem = localStorage.getItem(GENRES_STORAGE)
     let parsedStorage = JSON.parse(storageItem)
-    console.log(parsedStorage)
-    for (let item of genreHtml) { 
-        genreData=item.dataset.genres.split(',')
-        console.log(genreData)
-        for (let i of parsedStorage) { 
-            if (genreData.includes(i.id.toString())) { 
-                item.insertAdjacentHTML('beforebegin',`${i.name};`)
+    // console.log(parsedStorage)
+    for (let item of genreHtml) {
+        genreData = item.dataset.genres.split(',')
+        // console.log(genreData)
+        for (let i of parsedStorage) {
+            if (genreData.includes(i.id.toString())) {
+                item.insertAdjacentHTML('beforebegin', `${i.name} `)
             }
         }
     }

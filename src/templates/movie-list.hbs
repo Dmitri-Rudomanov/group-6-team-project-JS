@@ -1,8 +1,28 @@
 {{#each this}}
 <li class="movie-item">
     <a href="#" class="movie-link">
+        {{#if poster_path}}
         <img src="https://image.tmdb.org/t/p/original{{poster_path}}" alt={{title}} srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}} 2x" class="movie-img" >
+{{else}}
+        <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png">
+{{/if}}
         <p class="movie-name">{{title}}</p>
-        <p class="genre" data-genres={{genre_ids}}></p>
+        <div style="display: flex; align-items: baseline; justify-content: space-around;">
+        <div style="color: red; display: flex;">
+        <p class="genre"  data-genres={{genre_ids.[0]}}>
+        <span >{{i.name}}</span>
+        </p>
+        <p class="genre"  data-genres={{genre_ids.[1]}}>
+        <span >{{i.name}}</span>
+        </p>
+        <span style="margin-left: 0;">...</span>
+        </div>
+        <p>
+        <span style="margin-left: 0; color: red;">{{release_date.[0]}}</span>
+	    <span style="margin-left: 0; color: red;">{{release_date.[1]}}</span>
+	    <span style="margin-left: 0; color: red;">{{release_date.[2]}}</span>
+        <span style="margin-left: 0; color: red;">{{release_date.[3]}}</span>
+        </p>
+        </div>
         </a></li>
 {{/each}}
