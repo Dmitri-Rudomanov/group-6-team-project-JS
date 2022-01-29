@@ -38,17 +38,17 @@ function listMarkup(r) {
 
 function genresCheck(ids) {
     let genreHtml = document.querySelectorAll('.genre')
-    // console.log(genreHtml)
+    console.log(genreHtml)
     let genreData
     let storageItem = localStorage.getItem(GENRES_STORAGE)
     let parsedStorage = JSON.parse(storageItem)
-    // console.log(parsedStorage)
+    console.log(parsedStorage)
     for (let item of genreHtml) {
         genreData = item.dataset.genres.split(',')
-        // console.log(genreData)
+        console.log(genreData)
         for (let i of parsedStorage) {
             if (genreData.includes(i.id.toString())) {
-                item.insertAdjacentHTML('beforebegin', `${i.name} `)
+                item.textContent += `${i.name};`
             }
         }
     }
