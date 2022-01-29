@@ -49,7 +49,7 @@ function genresCheck(ids) {
         console.log(genreData)
         for (let i of parsedStorage) { 
             if (genreData.includes(i.id.toString())) { 
-                item.insertAdjacentHTML('beforebegin',`${i.name};`)
+                item.textContent+=`${i.name};`
             }
         }
     }
