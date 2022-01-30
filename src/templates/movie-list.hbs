@@ -6,18 +6,18 @@
 {{else}}
         <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png">
 {{/if}}
-        <p class="movie-name">{{title}}</p>
+        <h2 class="card-title">{{title}}</h2>
         <div style="display: flex; align-items: baseline;">
-        <div style="color: red; display: flex;">
-        <p class="genre"  data-genres={{genre_ids.[0]}}>
+        
+        <p class="genre card-text"  data-genres={{genre_ids.[0]}}>
         <span >{{i.name}}</span>
         </p>
-        <p class="genre"  data-genres={{genre_ids.[1]}}>
+        <p class="genre card-text"  data-genres={{genre_ids.[1]}}> 
         <span >{{i.name}}</span>
         </p>
-        </div>
-        <p>
-        <span style="margin-left: 0; color: red;">{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
+        
+        <p class="card-text">|
+        <span >{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
         </p>
         </div>
         </a></li>

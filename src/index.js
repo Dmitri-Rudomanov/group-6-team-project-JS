@@ -52,15 +52,16 @@ function onSearchInput(e) {
     clearArea();
   }
 }
-console.log(refs.movieItem);
+
 function listMarkup(r) {
   const markup = movieListMarkupHbs(r);
-  refs.movieList.innerHTML = markup;
+  refs.movieList.insertAdjacentHTML('beforeend', markup);
 }
 
-function modalMarkup() {
-  const modalMarkup = modalMarkupHbs();
+function modalMarkup(r) {
+  const modalMarkup = modalMarkupHbs(r);
   refs.movieModal.insertAdjacentHTML('beforeend', modalMarkup);
+  console.log(refs.closeModalBtn);
 }
 
 function genresCheck(ids) {
