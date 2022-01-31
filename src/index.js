@@ -55,7 +55,7 @@ function onSearchInput(e) {
 
 function listMarkup(r) {
   const markup = movieListMarkupHbs(r);
-  refs.movieList.insertAdjacentHTML('beforeend', markup);
+  refs.movieList.innerHTML = markup;
 }
 
 function modalMarkup(r) {
