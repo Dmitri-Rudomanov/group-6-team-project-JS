@@ -1,0 +1,233 @@
+/*фон главный*/
+.page-header {
+  padding-left: 21px;
+  padding-right: 21px;
+  padding-bottom: 0px;
+  height: 230px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(/images/background1/header_mob.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/images/background1/header_mob_x2.jpg);
+  }
+  @media screen and (min-width: 768px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/images/background1/header_tab.jpg);
+    padding-left: 71px;
+    padding-right: 76px;
+  }
+  @media screen and (min-width: 768px) and (min-width: 768px) and (min-device-pixel-ratio: 2),
+    screen and (min-width: 768px) and (min-resolution: 192dpi),
+    screen and (min-width: 768px) and (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/images/background1/header_tab_x2.jpg);
+  }
+  @media screen and (min-width: 1200px) {
+    padding-right: 71px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/images/background1/header.jpg);
+  }
+  @media screen and (min-width: 1200px) and (min-width: 1200px) and (min-device-pixel-ratio: 2),
+    screen and (min-width: 1200px) and (min-resolution: 192dpi),
+    screen and (min-width: 1200px) and (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/images/background1/header_x2.jpg);
+  }
+}
+
+/*фон для library*/
+.page-header-library {
+  padding-left: 21px;
+  padding-right: 21px;
+  padding-bottom: 0px;
+  height: 230px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(/images/background2/header_library_mob.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/images/background2/header_library_mob_x2.jpg);
+  }
+  @media screen and (min-width: 768px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/images/background2/header_library_tab.jpg);
+    padding-left: 71px;
+    padding-right: 76px;
+  }
+  @media screen and (min-width: 768px) and (min-width: 768px) and (min-device-pixel-ratio: 2),
+    screen and (min-width: 768px) and (min-resolution: 192dpi),
+    screen and (min-width: 768px) and (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/images/background2/header_library_tab_x2.jpg);
+  }
+  @media screen and (min-width: 1200px) {
+    padding-right: 71px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/images/background2/header_library.jpg);
+  }
+  @media screen and (min-width: 1200px) and (min-width: 1200px) and (min-device-pixel-ratio: 2),
+    screen and (min-width: 1200px) and (min-resolution: 192dpi),
+    screen and (min-width: 1200px) and (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/images/background2/header_library_x2.jpg);
+  }
+}
+
+/*    */
+
+.header-container {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  margin-top: 41px;
+  cursor: pointer;
+}
+
+.site-name {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+    color: #ffffff;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.17;
+    margin-left: 10px;
+  }
+}
+
+/*кнопки HOME и LIBRARY*/
+.navigation {
+  display: flex;
+  align-items: center;
+  margin-top: 58px;
+}
+
+.navigation__button {
+  display: block;
+  position: relative;
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 39px;
+  }
+}
+
+.navigation__button--current::after {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  content: '';
+  display: block;
+  background-color: #ff6b08;
+  height: 3px;
+  width: 100%;
+}
+
+/* форма ПОИСКОВ ФИЛЬМОВ*/
+.header-search {
+  display: flex;
+  justify-content: center;
+  margin-top: 38px;
+}
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 280px;
+  border-bottom: 0.5px solid #ffffff;
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+}
+
+.search-form__input,
+.search-button {
+  background-color: transparent;
+  border: none;
+}
+.search-form__input {
+  &:focus{
+  box-shadow: 0 5px 15px rgb(255, 107, 8);
+  }
+  color: #ffffff;
+  width: 324px;
+  &::placeholder {
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.14;
+  }
+}
+
+/* кнопки WATCHED И QUEUE*/
+
+.movies_watched {
+  display: flex;
+  justify-content: center;
+}
+
+.library__button {
+  display: block;
+  position: relative;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid #FFFFFF;
+  background-color: transparent;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  width: 136px;
+  height: 44px;
+  transition: box-shadow 0.3s ease 0s;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 20px;
+    @media screen and (min-width: 768px) {
+      margin-right: 15px;
+    }
+  }
+    &:hover {
+  box-shadow: 0 5px 15px rgb(255, 107, 8);
+  } 
+}
+
+.library__button--current{
+
+  background: rgb(255, 107, 8);
+}
+
+.is_hidden {
+  display: none;
+}
