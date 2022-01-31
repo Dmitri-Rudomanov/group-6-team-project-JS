@@ -64,7 +64,7 @@ import { GENRES_STORAGE } from './js/fetchMovies';
 import movieListMarkupHbs from './templates/movie-list.hbs';
 
 var debounce = require('lodash.debounce');
-const DEBOUNCE_DELAY = 1000;
+const DEBOUNCE_DELAY = 600;
 
 // ====объявление глобальных переменных: текст запроса. страницы. кол страниц. ====
 let QUERY = undefined;
