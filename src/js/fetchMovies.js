@@ -41,7 +41,7 @@ const API_KEY = "9f7c5da3425a9d17909027ad2b61278f"
 const GENRES_STORAGE = 'genres-names'
 
 // =====в аргументы добавлена начальная страница========
-function fetchMoviess(name, page = 1) {
+function fetchMovies(name, page = 1) {
   return fetch(`
     https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${name}&page=${page}&include_adult=false`)
     .then(response => {
@@ -51,7 +51,7 @@ function fetchMoviess(name, page = 1) {
     })
 }
 
-function fetchGenress() {
+function fetchGenres() {
   return fetch(`
     https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`)
     .then(response => {
@@ -65,5 +65,5 @@ function fetchGenress() {
 }
 
 export { GENRES_STORAGE }
-export { fetchMoviess }
-export { fetchGenress }
+export { fetchMovies }
+export { fetchGenres }

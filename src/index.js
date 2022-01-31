@@ -57,7 +57,7 @@
 // ==========================================
 
 import './sass/main.scss';
-import { fetchGenress, fetchMoviess } from './js/fetchMovies';
+import { fetchGenres, fetchMovies } from './js/fetchMovies';
 //import { fetchGenres } from './js/fetchMovies';
 import { GENRES_STORAGE } from './js/fetchMovies';
 // import countryMarkupHbs from './templates/movie.hbs';
@@ -80,13 +80,13 @@ const refs = {
 refs.searchBox.addEventListener("input", debounce(onSearchInputs, DEBOUNCE_DELAY))
 
 // =======первоначальный разовый запрос жанров и сохранение ==========
-fetchGenress();
+fetchGenres();
 // ========первая загрузка по кнопке========
 function onSearchInputs(e) {
     if (e.target.value !== "") {
         QUERY = e.target.value.trim();
         PAGE = 1;
-        fetchMoviess(QUERY, PAGE)
+        fetchMovies(QUERY, PAGE)
             .then(processGenres)
             .then(({ results, total_pages }) => {
                 totalPages = total_pages;
@@ -156,7 +156,7 @@ const onEntry = entries => {
                 // console.log('pages out');
                 return;
             }
-            fetchMoviess(QUERY, PAGE)
+            fetchMovies(QUERY, PAGE)
                 .then(processGenres)
                 .then(({ results }) => {
                     appendMovieMarkup(results);
