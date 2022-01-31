@@ -3,7 +3,6 @@
  * Все паршалы подключаются сюда.
  */
 // Стили для файла с примером HTML-фрагмента
-
 @import '../sass/layout/header';
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
@@ -30,8 +29,6 @@ h2 {
 }
 
 .container {
-  width: 100vw;
-  min-width: 320px;
   margin: 0 auto;
   @media screen and (min-width: 480px) {
     width: 480px;
@@ -44,12 +41,6 @@ h2 {
   }
 }
 
-#search-box {
-  font: inherit;
-  padding: 8px;
-  max-width: 320px;
-  margin-bottom: 16px;
-}
 .movie-list {
   padding: 0;
   list-style: none;

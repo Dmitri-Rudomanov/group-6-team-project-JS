@@ -1,18 +1,19 @@
 <header class="page-header">
     <div class="header-container container">
-        <div class="header-logo">
-    <svg width="24" height="24">
-        <use href="./images/sprite.svg#icon-film"></use>
-    </svg>
-    <h1 class="site-name">Filmoteka</h1></div>
+        <a class="header-logo">
+            <svg width="24" height="24">
+                <use href="./images/sprite.svg#icon-film"></use>
+            </svg>
+            <h1 class="site-name">Filmoteka</h1>
+        </a>
     <nav class="navigation">
-            <button type="button" class="navigation__button navigation__button--current">HOME</button></li>
-            <button type="button" class="navigation__button ">MY LIBRARY</button></li>
+            <button type="button" class="navigation__button navigation__button--current">HOME</button>
+            <button type="button" class="navigation__button ">MY LIBRARY</button>
         </nav> 
     </div>
 <div class ="header-search ">
-<form class="search-form">
-    <input type="text" name="name" placeholder="Поиск фильмов" class="search-form__input">
+<form class="search-form ">
+    <input type="text" name="name" id="search-box" placeholder="Поиск фильмов" class="search-form__input">
     <button type="submit" class="search-button">
       <svg width="12" height="12">
         <use href="./images/sprite.svg#icon-search-2"></use>
@@ -20,8 +21,8 @@
     </button></div>
     <div class ="movies_watched is_hidden">
 
-    <button type="button" class="library__button library__button--current">WATCHED</button></li>
-            <button type="button" class="library__button ">QUEUE</button></li>
+    <button type="button" class="library__button library__button--current">WATCHED</button>
+    <button type="button" class="library__button ">QUEUE</button>
 </div>
 </form>
 </header>

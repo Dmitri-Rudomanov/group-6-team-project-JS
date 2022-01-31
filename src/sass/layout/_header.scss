@@ -26,7 +26,6 @@
       url(/images/background1/header_tab_x2.jpg);
   }
   @media screen and (min-width: 1200px) {
-    max-width: 1600px;
     padding-right: 71px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(/images/background1/header.jpg);
@@ -67,7 +66,6 @@
       url(/images/background2/header_library_tab_x2.jpg);
   }
   @media screen and (min-width: 1200px) {
-    max-width: 1600px;
     padding-right: 71px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(/images/background2/header_library.jpg);
@@ -83,6 +81,7 @@
 /*    */
 
 .header-container {
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -93,6 +92,7 @@
   display: flex;
   align-items: center;
   margin-top: 41px;
+  cursor: pointer;
 }
 
 .site-name {
@@ -171,6 +171,9 @@
   border: none;
 }
 .search-form__input {
+  &:focus{
+  box-shadow: 0 5px 15px rgb(255, 107, 8);
+  }
   color: #ffffff;
   width: 324px;
   &::placeholder {
@@ -190,7 +193,6 @@
 .movies_watched {
   display: flex;
   justify-content: center;
-  margin-top: 49px;
 }
 
 .library__button {
@@ -199,7 +201,7 @@
   color: #ffffff;
   text-decoration: none;
   border-radius: 5px;
-  border-color: #ffffff;
+  border: 1px solid #FFFFFF;
   background-color: transparent;
   font-family: Roboto;
   font-style: normal;
@@ -208,6 +210,7 @@
   line-height: 1.33;
   width: 136px;
   height: 44px;
+  transition: box-shadow 0.3s ease 0s;
   cursor: pointer;
   &:not(:last-child) {
     margin-right: 20px;
@@ -215,10 +218,14 @@
       margin-right: 15px;
     }
   }
+    &:hover {
+  box-shadow: 0 5px 15px rgb(255, 107, 8);
+  } 
 }
 
-.library__button--current {
-  background: #ff6b08;
+.library__button--current{
+
+  background: rgb(255, 107, 8);
 }
 
 .is_hidden {
