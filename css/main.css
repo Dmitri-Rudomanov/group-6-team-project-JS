@@ -45,7 +45,6 @@ body {
 @media (max-width: 768px) {
   .movie-list {
     display: block;
-    text-align: center;
   }
 }
 
@@ -120,10 +119,11 @@ img {
 }
 
 .movie-img {
-  max-height: 400px;
-  max-width: 290px;
+  max-height: 398px;
+  max-width: 274px;
   position: relative;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 span {
@@ -145,14 +145,6 @@ span {
   text-decoration: none;
 }
 
-@media (max-width: 768px) {
-  .movie-link {
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-}
-
 .movie-name {
   font-family: Roboto;
   font-style: normal;
@@ -160,6 +152,7 @@ span {
   font-size: 14px;
   line-height: 16px;
   color: black;
+  margin-bottom: 0px;
 }
 
 .genre {
@@ -169,4 +162,37 @@ span {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  margin-top: 0px;
+}
+
+.movie-item__year {
+  color: #FF6B08;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 0px;
+  margin-left: 0px;
+}
+
+.movie-item__slash {
+  margin-right: 6px;
+  color: red;
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+.movie-item__vote-average {
+  border-radius: 5px;
+  background-color: #FF6B08;
+  color: white;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 0px;
+  margin-left: 5px;
+  padding: 2px 6px;
 }
