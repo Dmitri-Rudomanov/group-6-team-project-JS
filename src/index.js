@@ -53,17 +53,20 @@
 
 
 // ==========================================
+// =============код с скроллом ниже==========
+// ==========================================
 
 import './sass/main.scss';
-import { fetchGenres, fetchMovies } from './js/fetchMovies';
+import { fetchGenress, fetchMoviess } from './js/fetchMovies';
 //import { fetchGenres } from './js/fetchMovies';
 import { GENRES_STORAGE } from './js/fetchMovies';
 // import countryMarkupHbs from './templates/movie.hbs';
 import movieListMarkupHbs from './templates/movie-list.hbs';
 
 var debounce = require('lodash.debounce');
-const DEBOUNCE_DELAY = 1300;
-// ====объявление глоб перемеррых страницы. кол страниц. текст запроса====
+const DEBOUNCE_DELAY = 1000;
+
+// ====объявление глобальных переменных: текст запроса. страницы. кол страниц. ====
 let QUERY = undefined;
 let PAGE = 1;
 let totalPages = undefined;
@@ -74,22 +77,20 @@ const refs = {
     sentinel: document.querySelector('#sentinel'),
 }
 
-refs.searchBox.addEventListener("input", debounce(onSearchInput, DEBOUNCE_DELAY))
+refs.searchBox.addEventListener("input", debounce(onSearchInputs, DEBOUNCE_DELAY))
 
-// =======запрос жанров и  ==========
-fetchGenres();
-
-
-// ========первая загрузка========
-function onSearchInput(e) {
+// =======первоначальный разовый запрос жанров и сохранение ==========
+fetchGenress();
+// ========первая загрузка по кнопке========
+function onSearchInputs(e) {
     if (e.target.value !== "") {
-        QUERY = e.target.value.trim()
+        QUERY = e.target.value.trim();
         PAGE = 1;
-        fetchMovies(QUERY, PAGE)
+        fetchMoviess(QUERY, PAGE)
             .then(processGenres)
             .then(({ results, total_pages }) => {
-
                 totalPages = total_pages;
+                // ==очистка перед отрисовкой=====
                 clearMovieContainer();
                 appendMovieMarkup(results);
             }
@@ -100,12 +101,8 @@ function onSearchInput(e) {
         clearMovieContainer();
     }
 }
-// function listMarkup(r) {
-//     const markup = movieListMarkupHbs(r)
-//     refs.movieList.innerHTML = markup
-// }
 
-// =======добавление разметки==============
+// =======добавление разметки и отрисовка==============
 function appendMovieMarkup(r) {
     refs.movieList.insertAdjacentHTML('beforeend', movieListMarkupHbs(r));
 }
@@ -113,22 +110,24 @@ function appendMovieMarkup(r) {
 function clearMovieContainer() {
     refs.movieList.innerHTML = '';
 }
-
 // ===========обработка строки жанров===============
 function processGenres(response) {
     for (let i = 0; i < response.results.length; i++) {
+        // =======вызывается функция convertGenres которая ниже и присваивается ее результат=======
         let readableGenres = convertGenres(response.results[i].genre_ids);
+        // console.log(readableGenres)
         if (readableGenres.length > 3) {
             readableGenres = readableGenres.slice(0, 2);
-            readableGenres.push('...Other')
+            readableGenres.push('...Other');
         }
         response.results[i].genres = readableGenres.join(', ');
-
     }
-    return response
+    // console.log(response)
+    // =======из response используется genres при отрисовке=========
+    return response;
 }
 
-// ======присвоить название жанров========
+// ======присвоить название жанров по id========
 function convertGenres(genre_ids) {
     let resultGenre = [];
     let storageItem = localStorage.getItem(GENRES_STORAGE);
@@ -136,27 +135,28 @@ function convertGenres(genre_ids) {
     for (let i = 0; i < genre_ids.length; i++) {
         for (let k = 0; k < genreMapping.length; k++) {
             if (genre_ids[i] === genreMapping[k].id) {
-                resultGenre.push(genreMapping[k].name)
+                resultGenre.push(genreMapping[k].name);
                 break;
             }
         }
     }
-    return resultGenre
+    // console.log(resultGenre);
+    return resultGenre;
 }
 
-// =======дозагрузка=================
+// =======дозагрузка бесконечным скроллом=================
 const onEntry = entries => {
     entries.forEach(entry => {
-        // console.log('entry.isIntersecting-', entry.isIntersecting)
-
         if (entry.isIntersecting && QUERY !== undefined) {
-            // console.log('Пора грузить еще статьи');
+            // console.log('Пора грузить еще');
+            // ======следующая страница=========
             PAGE += 1;
+            // ======последняя страница=========
             if (PAGE > totalPages) {
-                console.log('pages out');
+                // console.log('pages out');
                 return;
             }
-            fetchMovies(QUERY, PAGE)
+            fetchMoviess(QUERY, PAGE)
                 .then(processGenres)
                 .then(({ results }) => {
                     appendMovieMarkup(results);
