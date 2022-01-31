@@ -106,9 +106,9 @@ span{
 display: flex;
 flex-direction: column;
 justify-content: center;
-// @media (max-width:768px) {
-// align-items: center;
-// }
+@media (max-width:768px) {
+align-items: center;
+}
 height: 100%;
 text-decoration: none;
 }
