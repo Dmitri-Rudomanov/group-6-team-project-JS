@@ -98,24 +98,33 @@ function fetchMarkupPopularityForWeek() {
 }
 
 // ==============================Открывает-Закрывает Модалку==========================
-refs.movieList.addEventListener('click', onOpenModal);
+refs.movieList.addEventListener('click', onClickInItem);
 refs.movieModal.addEventListener('click', onClickBackdrop);
-console.log(refs.movieModal);
-function onOpenModal(e) {
+
+function onClickInItem(e) {
+  if (e.target.className === 'movie-img') {
+    onOpenModal();
+  }
+}
+
+function onOpenModal() {
   window.addEventListener('keydown', onEscKeyDown);
   refs.movieModal.classList.remove('is-hidden');
   modalMarkup();
-  console.log(e.target);
 }
+
 function onCloseModal() {
   window.removeEventListener('keydown', onEscKeyDown);
   refs.movieModal.classList.add('is-hidden');
 }
 
 function onClickBackdrop(e) {
-  console.log(e.target);
-
-  if (e.target === e.currentTarget) {
+  if (
+    e.target === e.currentTarget ||
+    e.target.nodeName === 'path' ||
+    e.target.nodeName === 'svg' ||
+    e.target.className === 'btn-close'
+  ) {
     onCloseModal();
   }
 }
@@ -126,12 +135,11 @@ function onEscKeyDown(e) {
   }
 }
 // =======================Рисует Модалку===============================
-function modalMarkup(r) {
-  console.log('рисуем');
-  const modalMarkup = modalMarkupHbs(r);
+function modalMarkup() {
+  const modalMarkup = modalMarkupHbs();
   refs.movieModal.insertAdjacentHTML('beforeend', modalMarkup);
 }
-
+// =====================================================================
 refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
 
 // =======первоначальный разовый запрос жанров и сохранение ==========
