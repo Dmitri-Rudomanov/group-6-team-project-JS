@@ -64,6 +64,7 @@ import movieListMarkupHbs from './templates/movie-list.hbs';
 import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
 import { onHomePageLoading, onLibraryPageLoading } from './js/site-load';
+import { onClickInItem, onClickBackdrop } from './js/modal';
 
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
@@ -85,6 +86,10 @@ refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY
 refs.siteLogo.addEventListener('click', onHomePageLoading);
 refs.homePageBtn.addEventListener('click', onHomePageLoading);
 refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
+
+// ==============================Открывает-Закрывает Модалку==========================
+refs.movieList.addEventListener('click', onClickInItem);
+refs.movieModal.addEventListener('click', onClickBackdrop);
 
 fetchMarkupPopularityForWeek();
 
@@ -110,51 +115,6 @@ function fetchMarkupPopularityForWeek() {
       appendMovieMarkup(results);
     });
 }
-
-// ==============================Открывает-Закрывает Модалку==========================
-refs.movieList.addEventListener('click', onClickInItem);
-refs.movieModal.addEventListener('click', onClickBackdrop);
-
-function onClickInItem(e) {
-  if (e.target.className === 'movie-img') {
-    onOpenModal();
-  }
-}
-
-function onOpenModal() {
-  window.addEventListener('keydown', onEscKeyDown);
-  refs.movieModal.classList.remove('is-hidden');
-  modalMarkup();
-}
-
-function onCloseModal() {
-  window.removeEventListener('keydown', onEscKeyDown);
-  refs.movieModal.classList.add('is-hidden');
-}
-
-function onClickBackdrop(e) {
-  if (
-    e.target === e.currentTarget ||
-    e.target.nodeName === 'path' ||
-    e.target.nodeName === 'svg' ||
-    e.target.className === 'btn-close'
-  ) {
-    onCloseModal();
-  }
-}
-
-function onEscKeyDown(e) {
-  if (e.code === 'Escape') {
-    onCloseModal();
-  }
-}
-// =======================Рисует Модалку===============================
-function modalMarkup() {
-  const modalMarkup = modalMarkupHbs();
-  refs.movieModal.insertAdjacentHTML('beforeend', modalMarkup);
-}
-// =====================================================================
-refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
 
 // =======первоначальный разовый запрос жанров и сохранение ==========
 
