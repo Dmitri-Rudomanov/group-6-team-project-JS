@@ -1,3 +1,4 @@
+
 const API_KEY = '9f7c5da3425a9d17909027ad2b61278f';
 const GENRES_STORAGE = 'genres-names';
 
