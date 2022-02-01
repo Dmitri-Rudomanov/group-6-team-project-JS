@@ -73,10 +73,14 @@ let PAGE = 1;
 let totalPages = undefined;
 const refs = getRefs();
 
+
+// ===================Ищет популярные=====================
+=======
 refs.sitePage.classList.add('js-page-header__home');
 refs.homePageBtn.classList.add('js-navigation__button--current');
 refs.libPageBtnNav.classList.add('js-visually-hidden');
 refs.libBtnWatched.classList.add('js-library__button--current');
+
 
 refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
 refs.siteLogo.addEventListener('click', onHomePageLoading);
@@ -96,23 +100,60 @@ function fetchMarkupPopularityForWeek() {
     });
 }
 
-function toggleModal() {
-  console.log('click');
-  console.log(modalMarkup());
-  refs.movieList.addEventListener('click', toggleModal);
-  refs.closeModalBtn.addEventListener('click', toggleModal);
-  refs.movieModal.classList.toggle('is-hidden');
-}
-function modalMarkup(r) {
-  const modalMarkup = modalMarkupHbs(r);
-  refs.movieModal.insertAdjacentHTML('beforeend', modalMarkup);
-  console.log(refs.closeModalBtn);
+
+// ==============================Открывает-Закрывает Модалку==========================
+refs.movieList.addEventListener('click', onClickInItem);
+refs.movieModal.addEventListener('click', onClickBackdrop);
+
+function onClickInItem(e) {
+  if (e.target.className === 'movie-img') {
+    onOpenModal();
+  }
+
 }
 
+function onOpenModal() {
+  window.addEventListener('keydown', onEscKeyDown);
+  refs.movieModal.classList.remove('is-hidden');
+  modalMarkup();
+}
+
+
+function onCloseModal() {
+  window.removeEventListener('keydown', onEscKeyDown);
+  refs.movieModal.classList.add('is-hidden');
+}
+
+function onClickBackdrop(e) {
+  if (
+    e.target === e.currentTarget ||
+    e.target.nodeName === 'path' ||
+    e.target.nodeName === 'svg' ||
+    e.target.className === 'btn-close'
+  ) {
+    onCloseModal();
+  }
+}
+
+function onEscKeyDown(e) {
+  if (e.code === 'Escape') {
+    onCloseModal();
+  }
+}
+// =======================Рисует Модалку===============================
+function modalMarkup() {
+  const modalMarkup = modalMarkupHbs();
+  refs.movieModal.insertAdjacentHTML('beforeend', modalMarkup);
+}
+// =====================================================================
 refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
+
 // =======первоначальный разовый запрос жанров и сохранение ==========
+
 fetchGenres();
+
 // ========первая загрузка по кнопке========
+
 function onSearchInputs(e) {
   if (e.target.value !== '') {
     QUERY = e.target.value.trim();
@@ -200,6 +241,7 @@ const observer = new IntersectionObserver(onEntry, {
 });
 observer.observe(refs.sentinel);
 
+
 //=====подключение стилей при навигации по страницам=====
 function onHomePageLoading() {
   refs.sitePage.classList.replace('js-page-header__library', 'js-page-header__home');
@@ -216,3 +258,4 @@ function onLibraryPageLoading() {
   refs.libPageBtnNav.classList.remove('js-visually-hidden');
   refs.homePageForm.classList.add('js-visually-hidden');
 }
+

@@ -1,4 +1,4 @@
-<div class="modal modal--transform" data-modal style="display: flex; padding-right: 30px; padding-left: 30px">
+<div class="modal modal--transform" data-modal >
     <button class="btn-close" type="button" data-modal-close>
         <svg class="btn-close__icon" width="30" height="30">
             <path d="M8 8L22 22" stroke="black" stroke-width="2" />
@@ -8,13 +8,14 @@
     <div class="modal-poster">
         <img src="./images/Rectangle 18.jpeg" width="396" alt="" class="preview" />
     </div>
+    
     <div class="modal-content">
-        <h2 class="modal-title">A FISTFUL OF LEAD</h2>
+        <h2 class="modal-title">{{title}}A FISTFUL OF LEAD</h2>
         <table class="modal-table">
             <tbody>
                 <tr>
                     <td class="nomination">Vote/Votes</td>
-                    <td class="data"><span class="raiting">7,3</span>/ 1260</td>
+                    <td class="data"><span class="raiting">{{vote_average}}</span>/ 1260</td>
                 </tr>
 
                 <tr>
@@ -45,4 +46,5 @@
         <button class="btn-watched" type="submit">ADD TO WATCHED</button>
         <button class="btn-queue" type="submit">ADD TO QUEUE</button>
     </div>
+   
 </div>
