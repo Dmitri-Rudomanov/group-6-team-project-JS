@@ -75,7 +75,7 @@ const refs = getRefs();
 
 
 // ===================Ищет популярные=====================
-=======
+
 refs.sitePage.classList.add('js-page-header__home');
 refs.homePageBtn.classList.add('js-navigation__button--current');
 refs.libPageBtnNav.classList.add('js-visually-hidden');
