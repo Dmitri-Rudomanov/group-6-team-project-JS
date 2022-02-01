@@ -26,9 +26,9 @@ console.log(refs.movieList);
 
 refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
 
-fetchMarkupPopularityForDay();
+fetchMarkupPopularityForWeek();
 
-function fetchMarkupPopularityForDay() {
+function fetchMarkupPopularityForWeek() {
   fetchPopularity()
             .then(processGenres)
             .then(({ results, total_pages }) => {
@@ -71,7 +71,7 @@ function onSearchInputs(e) {
     }
     else {
         QUERY = undefined;
-        clearMovieContainer();
+        fetchMarkupPopularityForWeek();
     }
 }
 
