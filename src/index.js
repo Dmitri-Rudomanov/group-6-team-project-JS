@@ -65,7 +65,7 @@ import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
 import { onHomePageLoading, onLibraryPageLoading } from './js/site-load';
 import { onClickInItem, onClickBackdrop } from './js/modal';
-import { appendMovieMarkup, clearMovieContainer } from './js/add-remov-markup';
+import { appendMovieMarkup, clearMovieContainer } from './js/add-remove-markup';
 
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
