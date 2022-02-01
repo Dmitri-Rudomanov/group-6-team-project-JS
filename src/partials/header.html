@@ -1,28 +1,35 @@
 <header class="page-header">
-    <div class="header-container container">
-        <a class="header-logo">
-            <svg width="24" height="24">
-                <use href="./images/sprite.svg#icon-film"></use>
-            </svg>
-            <h1 class="site-name">Filmoteka</h1>
-        </a>
+  <div class="header-container container">
+    <a class="header-logo">
+      <svg width="24" height="24">
+        <use href="./images/sprite.svg#icon-film"></use>
+      </svg>
+      <h1 class="site-name">Filmoteka</h1>
+    </a>
     <nav class="navigation">
-            <button type="button" class="navigation__button navigation__button--current">HOME</button>
-            <button type="button" class="navigation__button ">MY LIBRARY</button>
-        </nav> 
-    </div>
-<div class ="header-search ">
-<form class="search-form ">
-    <input type="text" autocomplete="off" name="name" id="search-box" placeholder="Search for movies..." class="search-form__input">
-    <button type="submit" class="search-button">
-      <svg width="12" height="12">
-        <use href="./images/sprite.svg#icon-search-2"></use>
-    </svg>
-    </button></div>
-    <div class ="movies_watched is_hidden">
-
-    <button type="button" class="library__button library__button--current">WATCHED</button>
-    <button type="button" class="library__button ">QUEUE</button>
-</div>
-</form>
+      <button type="button" class="navigation__button" id="home">HOME</button>
+      <button type="button" class="navigation__button" id="library">MY LIBRARY</button>
+    </nav>
+  </div>
+  <div class="header-search">
+    <form class="search-form">
+      <input
+        type="text"
+        autocomplete="off"
+        name="name"
+        id="search-box"
+        placeholder="Search for movies..."
+        class="search-form__input"
+      />
+      <button type="submit" class="search-button">
+        <svg width="12" height="12">
+          <use href="./images/sprite.svg#icon-search-2"></use>
+        </svg>
+      </button>
+    </form>
+  </div>
+  <div class="lib-nav">
+    <button type="button" class="library-button" id="watched">WATCHED</button>
+    <button type="button" class="library-button" id="queue">QUEUE</button>
+  </div>
 </header>

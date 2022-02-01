@@ -62,27 +62,30 @@ import { GENRES_STORAGE } from './js/fetchMovies';
 // import countryMarkupHbs from './templates/movie.hbs';
 import movieListMarkupHbs from './templates/movie-list.hbs';
 import modalMarkupHbs from './templates/modal.hbs';
+import getRefs from './js/get-refs';
 
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
 
-// ====объявление глобальных переменных: текст запроса. страницы. кол страниц. ====
+// ====объявление глобальных переменных: текст запроса. страницы. кол страниц. ref'ов ====
 let QUERY = undefined;
 let PAGE = 1;
 let totalPages = undefined;
+const refs = getRefs();
 
-const refs = {
-  searchBox: document.querySelector('#search-box'),
-  movieList: document.querySelector('.movie-list'),
-  movieModal: document.querySelector('.backdrop'),
-  movieItem: document.querySelector('.movie-item'),
-  closeModalBtn: document.querySelector('.btn-close'),
-  sentinel: document.querySelector('#sentinel'),
-};
 
 // ===================Ищет популярные=====================
+=======
+refs.sitePage.classList.add('js-page-header__home');
+refs.homePageBtn.classList.add('js-navigation__button--current');
+refs.libPageBtnNav.classList.add('js-visually-hidden');
+refs.libBtnWatched.classList.add('js-library__button--current');
+
 
 refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
+refs.siteLogo.addEventListener('click', onHomePageLoading);
+refs.homePageBtn.addEventListener('click', onHomePageLoading);
+refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 
 fetchMarkupPopularityForWeek();
 
@@ -97,6 +100,7 @@ function fetchMarkupPopularityForWeek() {
     });
 }
 
+
 // ==============================Открывает-Закрывает Модалку==========================
 refs.movieList.addEventListener('click', onClickInItem);
 refs.movieModal.addEventListener('click', onClickBackdrop);
@@ -105,6 +109,7 @@ function onClickInItem(e) {
   if (e.target.className === 'movie-img') {
     onOpenModal();
   }
+
 }
 
 function onOpenModal() {
@@ -112,6 +117,7 @@ function onOpenModal() {
   refs.movieModal.classList.remove('is-hidden');
   modalMarkup();
 }
+
 
 function onCloseModal() {
   window.removeEventListener('keydown', onEscKeyDown);
@@ -234,3 +240,22 @@ const observer = new IntersectionObserver(onEntry, {
   rootMargin: '150px',
 });
 observer.observe(refs.sentinel);
+
+
+//=====подключение стилей при навигации по страницам=====
+function onHomePageLoading() {
+  refs.sitePage.classList.replace('js-page-header__library', 'js-page-header__home');
+  refs.libPageBtn.classList.remove('js-navigation__button--current');
+  refs.homePageBtn.classList.add('js-navigation__button--current');
+  refs.homePageForm.classList.remove('js-visually-hidden');
+  refs.libPageBtnNav.classList.add('js-visually-hidden');
+}
+
+function onLibraryPageLoading() {
+  refs.sitePage.classList.replace('js-page-header__home', 'js-page-header__library');
+  refs.homePageBtn.classList.remove('js-navigation__button--current');
+  refs.libPageBtn.classList.add('js-navigation__button--current');
+  refs.libPageBtnNav.classList.remove('js-visually-hidden');
+  refs.homePageForm.classList.add('js-visually-hidden');
+}
+

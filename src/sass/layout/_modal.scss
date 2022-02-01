@@ -6,6 +6,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 200;
+
 }
 
 .backdrop.is-hidden {
@@ -28,9 +29,11 @@
   background-color: #ffffff;
   min-width: 882px;
   min-height: 568px;
+
   display: flex;
   padding-right: 30px;
   padding-left: 30px;
+
 }
 
 .btn-close {

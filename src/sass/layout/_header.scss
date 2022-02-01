@@ -1,11 +1,10 @@
 /*фон главный*/
-.page-header {
+.js-page-header__home {
   padding-left: 21px;
   padding-right: 21px;
   padding-bottom: 0px;
   height: 230px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(/images/background1/header_mob.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/images/background1/header_mob.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -14,8 +13,7 @@
       url(/images/background1/header_mob_x2.jpg);
   }
   @media screen and (min-width: 768px) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(/images/background1/header_tab.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/images/background1/header_tab.jpg);
     padding-left: 71px;
     padding-right: 76px;
   }
@@ -27,19 +25,17 @@
   }
   @media screen and (min-width: 1200px) {
     padding-right: 71px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(/images/background1/header.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/images/background1/header.jpg);
   }
   @media screen and (min-width: 1200px) and (min-width: 1200px) and (min-device-pixel-ratio: 2),
     screen and (min-width: 1200px) and (min-resolution: 192dpi),
     screen and (min-width: 1200px) and (min-resolution: 2dppx) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(/images/background1/header_x2.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/images/background1/header_x2.jpg);
   }
 }
 
 /*фон для library*/
-.page-header-library {
+.js-page-header__library {
   padding-left: 21px;
   padding-right: 21px;
   padding-bottom: 0px;
@@ -122,6 +118,7 @@
   color: #ffffff;
   text-decoration: none;
   border: none;
+  padding: 0;
   background-color: transparent;
   font-family: Roboto;
   font-style: normal;
@@ -134,11 +131,11 @@
   }
 }
 
-.navigation__button--current::after {
+.js-navigation__button--current::after {
   position: absolute;
   bottom: -3px;
   left: 0;
-  content: '';
+  content: "";
   display: block;
   background-color: #ff6b08;
   height: 3px;
@@ -171,8 +168,8 @@
   border: none;
 }
 .search-form__input {
-  &:focus{
-  box-shadow: 0 5px 15px rgb(255, 107, 8);
+  &:focus {
+    box-shadow: 0 5px 15px rgb(255, 107, 8);
   }
   color: #ffffff;
   width: 324px;
@@ -190,18 +187,18 @@
 
 /* кнопки WATCHED И QUEUE*/
 
-.movies_watched {
+.lib-nav {
   display: flex;
   justify-content: center;
 }
 
-.library__button {
+.library-button {
   display: block;
   position: relative;
   color: #ffffff;
   text-decoration: none;
   border-radius: 5px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   background-color: transparent;
   font-family: Roboto;
   font-style: normal;
@@ -218,16 +215,11 @@
       margin-right: 15px;
     }
   }
-    &:hover {
-  box-shadow: 0 5px 15px rgb(255, 107, 8);
-  } 
+  &:hover {
+    box-shadow: 0 5px 15px rgb(255, 107, 8);
+  }
 }
 
-.library__button--current{
-
+.js-library__button--current {
   background: rgb(255, 107, 8);
-}
-
-.is_hidden {
-  display: none;
 }
