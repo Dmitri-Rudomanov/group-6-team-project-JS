@@ -20,7 +20,6 @@ function fetchMovies(name) {
         return response.json();
       }
     })
-    .then(response => response);
 }
 function fetchGenres() {
   return fetch(`

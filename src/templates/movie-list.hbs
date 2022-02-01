@@ -1,24 +1,59 @@
+
+{{!-- 
 {{#each this}}
 <li class="movie-item">
-    <a href="#" class="movie-link">
+<a href="#" class="movie-link">
         {{#if poster_path}}
         <img src="https://image.tmdb.org/t/p/original{{poster_path}}" alt={{title}} srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}} 2x" class="movie-img" >
 {{else}}
         <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png">
 {{/if}}
-        <h2 class="card-title">{{title}}</h2>
-        <div style="display: flex; align-items: baseline;">
-        
-        <p class="genre card-text"  data-genres={{genre_ids.[0]}}>
+        <p class="movie-name">{{title}}</p>
+        <div style="display: flex; align-items: baseline; justify-content: space-around;">
+        <div style="color: red; display: flex;">
+        <p class="genre"  data-genres={{genre_ids.[0]}}>
         <span >{{i.name}}</span>
         </p>
-        <p class="genre card-text"  data-genres={{genre_ids.[1]}}> 
+        <p class="genre"  data-genres={{genre_ids.[1]}}>
         <span >{{i.name}}</span>
-        </p>
-        
-        <p class="card-text">|
-        <span >{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
         </p>
         </div>
-        </a></li>
+        <p>
+        <span style="margin-left: 0; color: red;">{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
+        </p>
+        </div>
+</a>
+</li>
 {{/each}}
+ --}}
+
+
+
+{{!-- код с скроллом ниже --}}
+
+
+
+{{#each this}}
+<li class="movie-item">
+<a href="#" class="movie-link">
+        {{#if poster_path}}
+        <img src="https://image.tmdb.org/t/p/original{{poster_path}}" alt={{title}} srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}} 2x" class="movie-img" >
+{{else}}
+        <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png">
+{{/if}}
+        <p class="movie-name">{{title}}</p>
+        <div style="display: flex; align-items: baseline; justify-content: flex-start;">
+        <div style="color: red; display: flex; align-items: baseline;">
+        <p class="genre">{{genres}}</p>
+          <span style="margin-right: 8px;">|</span>
+        </div>
+        <p>
+        <span style="margin-left: 0; color: red;">{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
+        </p>
+        </div>
+</a>
+</li>
+{{/each}}
+
+
+
