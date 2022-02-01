@@ -65,6 +65,7 @@ import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
 import { onHomePageLoading, onLibraryPageLoading } from './js/site-load';
 import { onClickInItem, onClickBackdrop } from './js/modal';
+import { appendMovieMarkup, clearMovieContainer } from './js/add-remov-markup';
 
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
@@ -140,14 +141,6 @@ function onSearchInputs(e) {
   }
 }
 
-// =======добавление разметки и отрисовка==============
-function appendMovieMarkup(r) {
-  refs.movieList.insertAdjacentHTML('beforeend', movieListMarkupHbs(r));
-}
-// ========очистка страницы===========
-function clearMovieContainer() {
-  refs.movieList.innerHTML = '';
-}
 // ===========обработка строки жанров===============
 function processGenres(response) {
   for (let i = 0; i < response.results.length; i++) {
