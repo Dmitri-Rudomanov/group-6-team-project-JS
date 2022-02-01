@@ -3,8 +3,9 @@
  * Все паршалы подключаются сюда.
  */
 // Стили для файла с примером HTML-фрагмента
+@import '../sass/layout/variables';
 @import '../sass/layout/header';
-
+@import '../sass/layout/modal';
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 * {
   box-sizing: border-box;
@@ -151,35 +152,34 @@ span {
   line-height: 16px;
 }
 
-
 // ====стили для года vote-average и слеша в ханделбарсе=====
-.movie-item__year{
-  color: #FF6B08;
+.movie-item__year {
+  color: #ff6b08;
   font-family: Roboto;
-font-style: normal;
-font-weight: 500;
-font-size: 12px;
-line-height: 16px;
-margin-top: 0px;
-margin-left: 0px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 0px;
+  margin-left: 0px;
 }
-.movie-item__slash{
+.movie-item__slash {
   margin-right: 6px;
   color: red;
   font-size: 14px;
   margin-left: 6px;
 }
 
-.movie-item__vote-average{
- border-radius: 5px;
-  background-color: #FF6B08;
+.movie-item__vote-average {
+  border-radius: 5px;
+  background-color: #ff6b08;
   color: white;
   font-family: Roboto;
-font-style: normal;
-font-weight: 500;
-font-size: 12px;
-line-height: 16px;
-margin-top: 0px;
-margin-left: 5px;
-padding: 2px 6px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 0px;
+  margin-left: 5px;
+  padding: 2px 6px;
 }
