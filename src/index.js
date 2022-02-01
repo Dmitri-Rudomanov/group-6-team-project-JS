@@ -100,24 +100,34 @@ refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 
 fetchMarkupPopularityForWeek();
 
-function fetchMarkupPopularityForWeek() {
-  fetchPopularity()
-            .then(processGenres)
-            .then(({ results, total_pages }) => {
-                totalPages = total_pages;
-                // ==очистка перед отрисовкой=====
-                clearMovieContainer();
-                appendMovieMarkup(results);
-            }
-            );
-}
+// function fetchMarkupPopularityForWeek() {
+//   fetchPopularity()
+//             .then(processGenres)
+//             .then(({ results, total_pages }) => {
+//                 totalPages = total_pages;
+//                 // ==очистка перед отрисовкой=====
+//                 clearMovieContainer();
+//                 appendMovieMarkup(results);
+//             }
+//             );
+// }
 
+function fetchMarkupPopularityForWeek() {
+  PAGE = 1;
+  fetchPopularity(PAGE)
+    .then(processGenres)
+    .then(({ results, total_pages }) => {
+      totalPages = total_pages;
+      clearMovieContainer();
+      appendMovieMarkup(results);
+    });
+}
 
 function toggleModal() {
   console.log('click');
   console.log(modalMarkup());
-refs.movieList.addEventListener('click', toggleModal);
-refs.closeModalBtn.addEventListener('click', toggleModal);
+  refs.movieList.addEventListener('click', toggleModal);
+  refs.closeModalBtn.addEventListener('click', toggleModal);
   refs.movieModal.classList.toggle('is-hidden');
 }
 function modalMarkup(r) {
@@ -204,6 +214,17 @@ const onEntry = entries => {
         return;
       }
       fetchMovies(QUERY, PAGE)
+        .then(processGenres)
+        .then(({ results }) => {
+          appendMovieMarkup(results);
+        });
+    }
+    if (entry.isIntersecting) {
+      PAGE += 1;
+      if (PAGE > totalPages) {
+        return;
+      }
+      fetchPopularity(PAGE)
         .then(processGenres)
         .then(({ results }) => {
           appendMovieMarkup(results);
