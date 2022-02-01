@@ -62,7 +62,7 @@ import { GENRES_STORAGE } from './js/fetchMovies';
 // import countryMarkupHbs from './templates/movie.hbs';
 import movieListMarkupHbs from './templates/movie-list.hbs';
 import modalMarkupHbs from './templates/modal.hbs';
-import getRefs from './get-refs';
+import getRefs from './js/get-refs';
 
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
