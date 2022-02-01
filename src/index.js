@@ -51,7 +51,6 @@
 //     }
 // }
 
-
 // ==========================================
 // =============код с скроллом ниже==========
 // ==========================================
@@ -72,102 +71,132 @@ let PAGE = 1;
 let totalPages = undefined;
 
 const refs = {
-    searchBox: document.querySelector("#search-box"),
-    movieList: document.querySelector(".movie-list"),
-    sentinel: document.querySelector('#sentinel'),
-}
+  searchBox: document.querySelector('#search-box'),
+  movieList: document.querySelector('.movie-list'),
+  sentinel: document.querySelector('#sentinel'),
+  siteLogo: document.querySelector('.header-logo'),
+  sitePage: document.querySelector('.page-header'),
+  homePageBtn: document.querySelector('#home'),
+  libPageBtn: document.querySelector('#library'),
+  homePageForm: document.querySelector('.search-form'),
+  libPageBtnNav: document.querySelector('.lib-nav'),
+  libBtnWatched: document.querySelector('#watched'),
+  libBtnQueue: document.querySelector('#queue'),
+};
 
-refs.searchBox.addEventListener("input", debounce(onSearchInputs, DEBOUNCE_DELAY))
+refs.sitePage.classList.add('js-page-header__home');
+refs.homePageBtn.classList.add('js-navigation__button--current');
+refs.libPageBtnNav.classList.add('js-visually-hidden');
+refs.libBtnWatched.classList.add('js-library__button--current');
+
+refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
+refs.siteLogo.addEventListener('click', onHomePageLoading);
+refs.homePageBtn.addEventListener('click', onHomePageLoading);
+refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 
 // =======первоначальный разовый запрос жанров и сохранение ==========
 fetchGenres();
 // ========первая загрузка по кнопке========
 function onSearchInputs(e) {
-    if (e.target.value !== "") {
-        QUERY = e.target.value.trim();
-        PAGE = 1;
-        fetchMovies(QUERY, PAGE)
-            .then(processGenres)
-            .then(({ results, total_pages }) => {
-                totalPages = total_pages;
-                // ==очистка перед отрисовкой=====
-                clearMovieContainer();
-                appendMovieMarkup(results);
-            }
-            );
-    }
-    else {
-        QUERY = undefined;
+  if (e.target.value !== '') {
+    QUERY = e.target.value.trim();
+    PAGE = 1;
+    fetchMovies(QUERY, PAGE)
+      .then(processGenres)
+      .then(({ results, total_pages }) => {
+        totalPages = total_pages;
+        // ==очистка перед отрисовкой=====
         clearMovieContainer();
-    }
+        appendMovieMarkup(results);
+      });
+  } else {
+    QUERY = undefined;
+    clearMovieContainer();
+  }
 }
 
 // =======добавление разметки и отрисовка==============
 function appendMovieMarkup(r) {
-    refs.movieList.insertAdjacentHTML('beforeend', movieListMarkupHbs(r));
+  refs.movieList.insertAdjacentHTML('beforeend', movieListMarkupHbs(r));
 }
 // ========очистка страницы===========
 function clearMovieContainer() {
-    refs.movieList.innerHTML = '';
+  refs.movieList.innerHTML = '';
 }
 // ===========обработка строки жанров===============
 function processGenres(response) {
-    for (let i = 0; i < response.results.length; i++) {
-        // =======вызывается функция convertGenres которая ниже и присваивается ее результат=======
-        let readableGenres = convertGenres(response.results[i].genre_ids);
-        // console.log(readableGenres)
-        if (readableGenres.length > 3) {
-            readableGenres = readableGenres.slice(0, 2);
-            readableGenres.push('...Other');
-        }
-        response.results[i].genres = readableGenres.join(', ');
+  for (let i = 0; i < response.results.length; i++) {
+    // =======вызывается функция convertGenres которая ниже и присваивается ее результат=======
+    let readableGenres = convertGenres(response.results[i].genre_ids);
+    // console.log(readableGenres)
+    if (readableGenres.length > 3) {
+      readableGenres = readableGenres.slice(0, 2);
+      readableGenres.push('...Other');
     }
-    // console.log(response)
-    // =======из response используется genres при отрисовке=========
-    return response;
+    response.results[i].genres = readableGenres.join(', ');
+  }
+  // console.log(response)
+  // =======из response используется genres при отрисовке=========
+  return response;
 }
 
 // ======присвоить название жанров по id========
 function convertGenres(genre_ids) {
-    let resultGenre = [];
-    let storageItem = localStorage.getItem(GENRES_STORAGE);
-    let genreMapping = JSON.parse(storageItem);
-    for (let i = 0; i < genre_ids.length; i++) {
-        for (let k = 0; k < genreMapping.length; k++) {
-            if (genre_ids[i] === genreMapping[k].id) {
-                resultGenre.push(genreMapping[k].name);
-                break;
-            }
-        }
+  let resultGenre = [];
+  let storageItem = localStorage.getItem(GENRES_STORAGE);
+  let genreMapping = JSON.parse(storageItem);
+  for (let i = 0; i < genre_ids.length; i++) {
+    for (let k = 0; k < genreMapping.length; k++) {
+      if (genre_ids[i] === genreMapping[k].id) {
+        resultGenre.push(genreMapping[k].name);
+        break;
+      }
     }
-    // console.log(resultGenre);
-    return resultGenre;
+  }
+  // console.log(resultGenre);
+  return resultGenre;
 }
 
 // =======дозагрузка бесконечным скроллом=================
 const onEntry = entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && QUERY !== undefined) {
-            // console.log('Пора грузить еще');
-            // ======следующая страница=========
-            PAGE += 1;
-            // ======последняя страница=========
-            if (PAGE > totalPages) {
-                // console.log('pages out');
-                return;
-            }
-            fetchMovies(QUERY, PAGE)
-                .then(processGenres)
-                .then(({ results }) => {
-                    appendMovieMarkup(results);
-                }
-                );
-        }
-    });
+  entries.forEach(entry => {
+    if (entry.isIntersecting && QUERY !== undefined) {
+      // console.log('Пора грузить еще');
+      // ======следующая страница=========
+      PAGE += 1;
+      // ======последняя страница=========
+      if (PAGE > totalPages) {
+        // console.log('pages out');
+        return;
+      }
+      fetchMovies(QUERY, PAGE)
+        .then(processGenres)
+        .then(({ results }) => {
+          appendMovieMarkup(results);
+        });
+    }
+  });
 };
 
 // ========наблюдатель скролла============
 const observer = new IntersectionObserver(onEntry, {
-    rootMargin: '150px',
+  rootMargin: '150px',
 });
 observer.observe(refs.sentinel);
+
+//=====подключение стилей при навигации по страницам=====
+function onHomePageLoading() {
+  refs.sitePage.classList.replace('js-page-header__library', 'js-page-header__home');
+  refs.libPageBtn.classList.remove('js-navigation__button--current');
+  refs.homePageBtn.classList.add('js-navigation__button--current');
+  refs.homePageForm.classList.remove('js-visually-hidden');
+  refs.libPageBtnNav.classList.add('js-visually-hidden');
+}
+
+function onLibraryPageLoading() {
+  refs.sitePage.classList.replace('js-page-header__home', 'js-page-header__library');
+  refs.homePageBtn.classList.remove('js-navigation__button--current');
+  refs.libPageBtn.classList.add('js-navigation__button--current');
+  refs.libPageBtnNav.classList.remove('js-visually-hidden');
+  refs.homePageForm.classList.add('js-visually-hidden');
+}

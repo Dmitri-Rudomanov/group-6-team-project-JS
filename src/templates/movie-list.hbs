@@ -41,19 +41,21 @@
 {{else}}
         <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png">
 {{/if}}
+        <div class="movie-content">
         <p class="movie-name">{{title}}</p>
-        <div style="display: flex; align-items: baseline; justify-content: flex-start;">
-        <div style="color: red; display: flex; align-items: baseline;">
-        <p class="genre">{{genres}}</p>
-          <span style="margin-right: 8px;">|</span>
+        <div class="movie-description">
+        <div class="movie-genre">
+        <p>{{genres}}</p>
+          <span class="text-separator">|</span>
         </div>
         <p>
-        <span style="margin-left: 0; color: red;">{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
+        <span class="movie-data">{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
         </p>
+        <p>
+        <span class="movie-vote js-visually-hidden">{{vote_average}}</span>
+        </p>
+        </div>
         </div>
 </a>
 </li>
 {{/each}}
-
-
-
