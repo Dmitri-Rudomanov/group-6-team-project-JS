@@ -131,9 +131,6 @@ span {
   text-decoration: none;
 }
 
-.movie-content {
-  margin-top: 10px;
-}
 
 .movie-name {
   font-family: Roboto;
@@ -144,10 +141,7 @@ span {
   color: black;
 }
 
-.movie-description {
-  display: flex;
-  align-items: baseline;
-  justify-content: flex-start;
+.genre {
   color: #ff6b08;
   font-family: Roboto;
   font-style: normal;
@@ -156,33 +150,35 @@ span {
   line-height: 16px;
 }
 
-.movie-genre {
-  color: #ff6b08;
-  display: flex;
-  align-items: baseline;
+
+// ====стили для года vote-average и слеша в ханделбарсе=====
+.movie-item__year{
+  color: #FF6B08;
+  font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+margin-top: 0px;
+margin-left: 0px;
+}
+.movie-item__slash{
+  margin-right: 6px;
+  color: red;
+  font-size: 14px;
+  margin-left: 6px;
 }
 
-.text-separator {
-  margin-right: 8px;
-}
-
-.movie-data {
-  display: flex;
-  align-items: baseline;
-  margin-left: 0;
-  font-size: 12px;
-  line-height: 1.33;
-  color: #ff6b08;
-}
-
-.movie-vote {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 16px;
-  margin-left: 10px;
-  color: #ffffff;
-  background: #ff6b01;
-  border-radius: 5px;
+.movie-item__vote-average{
+ border-radius: 5px;
+  background-color: #FF6B08;
+  color: white;
+  font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+margin-top: 0px;
+margin-left: 5px;
+padding: 2px 6px;
 }

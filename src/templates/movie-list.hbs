@@ -33,7 +33,7 @@
 
 
 
-{{#each this}}
+{{!-- {{#each this}}
 <li class="movie-item">
 <a href="#" class="movie-link">
         {{#if poster_path}}
@@ -41,21 +41,47 @@
 {{else}}
         <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png">
 {{/if}}
-        <div class="movie-content">
         <p class="movie-name">{{title}}</p>
-        <div class="movie-description">
-        <div class="movie-genre">
-        <p>{{genres}}</p>
-          <span class="text-separator">|</span>
+        <div style="display: flex; align-items: baseline; justify-content: flex-start;">
+        <div style="color: red; display: flex; align-items: baseline;">
+        <p class="genre">{{genres}}</p>
+          <span style="margin-right: 8px;">|</span>
         </div>
         <p>
-        <span class="movie-data">{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
+        <span style="margin-left: 0; color: red;">{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
         </p>
-        <p>
-        <span class="movie-vote js-visually-hidden">{{vote_average}}</span>
-        </p>
-        </div>
         </div>
 </a>
+</li>
+{{/each}} --}}
+
+
+{{#each this}}
+<li class="movie-item">
+        {{!-- добавляет id каждого фильма в value и id--}}
+        <a href="#" class="movie-link" id="{{id}}" value="{{id}}">
+        {{#if poster_path}}
+        <img src="https://image.tmdb.org/t/p/original{{poster_path}}" alt={{title}} srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}} 2x" class="movie-img" >
+{{else}}
+        <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png" class="movie-img"> 
+{{/if}}
+<div class="movie-link__content" style="padding-top: 10px; max-width: 398px; display: flex;align-items: flex-start;    flex-direction: column;">
+        <p class="movie-name">{{title}}</p>
+        <div class="movie-item__genre" style="display: flex; align-items: baseline;">
+        <p class="genre">{{genres}}</p>
+{{#if genres}}
+        <span class="movie-item__slash">|</span>
+{{else}}
+        <span class="movie-item__slash-zero" style="margin-left: 0px;"></span>
+{{/if}}
+        <p style="margin-top: 0;">
+        <span class="movie-item__year">{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
+        {{!-- можно скрыть --}}
+        <span class="movie-item__vote-average">{{vote_average}}</span>
+        </p>
+        </div>
+</div>
+
+</a> 
 </li>
 {{/each}}
