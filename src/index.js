@@ -29,19 +29,23 @@ refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY
 fetchMarkupPopularityForDay();
 
 function fetchMarkupPopularityForDay() {
-  fetchPopularity().then(({ results }) => {
-    appendMovieMarkup(results);
-    fetchGenres();
-    setTimeout(() => genresCheck(results.genre_ids), 300);
-  });
+  fetchPopularity()
+            .then(processGenres)
+            .then(({ results, total_pages }) => {
+                totalPages = total_pages;
+                // ==очистка перед отрисовкой=====
+                clearMovieContainer();
+                appendMovieMarkup(results);
+            }
+            );
 }
-refs.movieList.addEventListener('click', toggleModal);
-refs.closeModalBtn.addEventListener('click', toggleModal);
+
 
 function toggleModal() {
   console.log('click');
   console.log(modalMarkup());
-
+refs.movieList.addEventListener('click', toggleModal);
+refs.closeModalBtn.addEventListener('click', toggleModal);
   refs.movieModal.classList.toggle('is-hidden');
 }
 function modalMarkup(r) {

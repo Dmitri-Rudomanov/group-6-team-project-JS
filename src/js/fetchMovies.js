@@ -3,18 +3,17 @@ const GENRES_STORAGE = 'genres-names';
 
 function fetchPopularity() {
   return fetch(`
-    https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`)
+    https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`)
     .then(response => {
       if (response.ok) {
         return response.json();
       }
     })
-    .then(response => response);
 }
 
-function fetchMovies(name) {
+function fetchMovies(name, page = 1) {
   return fetch(`
-    https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${name}&page=1&include_adult=false`)
+    https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${name}&page=${page}&include_adult=false`)
     .then(response => {
       if (response.ok) {
         return response.json();
