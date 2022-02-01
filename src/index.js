@@ -57,11 +57,12 @@
 // ==========================================
 
 import './sass/main.scss';
-import { fetchGenres, fetchMovies } from './js/fetchMovies';
+import { fetchGenres, fetchMovies, fetchPopularity } from './js/fetchMovies';
 //import { fetchGenres } from './js/fetchMovies';
 import { GENRES_STORAGE } from './js/fetchMovies';
 // import countryMarkupHbs from './templates/movie.hbs';
 import movieListMarkupHbs from './templates/movie-list.hbs';
+import modalMarkupHbs from './templates/modal.hbs';
 
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
@@ -72,10 +73,46 @@ let PAGE = 1;
 let totalPages = undefined;
 
 const refs = {
-    searchBox: document.querySelector("#search-box"),
-    movieList: document.querySelector(".movie-list"),
-    sentinel: document.querySelector('#sentinel'),
+  searchBox: document.querySelector('#search-box'),
+  movieList: document.querySelector('.movie-list'),
+  movieModal: document.querySelector('.backdrop'),
+  movieItem: document.querySelector('.movie-item'),
+  closeModalBtn: document.querySelector('.btn-close'),
+  sentinel: document.querySelector('#sentinel'),
+};
+
+console.log(refs.movieList);
+
+refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
+
+fetchMarkupPopularityForWeek();
+
+function fetchMarkupPopularityForWeek() {
+  fetchPopularity()
+            .then(processGenres)
+            .then(({ results, total_pages }) => {
+                totalPages = total_pages;
+                // ==очистка перед отрисовкой=====
+                clearMovieContainer();
+                appendMovieMarkup(results);
+            }
+            );
 }
+
+
+function toggleModal() {
+  console.log('click');
+  console.log(modalMarkup());
+refs.movieList.addEventListener('click', toggleModal);
+refs.closeModalBtn.addEventListener('click', toggleModal);
+  refs.movieModal.classList.toggle('is-hidden');
+}
+function modalMarkup(r) {
+  const modalMarkup = modalMarkupHbs(r);
+  refs.movieModal.insertAdjacentHTML('beforeend', modalMarkup);
+  console.log(refs.closeModalBtn);
+}
+
 
 refs.searchBox.addEventListener("input", debounce(onSearchInputs, DEBOUNCE_DELAY))
 
@@ -98,7 +135,7 @@ function onSearchInputs(e) {
     }
     else {
         QUERY = undefined;
-        clearMovieContainer();
+        fetchMarkupPopularityForWeek();
     }
 }
 
@@ -171,3 +208,4 @@ const observer = new IntersectionObserver(onEntry, {
     rootMargin: '150px',
 });
 observer.observe(refs.sentinel);
+
