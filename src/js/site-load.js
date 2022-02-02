@@ -9,9 +9,11 @@ function onHomePageLoading() {
   refs.homePageBtn.classList.add('js-navigation__button--current');
   refs.homePageForm.classList.remove('js-visually-hidden');
   refs.libPageBtnNav.classList.add('js-visually-hidden');
+  refs.searchBox.placeholder = 'Search for movies...';
 }
 
 function onLibraryPageLoading() {
+  refs.searchForm.reset();
   refs.sitePage.classList.replace('js-page-header__home', 'js-page-header__library');
   refs.homePageBtn.classList.remove('js-navigation__button--current');
   refs.libPageBtn.classList.add('js-navigation__button--current');

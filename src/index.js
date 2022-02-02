@@ -65,7 +65,7 @@ import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
 import { onHomePageLoading, onLibraryPageLoading } from './js/site-load';
 import { onClickInItem, onClickBackdrop } from './js/modal';
-import { appendMovieMarkup, clearMovieContainer } from './js/add-remove-markup';
+import { appendMovieMarkup, clearMovieContainer, clearForm } from './js/add-remove-markup';
 
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
@@ -87,6 +87,7 @@ refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY
 refs.siteLogo.addEventListener('click', onHomePageLoading);
 refs.homePageBtn.addEventListener('click', onHomePageLoading);
 refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
+refs.searchBox.addEventListener('focus', clearForm);
 
 // ==============================Открывает-Закрывает Модалку==========================
 refs.movieList.addEventListener('click', onClickInItem);
