@@ -28,8 +28,8 @@
   @media screen and (min-width: 320px) {
     padding-top: 50px;
     padding-bottom: 40px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 
     min-height: 568px;
   }
@@ -201,8 +201,8 @@ td {
   background-color: var(--action-color);
   border-radius: 5px;
   cursor: pointer;
-  padding-top: 14px;
-  padding-bottom: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .btn-watched__text {
   color: var(--secondary-text-color);
@@ -222,8 +222,8 @@ td {
   background-color: var(--secondary-text-color);
   border-radius: 5px;
   cursor: pointer;
-  padding-top: 14px;
-  padding-bottom: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .btn-queue__text {
