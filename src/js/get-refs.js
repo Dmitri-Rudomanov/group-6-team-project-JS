@@ -14,5 +14,6 @@ export default function getRefs() {
     libPageBtnNav: document.querySelector('.lib-nav'),
     libBtnWatched: document.querySelector('#watched'),
     libBtnQueue: document.querySelector('#queue'),
+    bodyHtml: document.querySelector('body');
   };
 }

@@ -16,12 +16,14 @@ function onClickInItem(e) {
 function onOpenModal(id) {
   window.addEventListener('keydown', onEscKeyDown);
   refs.movieModal.classList.remove('is-hidden');
+  refs.bodyHtml.classList.add('body-overflow');
   modalMarkup(id);
 }
 
 function onCloseModal() {
   window.removeEventListener('keydown', onEscKeyDown);
   refs.movieModal.classList.add('is-hidden');
+  refs.bodyHtml.classList.remove('body-overflow');
 }
 
 function onClickBackdrop(e) {
