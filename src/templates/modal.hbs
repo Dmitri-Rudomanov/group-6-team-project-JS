@@ -1,3 +1,4 @@
+
 <div class="modal modal--transform" data-modal >
     <button class="btn-close" type="button" data-modal-close>
         <svg class="btn-close__icon" width="30" height="30">
@@ -6,26 +7,29 @@
         </svg>
     </button>
     <div class="modal-poster">
-        <img src="./images/Rectangle 18.jpeg" width="396" alt="" class="preview" />
+        {{#if poster_path}}
+        <img src="https://image.tmdb.org/t/p/original{{poster_path}}" alt="{{title}}" srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}} 2x" class="movie-img" >
+        {{else}}
+                <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png" class="modal-poster"> 
+        {{/if}}
     </div>
-    
     <div class="modal-content">
         <h2 class="modal-title">{{title}}A FISTFUL OF LEAD</h2>
         <table class="modal-table">
             <tbody>
                 <tr>
                     <td class="nomination">Vote/Votes</td>
-                    <td class="data"><span class="raiting">{{vote_average}}</span>/ 1260</td>
+                    <td class="data"><span class="raiting">{{vote_average}}</span>/{{vote_count}}</td>
                 </tr>
 
                 <tr>
                     <td class="nomination">Popularity</td>
-                    <td class="data">100.2</td>
+                    <td class="data">{{popularity}}</td>
                 </tr>
 
                 <tr>
                     <td class="nomination">Original Title</td>
-                    <td class="data">A FISTFUL OF LEAD</td>
+                    <td class="data">{{original_title}}</td>
                 </tr>
 
                 <tr>
@@ -35,16 +39,8 @@
             </tbody>
         </table>
         <h3 class="description-title">ABOUT</h3>
-        <p class="text-description">
-            Four of the West’s most infamous outlaws assemble to steal a huge stash of gold from the
-            most corrupt settlement of the gold rush towns. But not all goes to plan one is killed
-            and the other three escapes with bags of gold hide out in the abandoned gold mine where
-            they happen across another gang of three – who themselves were planning to hit the very
-            same bank! As tensions rise, things go from bad to worse as they realise the bags of
-            gold are filled with lead... they’ve been double crossed – but by who and how?
-        </p>
+        <p class="text-description">{{overview}}</p>
         <button class="btn-watched" type="submit">ADD TO WATCHED</button>
         <button class="btn-queue" type="submit">ADD TO QUEUE</button>
     </div>
-   
 </div>

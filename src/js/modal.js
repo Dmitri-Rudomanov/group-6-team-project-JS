@@ -1,20 +1,23 @@
+import { fetchForID } from './fetchMovies';
 import modalMarkupHbs from '../templates/modal.hbs';
 import getRefs from './get-refs';
 
 const refs = getRefs();
+let id = null;
 
 export { onClickInItem, onClickBackdrop };
 
 function onClickInItem(e) {
   if (e.target.className === 'movie-img') {
-    onOpenModal();
+    id = e.target.parentNode.id;
+    onOpenModal(id);
   }
 }
 
-function onOpenModal() {
+function onOpenModal(id) {
   window.addEventListener('keydown', onEscKeyDown);
   refs.movieModal.classList.remove('is-hidden');
-  modalMarkup();
+  modalMarkup(id);
 }
 
 function onCloseModal() {
@@ -39,7 +42,10 @@ function onEscKeyDown(e) {
   }
 }
 // =======================Рисует Модалку===============================
-function modalMarkup() {
-  const modalMarkup = modalMarkupHbs();
-  refs.movieModal.insertAdjacentHTML('beforeend', modalMarkup);
+function modalMarkup(id) {
+  fetchForID(id)
+    .then()
+    .then(results => {
+      refs.movieModal.insertAdjacentHTML('beforeend', modalMarkupHbs(results));
+    });
 }
