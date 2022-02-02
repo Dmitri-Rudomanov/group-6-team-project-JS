@@ -1,57 +1,4 @@
-// import './sass/main.scss';
-// import { fetchGenres, fetchMovies } from './js/fetchMovies';
-// //import { fetchGenres } from './js/fetchMovies';
-// import { GENRES_STORAGE } from './js/fetchMovies';
-// // import countryMarkupHbs from './templates/movie.hbs';
-// import movieListMarkupHbs from './templates/movie-list.hbs';
 
-// var debounce = require('lodash.debounce');
-// const DEBOUNCE_DELAY = 300;
-// const refs = {
-//     searchBox: document.querySelector("#search-box"),
-//     movieList: document.querySelector(".movie-list"),
-// }
-
-// refs.searchBox.addEventListener("input", debounce(onSearchInput, DEBOUNCE_DELAY))
-
-// function onSearchInput(e) {
-//     if (e.target.value !== "") {
-//         const movieInput = e.target.value.trim()
-//         fetchMovies(movieInput)
-//             .then(({ results }) => {
-//                 listMarkup(results);
-//                 fetchGenres();
-//                 setTimeout(() => genresCheck(results.genre_ids), 300)
-//             }
-//             )
-//     }
-//     else {
-//         clearArea()
-//     }
-// }
-// function listMarkup(r) {
-//     const markup = movieListMarkupHbs(r)
-//     refs.movieList.innerHTML = markup
-// }
-// function genresCheck(ids) {
-//     let genreHtml = document.querySelectorAll('.genre')
-//     // console.log(genreHtml)
-//     let genreData
-//     let storageItem = localStorage.getItem(GENRES_STORAGE)
-//     let parsedStorage = JSON.parse(storageItem)
-//     // console.log(parsedStorage)
-//     for (let item of genreHtml) {
-//         genreData = item.dataset.genres.split(',')
-//         // console.log(genreData)
-//         for (let i of parsedStorage) {
-//             if (genreData.includes(i.id.toString())) {
-//                 item.textContent += `${i.name},`
-//             }
-//         }
-//     }
-// }
-
-// ==========================================
 // =============код с скроллом ниже==========
 // ==========================================
 
@@ -94,17 +41,6 @@ refs.movieModal.addEventListener('click', onClickBackdrop);
 
 fetchMarkupPopularityForWeek();
 
-// function fetchMarkupPopularityForWeek() {
-//   fetchPopularity()
-//             .then(processGenres)
-//             .then(({ results, total_pages }) => {
-//                 totalPages = total_pages;
-//                 // ==очистка перед отрисовкой=====
-//                 clearMovieContainer();
-//                 appendMovieMarkup(results);
-//             }
-//             );
-// }
 
 function fetchMarkupPopularityForWeek() {
   PAGE = 1;
@@ -140,6 +76,56 @@ function onSearchInputs(e) {
     fetchMarkupPopularityForWeek();
   }
 }
+// =========сохранение в localStorage отложенных :фильмы смотреть и фильмы в очередь=============
+// =======фильмы смотреть:let arr_1watchedFilms, фильмы в очередь: let arr_2queueFilms=====
+
+let watchClikLifeFilms = [];
+let queueClikLifeFilms = [];
+
+watchClikLifeFilms.push(JSON.parse(localStorage.getItem('watchedFilms-id')));
+let watchLife = watchClikLifeFilms.flat(Infinity).slice(1);
+// ==фильмы смотреть================
+let arr_1watchedFilms = Array.from(new Set(watchLife));
+console.log('arr_1watchedFilms-смотреть', arr_1watchedFilms);
+
+queueClikLifeFilms.push(JSON.parse(localStorage.getItem('queueFilms-id')));
+let queueLife = queueClikLifeFilms.flat(Infinity).slice(1);
+// ==фильмы в очередь===============
+let arr_2queueFilms = Array.from(new Set(queueLife));
+console.log('arr_2queueFilms-в очередь', arr_2queueFilms);
+
+// =====всплывающий клик==============
+refs.movieModal.addEventListener("mousedown", function (e) {
+  let classes = e.target.className;
+  if (classes = ".btn-watched") {
+    let liClick = document.getElementsByTagName("button");
+    for (var i = 0; i < liClick.length; i++) {
+      if (liClick[i].matches(".btn-watched")) {
+        liClick[i].addEventListener("click", myFunctionClickWatched);
+      }
+    }
+  }
+  if (classes = ".btn-queue") {
+    let liClick2 = document.getElementsByTagName("button");
+    for (var i = 0; i < liClick2.length; i++) {
+      if (liClick2[i].matches(".btn-queue")) {
+        liClick2[i].addEventListener("click", myFunctionClickQueue);
+      }
+    }
+  }
+});
+
+function myFunctionClickWatched() {
+  // ====выбираю фильмы по id смотреть======
+  watchClikLifeFilms.push(this.value)
+  localStorage.setItem('watchedFilms-id', JSON.stringify(watchClikLifeFilms));
+}
+function myFunctionClickQueue() {
+  // ====выбираю фильмы по id в очередь======
+  queueClikLifeFilms.push(this.value)
+  localStorage.setItem('queueFilms-id', JSON.stringify(queueClikLifeFilms));
+}
+// =================================================
 
 // ===========обработка строки жанров===============
 function processGenres(response) {
