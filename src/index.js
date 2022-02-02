@@ -157,7 +157,6 @@ function processGenres(response) {
   // =======из response используется genres при отрисовке=========
   return response;
 }
-
 // ======присвоить название жанров по id========
 function convertGenres(genre_ids) {
   let resultGenre = [];

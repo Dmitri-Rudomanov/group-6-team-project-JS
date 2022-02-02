@@ -1,7 +1,6 @@
 import { fetchForID } from './fetchMovies';
 import modalMarkupHbs from '../templates/modal.hbs';
 import getRefs from './get-refs';
-
 const refs = getRefs();
 let id = null;
 
