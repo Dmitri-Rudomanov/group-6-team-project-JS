@@ -24,6 +24,7 @@ function onCloseModal() {
   window.removeEventListener('keydown', onEscKeyDown);
   refs.movieModal.classList.add('is-hidden');
   refs.bodyHtml.classList.remove('body-overflow');
+  refs.movieModal.innerHTML = '';
 }
 
 function onClickBackdrop(e) {
@@ -43,20 +44,11 @@ function onEscKeyDown(e) {
   }
 }
 
-let names = null;
 // =======================Рисует Модалку по ID===============================
 function modalMarkup(id) {
-  fetchForID(id)
-    .then()
-    .then(results => {
-      names = results.genres.map(genre => genre.name);
-      for (const name of names) {
-        console.log(name);
-        refs.movieModal.insertAdjacentHTML('beforeend', modalMarkupHbs(results, name));
-      }
-
-      console.log(names);
-    });
+  fetchForID(id).then(results => {
+    refs.movieModal.insertAdjacentHTML('beforeend', modalMarkupHbs(results));
+  });
 }
+
 // =======================Рисует жанры в модалке============================
-console.log(names);

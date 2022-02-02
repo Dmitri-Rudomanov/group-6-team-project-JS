@@ -19,7 +19,7 @@
             <tbody>
                 <tr>
                     <td class="nomination">Vote/Votes</td>
-                    <td class="data"><span class="raiting">{{vote_average}}</span>/{{vote_count}}</td>
+                    <td class="data"><span class="raiting">{{vote_average}}</span><span class="raiting-slesh">/</span>{{vote_count}}</td>
                 </tr>
 
                 <tr>
@@ -33,14 +33,14 @@
                 </tr>
 
                 <tr>
-                    <td class="nomination">Genre</td>
-                    <td class="data data-genres">`${name}`</td>
+                    <td class="nomination nomination-genres">Genre</td>
+                        <td class="data data-genres">{{names}}</td>
                 </tr>
             </tbody>
         </table>
         <h3 class="description-title">ABOUT</h3>
         <p class="text-description">{{overview}}</p>
-        <button class="btn-watched" type="submit">ADD TO WATCHED</button>
-        <button class="btn-queue" type="submit">ADD TO QUEUE</button>
+        <div class="btn-container"><button class="btn-watched" type="submit"><span class='btn-watched__text'>ADD TO WATCHED</span></button>
+        <button class="btn-queue" type="submit"><span class='btn-queue__text'>ADD TO QUEUE</span></button></div>
     </div>
 </div>
