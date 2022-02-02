@@ -42,11 +42,21 @@ function onEscKeyDown(e) {
     onCloseModal();
   }
 }
-// =======================Рисует Модалку===============================
+
+let names = null;
+// =======================Рисует Модалку по ID===============================
 function modalMarkup(id) {
   fetchForID(id)
     .then()
     .then(results => {
-      refs.movieModal.insertAdjacentHTML('beforeend', modalMarkupHbs(results));
+      names = results.genres.map(genre => genre.name);
+      for (const name of names) {
+        console.log(name);
+        refs.movieModal.insertAdjacentHTML('beforeend', modalMarkupHbs(results, name));
+      }
+
+      console.log(names);
     });
 }
+// =======================Рисует жанры в модалке============================
+console.log(names);
