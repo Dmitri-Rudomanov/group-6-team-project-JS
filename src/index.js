@@ -95,7 +95,7 @@ if (watchLife[0] === null) {
 // // ==фильмы смотреть================
 let arr_1watchedFilms = Array.from(new Set(watchLife));
 localStorage.setItem('watchedFilms-id', JSON.stringify(arr_1watchedFilms));
-// console.log('arr_1watchedFilms-смотреть', arr_1watchedFilms);
+console.log('arr_1watchedFilms-смотреть', arr_1watchedFilms);
 
 queueClikLifeFilms.push(JSON.parse(localStorage.getItem('queueFilms-id')));
 let queueLife = queueClikLifeFilms.flat(Infinity);
@@ -105,7 +105,7 @@ if (queueLife[0] === null) {
 // // ==фильмы в очередь===============
 let arr_2queueFilms = Array.from(new Set(queueLife));
 localStorage.setItem('queueFilms-id', JSON.stringify(arr_2queueFilms));
-// console.log('arr_2queueFilms-в очередь', arr_2queueFilms);
+console.log('arr_2queueFilms-в очередь', arr_2queueFilms);
 
 // ====================================
 // =====всплывающий клик==============
