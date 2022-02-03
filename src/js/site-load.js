@@ -1,4 +1,5 @@
 import getRefs from './get-refs';
+import { clearMovieContainer } from './add-remove-markup';
 
 const refs = getRefs();
 
@@ -9,6 +10,8 @@ function onHomePageLoading() {
   refs.homePageBtn.classList.add('js-navigation__button--current');
   refs.homePageForm.classList.remove('js-visually-hidden');
   refs.libPageBtnNav.classList.add('js-visually-hidden');
+  // ==========index-js-212==================
+  clearMovieContainer()
 }
 
 function onLibraryPageLoading() {
