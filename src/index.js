@@ -39,10 +39,10 @@ refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 refs.movieList.addEventListener('click', onClickInItem);
 refs.movieModal.addEventListener('click', onClickBackdrop);
 
-fetchMarkupPopularityForWeek();
 
 
 function fetchMarkupPopularityForWeek() {
+
   PAGE = 1;
   fetchPopularity(PAGE)
     .then(processGenres)
@@ -82,23 +82,32 @@ function onSearchInputs(e) {
 // =======фильмы смотреть:let arr_1watchedFilms, фильмы в очередь: let arr_2queueFilms=====
 
 let watchClikLifeFilms = [];
+// console.log('watchClikLifeFilms-', watchClikLifeFilms)
 let queueClikLifeFilms = [];
+// console.log('queueClikLifeFilms-', queueClikLifeFilms)
+
 
 watchClikLifeFilms.push(JSON.parse(localStorage.getItem('watchedFilms-id')));
-let watchLife = watchClikLifeFilms.flat(Infinity).slice(1);
+let watchLife = watchClikLifeFilms.flat(Infinity);
+if (watchLife[0] === null) {
+  watchLife = watchLife.slice(1);
+}
 // // ==фильмы смотреть================
 let arr_1watchedFilms = Array.from(new Set(watchLife));
 localStorage.setItem('watchedFilms-id', JSON.stringify(arr_1watchedFilms));
-
-console.log('arr_1watchedFilms-смотреть', arr_1watchedFilms);
+// console.log('arr_1watchedFilms-смотреть', arr_1watchedFilms);
 
 queueClikLifeFilms.push(JSON.parse(localStorage.getItem('queueFilms-id')));
-let queueLife = queueClikLifeFilms.flat(Infinity).slice(1);
+let queueLife = queueClikLifeFilms.flat(Infinity);
+if (queueLife[0] === null) {
+  queueLife = queueLife.slice(1);
+}
 // // ==фильмы в очередь===============
 let arr_2queueFilms = Array.from(new Set(queueLife));
-// localStorage.setItem('queueFilms-id', JSON.stringify(arr_2queueFilms));
-console.log('arr_2queueFilms-в очередь', arr_2queueFilms);
+localStorage.setItem('queueFilms-id', JSON.stringify(arr_2queueFilms));
+// console.log('arr_2queueFilms-в очередь', arr_2queueFilms);
 
+// ====================================
 // =====всплывающий клик==============
 refs.movieModal.addEventListener("mousedown", function (e) {
   let classes = e.target.className;
@@ -111,6 +120,7 @@ refs.movieModal.addEventListener("mousedown", function (e) {
     }
   }
   if (classes = ".btn-queue") {
+    // let classes = e.target.className;
     let liClick2 = document.getElementsByTagName("button");
     for (var i = 0; i < liClick2.length; i++) {
       if (liClick2[i].matches(".btn-queue")) {
@@ -118,14 +128,13 @@ refs.movieModal.addEventListener("mousedown", function (e) {
       }
     }
   }
+
 });
 
 function myFunctionClickWatched() {
   // ====выбираю фильмы по id смотреть======
-
   watchClikLifeFilms.push(this.value)
   localStorage.setItem('watchedFilms-id', JSON.stringify(watchClikLifeFilms));
-
 }
 
 function myFunctionClickQueue() {
@@ -133,26 +142,53 @@ function myFunctionClickQueue() {
   queueClikLifeFilms.push(this.value)
   localStorage.setItem('queueFilms-id', JSON.stringify(queueClikLifeFilms));
 }
-// =================================================
-// ====================librery======================
-let ID = 899082;
 
+// =================================================
 refs.libBtnWatched.addEventListener('click', watchedMyLibrery)
 refs.libBtnQueue.addEventListener('click', queueMyLibrery)
+// ====================watchedlifeLibrery======================
 
 
 function watchedMyLibrery(id) {
+  let watchedlifeLibrery = []
+  for (let i = 0; i < watchClikLifeFilms.length; i++) {
+    let ID = watchClikLifeFilms[i];
+    // console.log('watchClikLifeFilms[i]-', ID)
+    for (let k = 0; k < ID.length; k++) {
+      fetchLibrery(ID[k])
 
-  fetchLibrery(ID)
-    .then(results => {
-      clearMovieContainer();
-      appendMovieMarkup(results)
-    });
+        .then(results => {
+          watchedlifeLibrery.push(results);
+          clearMovieContainer();
+          appendMovieMarkup(watchedlifeLibrery);
+        })
+
+    }
+  }
+
+  // console.log('watchedlifeLibrery-', watchedlifeLibrery)
 }
 
-function queueMyLibrery() {
-  console.log('false')
+// ====================queuelifeLibrery======================
+
+
+function queueMyLibrery(id) {
+  let queuelifeLibrery = []
+  for (let i = 0; i < queueClikLifeFilms.length; i++) {
+    let ID = queueClikLifeFilms[i];
+    // console.log('queueClikLifeFilms[i]-', ID)
+    for (let k = 0; k < ID.length; k++) {
+      fetchLibrery(ID[k])
+        .then(results => {
+          queuelifeLibrery.push(results);
+          clearMovieContainer();
+          appendMovieMarkup(queuelifeLibrery);
+        });
+    }
+  }
+  // console.log('queuelifeLibrery-', queuelifeLibrery)
 }
+
 // =================================================
 // ===========обработка строки жанров===============
 function processGenres(response) {
@@ -206,6 +242,7 @@ const onEntry = entries => {
         });
     }
     if (entry.isIntersecting) {
+      // console.log('Пора грузить еще');
       PAGE += 1;
       if (PAGE > totalPages) {
         return;
