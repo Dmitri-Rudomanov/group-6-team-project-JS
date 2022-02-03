@@ -66,7 +66,7 @@ import getRefs from './js/get-refs';
 import { onHomePageLoading, onLibraryPageLoading } from './js/site-load';
 import { onClickInItem, onClickBackdrop } from './js/modal';
 import { appendMovieMarkup, clearMovieContainer } from './js/add-remove-markup';
-
+import { convertGenres, processGenres } from './js/convertGenres';
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
 
@@ -142,37 +142,37 @@ function onSearchInputs(e) {
 }
 
 // ===========обработка строки жанров===============
-function processGenres(response) {
-  for (let i = 0; i < response.results.length; i++) {
-    // =======вызывается функция convertGenres которая ниже и присваивается ее результат=======
-    let readableGenres = convertGenres(response.results[i].genre_ids);
-    // console.log(readableGenres)
-    if (readableGenres.length > 3) {
-      readableGenres = readableGenres.slice(0, 2);
-      readableGenres.push('...Other');
-    }
-    response.results[i].genres = readableGenres.join(', ');
-  }
-  // console.log(response);
-  // =======из response используется genres при отрисовке=========
-  return response;
-}
+// function processGenres(response) {
+//   for (let i = 0; i < response.results.length; i++) {
+//     // =======вызывается функция convertGenres которая ниже и присваивается ее результат=======
+//     let readableGenres = convertGenres(response.results[i].genre_ids);
+//     // console.log(readableGenres)
+//     if (readableGenres.length > 3) {
+//       readableGenres = readableGenres.slice(0, 2);
+//       readableGenres.push('...Other');
+//     }
+//     response.results[i].genres = readableGenres.join(', ');
+//   }
+//   // console.log(response);
+//   // =======из response используется genres при отрисовке=========
+//   return response;
+// }
 // ======присвоить название жанров по id========
-function convertGenres(genre_ids) {
-  let resultGenre = [];
-  let storageItem = localStorage.getItem(GENRES_STORAGE);
-  let genreMapping = JSON.parse(storageItem);
-  for (let i = 0; i < genre_ids.length; i++) {
-    for (let k = 0; k < genreMapping.length; k++) {
-      if (genre_ids[i] === genreMapping[k].id) {
-        resultGenre.push(genreMapping[k].name);
-        break;
-      }
-    }
-  }
-  // console.log(resultGenre);
-  return resultGenre;
-}
+// function convertGenres(genre_ids) {
+//   let resultGenre = [];
+//   let storageItem = localStorage.getItem(GENRES_STORAGE);
+//   let genreMapping = JSON.parse(storageItem);
+//   for (let i = 0; i < genre_ids.length; i++) {
+//     for (let k = 0; k < genreMapping.length; k++) {
+//       if (genre_ids[i] === genreMapping[k].id) {
+//         resultGenre.push(genreMapping[k].name);
+//         break;
+//       }
+//     }
+//   }
+//   // console.log(resultGenre);
+//   return resultGenre;
+// }
 
 // =======дозагрузка бесконечным скроллом=================
 const onEntry = entries => {

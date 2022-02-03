@@ -1,6 +1,8 @@
 import { fetchForID } from './fetchMovies';
 import modalMarkupHbs from '../templates/modal.hbs';
 import getRefs from './get-refs';
+import { GENRES_STORAGE } from '../js/fetchMovies';
+import { convertGenres } from '../index';
 const refs = getRefs();
 let id = null;
 
@@ -52,3 +54,5 @@ function modalMarkup(id) {
 }
 
 // =======================Рисует жанры в модалке============================
+
+console.log(GENRES_STORAGE);
