@@ -8,7 +8,27 @@
     </button>
     <div class="modal-poster">
         {{#if poster_path}}
-        <img src="https://image.tmdb.org/t/p/original{{poster_path}}" alt="{{title}}" srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}} 2x" class="movie-img" >
+        <picture>
+                <source media="(min-width: 1200px)"
+                 srcset="
+                    https://image.tmdb.org/t/p/w780/{{poster_path}} 1x,
+                    https://image.tmdb.org/t/p/original/{{poster_path}} 2x"
+                />
+                <source media="(min-width: 768px)"
+                 srcset="
+                    https://image.tmdb.org/t/p/w500/{{poster_path}} 1x,
+                    https://image.tmdb.org/t/p/w780/{{poster_path}} 2x"
+                 />
+                <source media="(max-width: 768px)"
+                 srcset="
+                    https://image.tmdb.org/t/p/w342/{{poster_path}} 1x,
+                    https://image.tmdb.org/t/p/w500/{{poster_path}} 2x"
+                 />
+                <img src="https://image.tmdb.org/t/p/w342{{poster_path}}"
+                    alt="{{title}}"
+                    class="modal-img"
+                />
+            </picture>
         {{else}}
                 <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png" class="modal-poster"> 
         {{/if}}
