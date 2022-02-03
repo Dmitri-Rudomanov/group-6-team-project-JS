@@ -3,7 +3,7 @@
 // ==========================================
 
 import './sass/main.scss';
-import { fetchGenres, fetchMovies, fetchPopularity } from './js/fetchMovies';
+import { fetchGenres, fetchMovies, fetchPopularity, fetchLibrery } from './js/fetchMovies';
 //import { fetchGenres } from './js/fetchMovies';
 import { GENRES_STORAGE } from './js/fetchMovies';
 // import countryMarkupHbs from './templates/movie.hbs';
@@ -76,6 +76,8 @@ function onSearchInputs(e) {
     fetchMarkupPopularityForWeek();
   }
 }
+
+
 // =========сохранение в localStorage отложенных :фильмы смотреть и фильмы в очередь=============
 // =======фильмы смотреть:let arr_1watchedFilms, фильмы в очередь: let arr_2queueFilms=====
 
@@ -84,14 +86,17 @@ let queueClikLifeFilms = [];
 
 watchClikLifeFilms.push(JSON.parse(localStorage.getItem('watchedFilms-id')));
 let watchLife = watchClikLifeFilms.flat(Infinity).slice(1);
-// ==фильмы смотреть================
+// // ==фильмы смотреть================
 let arr_1watchedFilms = Array.from(new Set(watchLife));
+localStorage.setItem('watchedFilms-id', JSON.stringify(arr_1watchedFilms));
+
 console.log('arr_1watchedFilms-смотреть', arr_1watchedFilms);
 
 queueClikLifeFilms.push(JSON.parse(localStorage.getItem('queueFilms-id')));
 let queueLife = queueClikLifeFilms.flat(Infinity).slice(1);
-// ==фильмы в очередь===============
+// // ==фильмы в очередь===============
 let arr_2queueFilms = Array.from(new Set(queueLife));
+// localStorage.setItem('queueFilms-id', JSON.stringify(arr_2queueFilms));
 console.log('arr_2queueFilms-в очередь', arr_2queueFilms);
 
 // =====всплывающий клик==============
@@ -117,16 +122,38 @@ refs.movieModal.addEventListener("mousedown", function (e) {
 
 function myFunctionClickWatched() {
   // ====выбираю фильмы по id смотреть======
+
   watchClikLifeFilms.push(this.value)
   localStorage.setItem('watchedFilms-id', JSON.stringify(watchClikLifeFilms));
+
 }
+
 function myFunctionClickQueue() {
   // ====выбираю фильмы по id в очередь======
   queueClikLifeFilms.push(this.value)
   localStorage.setItem('queueFilms-id', JSON.stringify(queueClikLifeFilms));
 }
 // =================================================
+// ====================librery======================
+let ID = 899082;
 
+refs.libBtnWatched.addEventListener('click', watchedMyLibrery)
+refs.libBtnQueue.addEventListener('click', queueMyLibrery)
+
+
+function watchedMyLibrery(id) {
+
+  fetchLibrery(ID)
+    .then(results => {
+      clearMovieContainer();
+      appendMovieMarkup(results)
+    });
+}
+
+function queueMyLibrery() {
+  console.log('false')
+}
+// =================================================
 // ===========обработка строки жанров===============
 function processGenres(response) {
   for (let i = 0; i < response.results.length; i++) {
