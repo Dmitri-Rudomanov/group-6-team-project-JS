@@ -18,41 +18,39 @@
   visibility: hidden;
   transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
 }
-//  @media screen and (min-width: 480px) {
-//     width: 480px;
-//   }
 
 .modal {
   background-color: #ffffff;
-
-  @media screen and (min-width: 320px) {
-    padding-top: 50px;
-    padding-bottom: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-
-    min-height: 568px;
-  }
-  @media screen and (min-width: 1024px) {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  @media screen and (min-width: 768px) and (max-width: 1440px) {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    padding-top: 50px;
+  }
+  // @media screen and (min-width: 380px) and(max-width:768px) {
+  //   width: 100%;
+  //   width: 380px;
+  // }
+  @media screen and (min-width: 768px) {
     padding-right: 30px;
     padding-left: 30px;
-
-    min-width: 882px;
-    min-height: 568px;
-
     display: flex;
-    padding-right: 30px;
-    padding-left: 30px;
+    min-width: 680px;
+  }
+  @media screen and (min-width: 1024px) {
+    min-width: 882px;
   }
 }
 
 .btn-close {
+  @media screen and (max-width: 768px) {
+    top: 20px;
+    right: 20px;
+  }
   position: absolute;
   top: 10px;
   right: 10px;
@@ -64,11 +62,6 @@
   background-color: #ffffff;
   border: none;
   cursor: pointer;
-
-  @media screen and (min-width: 320px) {
-    top: 20px;
-    right: 20px;
-  }
 }
 
 .btn-close__icon {
@@ -81,43 +74,68 @@
   }
 }
 
-// .movie-img {
-//   @media screen and (min-width: 320px) {
-//     max-width: none;
-//   }
-// }
+.modal-container {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 .modal-poster {
   margin-right: 0px;
 }
 
+.movie-img.movie-img__modal {
+  @media screen and (max-width: 767px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .modal-content {
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 768px) {
     margin-left: 30px;
   }
 }
 
 .modal-title {
-  @media screen and (min-width: 320px) {
-    font-size: 20px;
-    line-height: 1.15;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-top: 30px;
-    margin-bottom: 20px;
-  }
-  margin-bottom: 20px;
-  color: var(--primary-text-color);
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1;
+  font-size: 20px;
+  line-height: 1.15;
   letter-spacing: 0em;
   text-align: left;
+  margin-bottom: 20px;
+  font-weight: 500;
+  @media screen and (max-width: 767px) {
+    margin-top: 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+    line-height: 1.17;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 20px;
+    font-size: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 }
 
 .modal-table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
+  @media screen and (min-width: 768px) {
+    width: 80%;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 50%;
+  }
 }
 
 .nomination {
