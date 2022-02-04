@@ -6,19 +6,23 @@
 
 
 {{#each this}}
-<li class="movie-item" id="{{id}}">
+<li class="movie-item"  id="{{id}}">
         {{!-- добавляет id каждого фильма  id--}}
         {{!-- атрибут onclick="return false" убирает передергивание страницы --}}
         <a href="#" class="movie-link" id="{{id}}" onclick="return false">
         {{#if poster_path}}
-        <img src="https://image.tmdb.org/t/p/original{{poster_path}}" alt="{{title}}" srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}} 2x" class="movie-img" >
+        <img src="https://image.tmdb.org/t/p/original{{poster_path}}" style="border-radius: 5px;" alt="{{title}}" srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}} 2x" class="movie-img" >
 {{else}}
         <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png" class="movie-img"> 
 {{/if}}
-<div class="movie-link__content" style="padding-top: 10px; max-width: 398px; display: flex;align-items: flex-start;    flex-direction: column;">
+<div class="movie-link__content" style="padding-top: 10px; max-width: 398px; display: flex;align-items: flex-start; flex-direction: column;">
         <p class="movie-name">{{title}}</p>
         <div class="movie-item__genre" style="display: flex; align-items: baseline;">
-        <p class="genre">{{genres}}</p>
+{{#if runtime}}
+<p class="genre">{{genres.[0].name}} {{genres.[1].name}} {{genres.[2].name}}</p>
+{{else}}
+<p class="genre">{{genres}}</p>
+{{/if}}
 {{#if genres}}
         <span class="movie-item__slash">|</span>
 {{else}}
@@ -26,8 +30,9 @@
 {{/if}}
         <p style="margin-top: 0;">
         <span class="movie-item__year">{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
-        {{!-- можно скрыть --}}
-        <span class="movie-item__vote-average js-visually-hidden">{{vote_average}}</span>
+        {{#if runtime}}
+        <span class="movie-item__vote-average">{{vote_average}}</span>
+        {{/if}}
         </p>
         </div>
 </div>

@@ -162,8 +162,8 @@ function watchedMyLibrery() {
     fetchLibrery(ID)
       .then(results => {
         watchedlifeLibrery.push(results);
-
-        console.log(watchedlifeLibrery)
+        // console.log(results)
+        // console.log(watchedlifeLibrery)
         appendMovieMarkup([results]);
       })
   }
