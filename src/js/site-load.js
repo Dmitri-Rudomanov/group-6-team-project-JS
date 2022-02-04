@@ -17,6 +17,7 @@ function onLibraryPageLoading() {
   refs.libPageBtn.classList.add('js-navigation__button--current');
   refs.libPageBtnNav.classList.remove('js-visually-hidden');
   refs.homePageForm.classList.add('js-visually-hidden');
+  refs.errorMessage.classList.add('js-visually-hidden');
 }
 
 export { onHomePageLoading, onLibraryPageLoading };
