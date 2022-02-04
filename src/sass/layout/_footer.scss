@@ -1,0 +1,30 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #f7f7f7;
+
+  font-weight: 400;
+  line-height: 1.4;
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+  font-size: 14px;
+
+  margin-top: 60px;
+  padding: 30px;
+}
+.footer_info {
+  text-align: center;
+  color: #545454;
+}
+.footer_image {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline;
+}
+.footer_link {
+  text-decoration: none;
+  color: #545454;
+}
