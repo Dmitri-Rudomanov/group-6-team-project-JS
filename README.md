@@ -56,3 +56,40 @@ npm run dev
 - Изображения добавляйте в папку `src/images`, заранее оптимизировав их. Сборщик просто копирует
   используемые изображения чтобы не нагружать систему оптимизацией картинок, так как на слабых
   компьютерах это может занять много времени.
+
+https://image.tmdb.org/t/p/original${poster_path}
+
+${results.title}
+
+${results.vote_average}
+
+${results.vote_count}
+
+${results.original_title}
+
+${overview}
+
+const genres =[ {id:28, name:'Action'} {id:12, name:'Adventure'} {id:878, name:'Science Fiction'} ]
+
+srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2${results.poster_path}} 1x,
+"https://image.tmdb.org/t/p/w600_and_h900_bestv2/${results.poster_path}} 2x"
+
+Основаная
+
+<!-- <img src="https://image.tmdb.org/t/p/original${results.poster_path}" alt="Original poster:${results.title}"  class="movie-img movie-img__modal" > -->
+
+<!-- <img
+  class="movie-img movie-img__modal"
+  srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2${results.poster_path}} 1x,
+https://image.tmdb.org/t/p/w600_and_h900_bestv2/${results.poster_path}}2x"
+  sizes="100vw"
+  src="https://image.tmdb.org/t/p/original${results.poster_path}"
+  alt="Original poster:${results.title}"
+/> -->
+
+<!-- <picture>
+<img class="movie-img movie-img__modal" src="https://image.tmdb.org/t/p/original${results.poster_path}" alt="Original poster:${results.title}">
+      <source srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2${results.poster_path}} 1x" media="(max-width: 600px)" sizes="(min-width: 480px) 480px, 100vw">
+      <source srcset="https://image.tmdb.org/t/p/w600_and_h900_bestv2/${results.poster_path}}2x" media="(min-width: 601px)" sizes="(min-width: 800px) 800px, 100vw">
+
+    </picture> -->

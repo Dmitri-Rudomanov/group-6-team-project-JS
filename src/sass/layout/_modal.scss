@@ -25,7 +25,7 @@
   padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  @media screen and (min-width: 768px) and (max-width: 1440px) {
+  @media screen and (min-width: 768px) {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -134,7 +134,7 @@
     width: 80%;
   }
   @media screen and (min-width: 1024px) {
-    width: 50%;
+    width: 70%;
   }
 }
 

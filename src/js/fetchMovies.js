@@ -31,7 +31,6 @@ function fetchGenres() {
       }
     })
     .then(({ genres }) => {
-      console.log(genres);
       localStorage.setItem(GENRES_STORAGE, JSON.stringify(genres));
     });
 }
