@@ -5,9 +5,13 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 200;
+  z-index: 99;
+  padding: 20px;
+  overflow-y: scroll;
 }
-
+.body-overflow {
+  overflow: hidden;
+}
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
@@ -16,25 +20,41 @@
 }
 
 .modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  padding-top: 50px;
-  padding-right: 30px;
-  padding-left: 30px;
-
   background-color: #ffffff;
-  min-width: 882px;
-  min-height: 568px;
-
-  display: flex;
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  @media screen and (min-width: 768px) and (max-width: 1440px) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+   @media screen and (min-width: 380px) and(max-width:768px) {
+     max-width: 380px;
+     margin: 0 auto;
+   }
+  @media screen and (min-width: 768px) {
+    padding-right: 30px;
+    padding-left: 30px;
+    display: flex;
+    min-width: 680px;
+  }
+  @media screen and (min-width: 1024px) {
+    min-width: 882px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .btn-close {
+  @media screen and (max-width: 768px) {
+    top: 20px;
+    right: 20px;
+  }
   position: absolute;
   top: 10px;
   right: 10px;
@@ -58,51 +78,87 @@
   }
 }
 
-.modal-poster {
-  margin-right: 0px;
-  min-width: 240px;
-  height: 357px;
-
-  @media screen and(min-width: 768px) {
-    min-width: 264px;
-    height: 374px;
-  }
-  @media screen and(min-width: 1200px) {
-    min-width: 396px;
-    height: 478px;
+.modal-container {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
   }
 }
 
-.modal-img {
-  min-width: 100%;
-  height: 100%;
+.modal-poster {
+  margin-right: 0px;
+}
+
+.movie-img.movie-img__modal{
+  @media (max-width:320px) {
+  min-width: 240px;
+  min-height: 356px;
+  }
   object-fit: cover;
+   @media screen and (min-width: 320px) and(max-width:768px) {
+  min-width: 240px;
+  min-height: 356px;
+ margin: 0 auto;
+   }
+  @media screen and (min-width: 768px) {
+  min-width: 266px;
+  min-height: 373px;
+  }
+  @media screen and (min-width: 1024px) {
+  min-width: 396px;
+  min-height: 477px;
+  }
 }
 
 .modal-content {
-  margin-left: 30px;
+  @media screen and (min-width: 768px) {
+    margin-left: 30px;
+  }
 }
 
 .modal-title {
-  margin-bottom: 20px;
-  color: var(--primary-text-color);
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1;
+  font-size: 20px;
+  line-height: 1.15;
   letter-spacing: 0em;
   text-align: left;
+  margin-bottom: 20px;
+  font-weight: 500;
+  @media screen and (max-width: 767px) {
+    margin-top: 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+    line-height: 1.17;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 20px;
+    font-size: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 }
 
 .modal-table {
-  margin-bottom: 20px;
+  table-layout: fixed;
   width: 100%;
+  border-collapse: collapse;
+  @media screen and (min-width: 768px) {
+    width: 80%;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 50%;
+  }
 }
 
 .nomination {
   color: var(--modal-action-text-color);
-
   font-size: 12px;
-
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: 0em;
@@ -111,30 +167,43 @@
 
 .data {
   color: var(--primary-text-color);
-
   font-size: 12px;
-
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: 0em;
   text-align: left;
 }
+
 .raiting {
   min-width: 36px;
   border-radius: 5px;
   background-color: #ff6b01;
   color: var(--secondary-text-color);
   font-size: 12px;
-
   font-weight: 500;
   line-height: 1.67;
   letter-spacing: 0em;
   text-align: center;
   padding-left: 10px;
   padding-right: 10px;
+  margin-left: auto;
+}
+
+.raiting-slesh {
+  margin-right: 7px;
+}
+
+td {
+  padding-bottom: 10px;
+}
+
+.nomination-genres,
+.data-genres {
+  padding-bottom: 0;
 }
 
 .description-title {
+  margin-top: 20px;
   margin-bottom: 10px;
   color: var(--primary-text-color);
   font-size: 12px;
@@ -153,45 +222,53 @@
   letter-spacing: 0em;
   text-align: left;
 }
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
 
 .btn-watched {
+  @media screen and (min-width: 320px) {
+    min-width: 112px;
+  }
   margin-right: 15px;
-  min-width: 136px;
+  // min-width: 112px;
   border: none;
   background-color: var(--action-color);
   border-radius: 5px;
   cursor: pointer;
-  padding-top: 14px;
-  padding-right: 10px;
-  padding-bottom: 12px;
-  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn-watched__text {
   color: var(--secondary-text-color);
-
   font-size: 12px;
-
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: 0em;
   text-align: center;
+  margin: 0;
 }
-
 .btn-queue {
+  @media screen and (min-width: 320px) {
+    min-width: 112px;
+  }
   margin-right: auto;
   border: 1px solid var(--primary-text-color);
-  min-width: 136px;
+  // min-width: 136px;
   background-color: var(--secondary-text-color);
   border-radius: 5px;
   cursor: pointer;
-  padding-top: 14px;
-  padding-right: 10px;
-  padding-bottom: 12px;
-  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.btn-queue__text {
   color: var(--primary-text-color);
-
   font-size: 12px;
-
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: 0em;
   text-align: center;
+  margin: 0;
 }

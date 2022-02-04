@@ -6,9 +6,10 @@
             <path d="M8 22L22 8" stroke="black" stroke-width="2" />
         </svg>
     </button>
-    <div class="modal-poster">
+    <div class="modal-container">
+        <div class="modal-poster">
         {{#if poster_path}}
-        <picture>
+                <picture>
                 <source media="(min-width: 1200px)"
                  srcset="
                     https://image.tmdb.org/t/p/w780/{{poster_path}} 1x,
@@ -26,9 +27,10 @@
                  />
                 <img src="https://image.tmdb.org/t/p/w342{{poster_path}}"
                     alt="{{title}}"
-                    class="modal-img"
+                    class="movie-img movie-img__modal"
                 />
             </picture>
+        
         {{else}}
                 <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png" class="modal-poster"> 
         {{/if}}
@@ -39,7 +41,7 @@
             <tbody>
                 <tr>
                     <td class="nomination">Vote/Votes</td>
-                    <td class="data"><span class="raiting">{{vote_average}}</span>/{{vote_count}}</td>
+                    <td class="data"><span class="raiting">{{vote_average}}</span><span class="raiting-slesh">/</span>{{vote_count}}</td>
                 </tr>
 
                 <tr>
@@ -53,14 +55,15 @@
                 </tr>
 
                 <tr>
-                    <td class="nomination">Genre</td>
-                    <td class="data">Lorem</td>
+                    <td class="nomination nomination-genres">Genre</td>
+                        <td class="data data-genres">{{genres}}</td>
                 </tr>
             </tbody>
         </table>
         <h3 class="description-title">ABOUT</h3>
         <p class="text-description">{{overview}}</p>
-        <button class="btn-watched" type="submit">ADD TO WATCHED</button>
-        <button class="btn-queue" type="submit">ADD TO QUEUE</button>
+        <div class="btn-container"><button class="btn-watched" type="submit"><span class='btn-watched__text'>ADD TO WATCHED</span></button>
+        <button class="btn-queue" type="submit"><span class='btn-queue__text'>ADD TO QUEUE</span></button></div>
+    </div>
     </div>
 </div>
