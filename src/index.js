@@ -23,7 +23,6 @@ let PAGE = 1;
 let totalPages = undefined;
 const refs = getRefs();
 
-
 // ===================Ищет популярные=====================
 refs.sitePage.classList.add('js-page-header__home');
 refs.homePageBtn.classList.add('js-navigation__button--current');
@@ -38,6 +37,13 @@ refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 // ======================Открывает-Закрывает Модалку========
 refs.movieList.addEventListener('click', onClickInItem);
 refs.movieModal.addEventListener('click', onClickBackdrop);
+// ==============перезагрузка при переходе на главную страницу====================
+const resetHomePage = document.getElementById('home')
+resetHomePage.addEventListener('click', resetPageHome)
+function resetPageHome() {
+  location.reload()
+}
+// =====================================
 
 function fetchMarkupPopularityForWeek() {
   PAGE = 1;

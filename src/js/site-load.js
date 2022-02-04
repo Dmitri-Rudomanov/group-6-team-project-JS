@@ -1,6 +1,7 @@
 import getRefs from './get-refs';
 import { clearMovieContainer } from './add-remove-markup';
 
+
 const refs = getRefs();
 
 //=====подключение стилей при навигации по страницам=====
