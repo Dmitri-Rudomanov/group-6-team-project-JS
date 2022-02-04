@@ -10,7 +10,7 @@ function onHomePageLoading() {
   refs.homePageBtn.classList.add('js-navigation__button--current');
   refs.homePageForm.classList.remove('js-visually-hidden');
   refs.libPageBtnNav.classList.add('js-visually-hidden');
-  // ==========index-js-212==================
+  // ==========index-js-199==================
   clearMovieContainer()
 }
 
