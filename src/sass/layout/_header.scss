@@ -145,6 +145,8 @@
 /* форма ПОИСКОВ ФИЛЬМОВ*/
 .header-search {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin-top: 38px;
 }
@@ -153,6 +155,7 @@
   align-items: center;
   justify-content: space-between;
   width: 280px;
+  margin-bottom: 22px;
   border-bottom: 0.5px solid #ffffff;
   @media screen and (min-width: 768px) {
     width: 336px;
@@ -183,6 +186,16 @@
     font-size: 14px;
     line-height: 1.14;
   }
+}
+
+// сообщение об ошибке
+.error-message {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ff001b;
 }
 
 /* кнопки WATCHED И QUEUE*/

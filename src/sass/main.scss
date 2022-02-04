@@ -3,7 +3,13 @@
  * Все паршалы подключаются сюда.
  */
 // Стили для файла с примером HTML-фрагмента
+
 @import '../sass/layout/footer';
+@import '../sass/layout/variables';
+@import '../sass/layout/header';
+@import '../sass/layout/modal';
+@import '../sass/utils/hidden';
+
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 * {
@@ -49,7 +55,7 @@ h2 {
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: -30px;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: block;
     text-align: center;
   }
@@ -107,17 +113,21 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 5px;
 }
 
 .movie-img {
   max-height: 400px;
-  max-width: 290px;
   position: relative;
   overflow: hidden;
+
+  @media screen and (min-width: 767px) {
+    max-width: 290px;
+  }
 }
-span {
-  margin-left: 10px;
-}
+// span {
+//   margin-left: 10px;
+// }
 
 .movie-link {
   display: flex;
