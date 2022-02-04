@@ -143,6 +143,8 @@ function removeWatchedFilm() {
     WATCHED_FILMS_LIST.splice(filmIndex, 1)
   }
   saveWatchedListToLocalStorage(WATCHED_FILMS_LIST)
+  // =========перезагрузка после удаления===========
+  watchedMyLibrery()
 }
 function removeQueueFilm() {
   const filmID = this.value;
@@ -151,6 +153,8 @@ function removeQueueFilm() {
     QUEUE_FILMS_LIST.splice(filmIndex, 1)
   }
   saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST)
+  // =========перезагрузка после удаления========
+  watchedMyLibrery()
 }
 // ===============LocalStorage=================
 function saveWatchedListToLocalStorage(watchedFilmsList) {
