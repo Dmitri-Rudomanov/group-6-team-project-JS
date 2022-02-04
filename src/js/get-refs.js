@@ -1,5 +1,6 @@
 export default function getRefs() {
   return {
+    searchForm: document.querySelector('.search-form'),
     searchBox: document.querySelector('#search-box'),
     movieList: document.querySelector('.movie-list'),
     movieModal: document.querySelector('.backdrop'),
