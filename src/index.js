@@ -93,7 +93,7 @@ refs.movieModal.addEventListener("mousedown", function (e) {
     }
   }
 });
-// ===================================================
+// =======================клик на запросы для добавления в библиотеки============================
 refs.libBtnWatched.addEventListener('click', watchedMyLibrery)
 refs.libBtnQueue.addEventListener('click', queueMyLibrery)
 // ===================================================
