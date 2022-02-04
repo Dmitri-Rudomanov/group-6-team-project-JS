@@ -16,5 +16,6 @@ export default function getRefs() {
     libBtnQueue: document.querySelector('#queue'),
     bodyHtml: document.querySelector('body'),
     genresInModal: document.querySelector('.data-genres'),
+    errorMessage: document.querySelector('.error-message'),
   };
 }

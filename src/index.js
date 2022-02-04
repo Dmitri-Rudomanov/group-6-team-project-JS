@@ -131,12 +131,19 @@ function onSearchInputs(e) {
       .then(processGenres)
       .then(({ results, total_pages }) => {
         totalPages = total_pages;
+        //====обработка некорректного запроса====
+        if (results.length === 0) {
+          refs.errorMessage.classList.remove('js-visually-hidden');
+          return;
+        }
+        refs.errorMessage.classList.add('js-visually-hidden');
         // ==очистка перед отрисовкой=====
         clearMovieContainer();
         appendMovieMarkup(results);
       });
   } else {
     QUERY = undefined;
+    refs.errorMessage.classList.add('js-visually-hidden');
     fetchMarkupPopularityForWeek();
   }
 }
