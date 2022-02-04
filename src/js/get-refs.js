@@ -14,10 +14,5 @@ export default function getRefs() {
     libPageBtnNav: document.querySelector('.lib-nav'),
     libBtnWatched: document.querySelector('#watched'),
     libBtnQueue: document.querySelector('#queue'),
-    // =================кнопки на добавление и удаление через классы index.js page-117=========
-    libAddWatched: document.querySelector('.btn-watched'),
-    libAddQueue: document.querySelector('.btn-queue'),
-    libCloseWatched: document.querySelector('.btn-watched_close'),
-    libCloseQueue: document.querySelector('.btn-queue_close'),
   };
 }

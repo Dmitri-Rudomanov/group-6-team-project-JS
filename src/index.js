@@ -35,7 +35,7 @@ refs.siteLogo.addEventListener('click', onHomePageLoading);
 refs.homePageBtn.addEventListener('click', onHomePageLoading);
 refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 
-// ==============================Открывает-Закрывает Модалку==========================
+// ======================Открывает-Закрывает Модалку========
 refs.movieList.addEventListener('click', onClickInItem);
 refs.movieModal.addEventListener('click', onClickBackdrop);
 
@@ -50,7 +50,7 @@ function fetchMarkupPopularityForWeek() {
     });
 }
 
-// =======первоначальный разовый запрос жанров и сохранение ==========
+// =======первоначальный разовый запрос жанров и сохранение ======
 fetchGenres();
 
 // ========первая загрузка по кнопке========
@@ -105,7 +105,6 @@ refs.movieModal.addEventListener("mousedown", function (e) {
     }
   }
   if (classes = ".btn-queue_close") {
-    // let classes = e.target.className;
     let liClick2 = document.getElementsByTagName("button");
     for (var i = 0; i < liClick2.length; i++) {
       if (liClick2[i].matches(".btn-queue_close")) {
@@ -114,15 +113,10 @@ refs.movieModal.addEventListener("mousedown", function (e) {
     }
   }
 });
-// =======================клик на запросы для добавления в библиотеки============================
-// refs.libBtnWatched.addEventListener('click', watchedMyLibrery)
-// refs.libBtnQueue.addEventListener('click', queueMyLibrery)
+// ===========клик на запросы для добавления в библиотеки=============
 refs.libBtnWatched.addEventListener('click', watchedMyLibrery)
 refs.libBtnQueue.addEventListener('click', queueMyLibrery)
-// refs.libBtnWatched.addEventListener('click', watchedMyLibrery)
-// refs.libBtnQueue.addEventListener('click', queueMyLibrery)
-
-// ===================================================
+// =======================LocalStorage===============================
 let WATCHED_FILMS_LIST = [];
 let QUEUE_FILMS_LIST = [];
 
@@ -135,7 +129,6 @@ function addWatchedFilm() {
   WATCHED_FILMS_LIST = Array.from(new Set(WATCHED_FILMS_LIST))
   saveWatchedListToLocalStorage(WATCHED_FILMS_LIST)
 }
-
 function addQueueFilm() {
   const filmID = this.value;
   QUEUE_FILMS_LIST.push(filmID);
@@ -143,7 +136,6 @@ function addQueueFilm() {
   saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST)
 }
 // =======функции на удаление================
-// =========================
 function removeWatchedFilm() {
   const filmID = this.value;
   if (WATCHED_FILMS_LIST.includes(filmID)) {
@@ -152,7 +144,6 @@ function removeWatchedFilm() {
   }
   saveWatchedListToLocalStorage(WATCHED_FILMS_LIST)
 }
-
 function removeQueueFilm() {
   const filmID = this.value;
   if (QUEUE_FILMS_LIST.includes(filmID)) {
@@ -178,13 +169,12 @@ function readQueueListFromLocalStorage() {
   QUEUE_FILMS_LIST = JSON.parse(localStorage.getItem('queueFilms-id') || '[]');
 }
 
-// ===============запросы=========================
+// ===============запросы на сервер для библиотек=========================
 function watchedMyLibrery() {
   let watchedlifeLibrery = []
   clearMovieContainer();
   for (let i = 0; i < WATCHED_FILMS_LIST.length; i++) {
     let ID = WATCHED_FILMS_LIST[i];
-
     fetchLibrery(ID)
       .then(results => {
         watchedlifeLibrery.push(results);
@@ -193,9 +183,7 @@ function watchedMyLibrery() {
         appendMovieMarkup([results]);
       })
   }
-
 }
-
 function queueMyLibrery() {
   let queuelifeLibrery = []
   clearMovieContainer();
@@ -208,9 +196,7 @@ function queueMyLibrery() {
         appendMovieMarkup([results]);
       });
   }
-
 }
-
 // ===========обработка строки жанров===============
 function processGenres(response) {
   for (let i = 0; i < response.results.length; i++) {
@@ -243,14 +229,13 @@ function convertGenres(genre_ids) {
   // console.log(resultGenre);
   return resultGenre;
 }
-// =======================================================
+// ======================слежения какая вкладка открыта для подключения скролла=================================
 const HOME_PAGE = 'HOME'
 const LIBRARY_PAGE = 'LIBRARY'
 
 let currentPage = HOME_PAGE
 const navigationButtons = document.querySelectorAll('.navigation__button')
 
-// navigationButtons.addEventListener('click', onNavigationButtonCLICK)
 navigationButtons.forEach(function (button) {
   button.addEventListener('click', onNavigationButtonCLICK)
 })
@@ -264,11 +249,11 @@ function onNavigationButtonCLICK(e) {
   }
 }
 
-
 // =======дозагрузка бесконечным скроллом=================
 const onEntry = entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) {
+      // =====остановка дозагрузки если это библиотеки=====
       return;
     }
     if (currentPage !== HOME_PAGE) {
@@ -304,12 +289,16 @@ const onEntry = entries => {
     }
   });
 };
-
 // ========наблюдатель скролла============
 const observer = new IntersectionObserver(onEntry, {
   rootMargin: '150px',
 });
 observer.observe(refs.sentinel);
+
+
+
+
+
 
 // =========сохранение в localStorage отложенных :фильмы смотреть и фильмы в очередь=============
 // =======фильмы смотреть:let arr_1watchedFilms, фильмы в очередь: let arr_2queueFilms=====
