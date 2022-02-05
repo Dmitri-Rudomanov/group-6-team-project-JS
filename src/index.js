@@ -10,7 +10,7 @@ import { GENRES_STORAGE } from './js/fetchMovies';
 import movieListMarkupHbs from './templates/movie-list.hbs';
 import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
-import { onHomePageLoading, onLibraryPageLoading,onQueuePageLoading,onWatchedPageLoading } from './js/site-load';
+import { onHomePageLoading, onLibraryPageLoading, onQueuePageLoading, onWatchedPageLoading } from './js/site-load';
 import { onClickInItem, onClickBackdrop } from './js/modal';
 import { appendMovieMarkup, clearMovieContainer, clearForm } from './js/add-remove-markup';
 
@@ -69,7 +69,7 @@ function resetPageHome() {
 // ===================Ищет популярные=====================
 
 refs.siteLogo.addEventListener("click", onLogoClick)
-function onLogoClick() { 
+function onLogoClick() {
   fetchMarkupPopularityForWeek()
 }
 // =====================================
@@ -233,7 +233,7 @@ function watchedMyLibrery() {
       })
   }
 }
-export { watchedMyLibrery}
+export { watchedMyLibrery }
 function queueMyLibrery() {
   let queuelifeLibrery = []
   clearMovieContainer();
@@ -247,7 +247,7 @@ function queueMyLibrery() {
       });
   }
 }
-export { queueMyLibrery}
+export { queueMyLibrery }
 // ===========обработка строки жанров===============
 function processGenres(response) {
   for (let i = 0; i < response.results.length; i++) {

@@ -60,57 +60,80 @@ h2 {
   }
 }
 .movie-wrapper {
-  padding: 0 15px;
+  // padding: 0 15px;
   margin: 0 auto;
+  // // ====fottor==
+  // // min-height: 500px;
+  min-height: 50vh;
+  // // ======
   max-width: 480px;
   @media (min-width: 768px) {
     max-width: 768px;
+    // =======под гриды=======
+   padding-left: 60px;
+  //  =================
   }
   @media (min-width: 1024px) {
     max-width: 1024px;
+    // =======под гриды=========
+    padding-left: 30px;
+    // ===============
   }
 }
-.movie-item {
+// =============
+.movie-list{
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px; 
+  padding: 0;
+  margin: 0; 
+  list-style: none; 
+  max-width: calc(100vw - 80px);
+  margin-left: auto;
+  margin-right: auto; 
   margin-bottom: 30px;
-  &:last-child {
-    margin-bottom: 30px;
-  }
-  @media (min-width: 768px) {
-    width: calc((100% - 2 * 30px) / 2);
-    margin-right: 30px;
-    margin-bottom: 30px;
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
-    &:last-child {
-      margin-bottom: 30px;
-      margin-right: 0px;
-    }
-  }
-  @media (min-width: 1024px) {
-    width: calc((100% - 3 * 30px) / 3);
-    margin-right: 30px;
-    margin-bottom: 30px;
-    &:nth-child(2n) {
-      margin-right: 30px;
-    }
-    &:nth-child(3) {
-      margin-right: 0;
-    }
-    &:nth-child(6) {
-      margin-right: 0;
-    }
-    &:nth-child(9) {
-      margin-right: 0;
-    }
-    &:nth-child(n + 7) {
-      // margin-bottom: 0;
-      
-      // ------если убрать margin-bottom: 0; и заскоментировать  margin-bottom: 30px; разметка восстанавливается
-      margin-bottom: 30px;
-    }
-  }
 }
+// ===========
+// .movie-item {
+//   margin-bottom: 30px;
+//   &:last-child {
+//     margin-bottom: 0;
+//   }
+//   @media (min-width: 768px) {
+//     width: calc((100% - 2 * 30px) / 2);
+//     margin-right: 30px;
+//     margin-bottom: 30px;
+//     &:nth-child(2n) {
+//       margin-right: 0;
+//     }
+//     &:last-child {
+//       margin-bottom: 0px;
+//       margin-right: 0px;
+//     }
+//   }
+//   @media (min-width: 1024px) {
+//     width: calc((100% - 3 * 30px) / 3);
+//     margin-right: 30px;
+//     margin-bottom: 30px;
+//     &:nth-child(2n) {
+//       margin-right: 30px;
+//     }
+//     &:nth-child(3) {
+//       margin-right: 0;
+//     }
+//     &:nth-child(6) {
+//       margin-right: 0;
+//     }
+//     &:nth-child(9) {
+//       margin-right: 0;
+//     }
+//     &:nth-child(n + 7) {
+//       margin-bottom: 0;
+//       // ------если убрать margin-bottom: 0; и заскоментировать  margin-bottom: 30px; разметка восстанавливается
+//       // margin-bottom: 30px;
+//     }
+//   }
+// }
 img {
   display: block;
   max-width: 100%;
