@@ -62,6 +62,10 @@ h2 {
 .movie-wrapper {
   padding: 0 15px;
   margin: 0 auto;
+  // // ====fottor==
+  // // min-height: 500px;
+  min-height: 50vh;
+  // // ======
   max-width: 480px;
   @media (min-width: 768px) {
     max-width: 768px;

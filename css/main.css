@@ -870,6 +870,7 @@ h2 {
 .movie-wrapper {
   padding: 0 15px;
   margin: 0 auto;
+  min-height: 50vh;
   max-width: 480px;
 }
 
