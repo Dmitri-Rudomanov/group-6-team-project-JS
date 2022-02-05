@@ -1,4 +1,8 @@
 .footer {
+  // ===фиксир футор======
+  position: sticky;
+  bottom: 0px;
+  // ===фиксир футор======
   display: flex;
   justify-content: center;
   align-items: center;
