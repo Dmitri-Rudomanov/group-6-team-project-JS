@@ -1,4 +1,5 @@
 import getRefs from './get-refs';
+import { fetchMarkupPopularityForWeek } from '../index';
 import { clearMovieContainer } from './add-remove-markup';
 import { watchedMyLibrery,queueMyLibrery } from '../index';
 
@@ -7,6 +8,7 @@ const refs = getRefs();
 
 //=====подключение стилей при навигации по страницам=====
 function onHomePageLoading() {
+  fetchMarkupPopularityForWeek();
   refs.sitePage.classList.replace('js-page-header__library', 'js-page-header__home');
   refs.libPageBtn.classList.remove('js-navigation__button--current');
   refs.homePageBtn.classList.add('js-navigation__button--current');
