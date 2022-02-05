@@ -43,8 +43,13 @@ resetHomePage.addEventListener('click', resetPageHome)
 function resetPageHome() {
   location.reload()
 }
-// =====================================
 
+refs.siteLogo.addEventListener("click", onLogoClick)
+function onLogoClick() { 
+  fetchMarkupPopularityForWeek()
+}
+// =====================================
+fetchMarkupPopularityForWeek()
 function fetchMarkupPopularityForWeek() {
   PAGE = 1;
   fetchPopularity(PAGE)
