@@ -1,8 +1,7 @@
 import getRefs from './get-refs';
 import { fetchMarkupPopularityForWeek } from '../index';
 import { clearMovieContainer } from './add-remove-markup';
-import { watchedMyLibrery,queueMyLibrery } from '../index';
-
+import { watchedMyLibrery, queueMyLibrery } from '../index';
 
 const refs = getRefs();
 
@@ -16,9 +15,8 @@ function onHomePageLoading() {
   refs.libPageBtnNav.classList.add('js-visually-hidden');
 
   // ==========index-js-199==================
-  clearMovieContainer()
+  clearMovieContainer();
   refs.searchBox.placeholder = 'Search for movies...';
-
 }
 
 function onLibraryPageLoading() {
@@ -28,21 +26,19 @@ function onLibraryPageLoading() {
   refs.libPageBtn.classList.add('js-navigation__button--current');
   refs.libPageBtnNav.classList.remove('js-visually-hidden');
   refs.homePageForm.classList.add('js-visually-hidden');
-
-  watchedMyLibrery()
-}
-function onWatchedPageLoading() { 
-  refs.libBtnQueue.classList.remove('js-library__button--current')
-  refs.libBtnWatched.classList.add('js-library__button--current')
-
-}
-function onQueuePageLoading() {
-  refs.libBtnQueue.classList.add('js-library__button--current')
-  refs.libBtnWatched.classList.remove('js-library__button--current')
-
-
   refs.errorMessage.classList.add('js-visually-hidden');
 
+  watchedMyLibrery();
+}
+function onWatchedPageLoading() {
+  refs.libBtnQueue.classList.remove('js-library__button--current');
+  refs.libBtnWatched.classList.add('js-library__button--current');
+}
+function onQueuePageLoading() {
+  refs.libBtnQueue.classList.add('js-library__button--current');
+  refs.libBtnWatched.classList.remove('js-library__button--current');
+
+  refs.errorMessage.classList.add('js-visually-hidden');
 }
 
-export { onHomePageLoading, onLibraryPageLoading,onQueuePageLoading,onWatchedPageLoading };
+export { onHomePageLoading, onLibraryPageLoading, onQueuePageLoading, onWatchedPageLoading };
