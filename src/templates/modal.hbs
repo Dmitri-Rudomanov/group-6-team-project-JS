@@ -56,15 +56,21 @@
                 </tr>
 
                 <tr>
-                    <td class="nomination nomination-genres">Genre</td>
-                        <td class="data data-genres">{{genres}}</td>
+
+                    <td class="nomination">Genre</td>
+                    <td class="data">{{genres.[0].name}} {{genres.[1].name}} {{genres.[2].name}}</td>
+
                 </tr>
             </tbody>
         </table>
         <h3 class="description-title">ABOUT</h3>
         <p class="text-description">{{overview}}</p>
-        <div class="btn-container"><button class="btn-watched" type="submit"><span class='btn-watched__text'>ADD TO WATCHED</span></button>
-        <button class="btn-queue" type="submit"><span class='btn-queue__text'>ADD TO QUEUE</span></button></div>
-    </div>
+
+        <button class="btn-watched" type="submit" value="{{id}}">ADD TO WATCHED</button>
+        <button class="btn-queue" type="submit" value="{{id}}">ADD TO QUEUE</button>
+        {{!-- добавил кнопки для удаления временно--}}
+        <button class="btn-watched_close" type="submit" value="{{id}}">УДАЛИТЬ WATCHED</button>
+        <button class="btn-queue_close" type="submit" value="{{id}}">УДАЛИТЬ QUEUE</button>
+
     </div>
 </div>
