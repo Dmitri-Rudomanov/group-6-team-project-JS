@@ -12,6 +12,17 @@ function fetchPopularity(page = 1) {
   );
 }
 
+function fetchLibrery(id) {
+  return fetch(`
+  https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`).then(
+    response => {
+      if (response.ok) {
+        return response.json();
+      }
+    },
+  );
+}
+
 function fetchMovies(name, page = 1) {
   return fetch(`
     https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${name}&page=${page}&include_adult=false`).then(
@@ -46,4 +57,4 @@ function fetchForID(id) {
   );
 }
 
-export { GENRES_STORAGE, fetchMovies, fetchGenres, fetchPopularity, fetchForID };
+export { GENRES_STORAGE, fetchMovies, fetchGenres, fetchPopularity, fetchForID, fetchLibrery };
