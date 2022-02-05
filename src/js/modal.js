@@ -7,8 +7,14 @@ let id = null;
 export { onClickInItem, onClickBackdrop };
 
 function onClickInItem(e) {
-  if (e.target.className === 'movie-img') {
-    id = e.target.parentNode.id;
+  if (
+    e.target.className === 'movie-img' ||
+    e.target.nodeName === 'P' ||
+    e.target.nodeName === 'SPAN' ||
+    e.target.className === 'movie-link__content' ||
+    e.target.className === 'movie-item__genre'
+  ) {
+    id = e.target.parentElement.id;
     onOpenModal(id);
   }
 }
