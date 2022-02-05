@@ -25,16 +25,16 @@
   padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  @media screen and (min-width: 768px) and (max-width: 1440px) {
+  @media screen and (min-width: 440px) and (max-width: 1440px) {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
-   @media screen and (min-width: 380px) and(max-width:768px) {
-     max-width: 380px;
-     margin: 0 auto;
-   }
+  @media screen and (min-width: 380px) and(max-width:768px) {
+    max-width: 380px;
+    margin: 0 auto;
+  }
 
   @media screen and (min-width: 768px) {
     padding-right: 30px;
@@ -48,18 +48,21 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
   }
 }
 
 .btn-close {
-  @media screen and (max-width: 768px) {
-    top: 20px;
-    right: 20px;
+  @media screen and (min-width: 440px) and (max-width: 768px) {
+    top: 10px;
+    right: 10px;
   }
+  // @media screen and (max-width: 440px) {
+  //   top: 20px;
+  //   right: 20px;
+  // }
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   display: flex;
   margin-left: auto;
 
@@ -94,25 +97,24 @@
   margin-right: 0px;
 }
 
-
-.movie-img.movie-img__modal{
-  @media (max-width:320px) {
-  min-width: 240px;
-  min-height: 356px;
+.movie-img.movie-img__modal {
+  @media (max-width: 320px) {
+    min-width: 240px;
+    min-height: 356px;
   }
   object-fit: cover;
-   @media screen and (min-width: 320px) and(max-width:768px) {
-  min-width: 240px;
-  min-height: 356px;
- margin: 0 auto;
-   }
+  @media screen and(max-width:768px) {
+    min-width: 100px;
+    min-height: 200px;
+    margin: 0 auto;
+  }
   @media screen and (min-width: 768px) {
-  min-width: 266px;
-  min-height: 373px;
+    min-width: 266px;
+    min-height: 373px;
   }
   @media screen and (min-width: 1024px) {
-  min-width: 396px;
-  min-height: 477px;
+    min-width: 396px;
+    min-height: 477px;
   }
 }
 
@@ -149,13 +151,13 @@
 
 .modal-table {
   table-layout: fixed;
-  width: 100%;
+  width: 70%;
   border-collapse: collapse;
   @media screen and (min-width: 768px) {
     width: 80%;
   }
   @media screen and (min-width: 1024px) {
-    width: 50%;
+    width: 90%;
   }
 }
 
@@ -242,8 +244,6 @@ td {
   cursor: pointer;
   padding-top: 10px;
   padding-bottom: 10px;
-}
-.btn-watched__text {
   color: var(--secondary-text-color);
   font-size: 12px;
   font-weight: 500;
@@ -264,9 +264,7 @@ td {
   cursor: pointer;
   padding-top: 10px;
   padding-bottom: 10px;
-}
 
-.btn-queue__text {
   color: var(--primary-text-color);
   font-size: 12px;
   font-weight: 500;
