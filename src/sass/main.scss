@@ -104,9 +104,10 @@ h2 {
       margin-right: 0;
     }
     &:nth-child(n + 7) {
-      margin-bottom: 0px;
+      // margin-bottom: 0;
+      
       // ------если убрать margin-bottom: 0; и заскоментировать  margin-bottom: 30px; разметка восстанавливается
-      // margin-bottom: 30px;
+      margin-bottom: 30px;
     }
   }
 }
