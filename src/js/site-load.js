@@ -1,5 +1,6 @@
 import getRefs from './get-refs';
 import { clearMovieContainer } from './add-remove-markup';
+import { watchedMyLibrery } from '../index';
 
 
 const refs = getRefs();
@@ -16,11 +17,22 @@ function onHomePageLoading() {
 }
 
 function onLibraryPageLoading() {
+  clearMovieContainer()
   refs.sitePage.classList.replace('js-page-header__home', 'js-page-header__library');
   refs.homePageBtn.classList.remove('js-navigation__button--current');
   refs.libPageBtn.classList.add('js-navigation__button--current');
   refs.libPageBtnNav.classList.remove('js-visually-hidden');
   refs.homePageForm.classList.add('js-visually-hidden');
+  watchedMyLibrery()
+}
+function onQueuePageLoading() {
+  clearMovieContainer()
+  refs.sitePage.classList.replace('js-page-header__home', 'js-page-header__library');
+  refs.homePageBtn.classList.remove('js-navigation__button--current');
+  refs.libPageBtn.classList.add('js-navigation__button--current');
+  refs.libPageBtnNav.classList.remove('js-visually-hidden');
+  refs.homePageForm.classList.add('js-visually-hidden');
+  watchedMyLibrery()
 }
 
 export { onHomePageLoading, onLibraryPageLoading };

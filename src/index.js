@@ -199,6 +199,7 @@ function watchedMyLibrery() {
       })
   }
 }
+export { watchedMyLibrery}
 function queueMyLibrery() {
   let queuelifeLibrery = []
   clearMovieContainer();
@@ -212,6 +213,7 @@ function queueMyLibrery() {
       });
   }
 }
+export { queueMyLibrery}
 // ===========обработка строки жанров===============
 function processGenres(response) {
   for (let i = 0; i < response.results.length; i++) {
