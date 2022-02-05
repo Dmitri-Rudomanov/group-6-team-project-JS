@@ -16,12 +16,15 @@ function onClickInItem(e) {
 function onOpenModal(id) {
   window.addEventListener('keydown', onEscKeyDown);
   refs.movieModal.classList.remove('is-hidden');
+  refs.bodyHtml.classList.add('body-overflow');
   modalMarkup(id);
 }
 
 function onCloseModal() {
   window.removeEventListener('keydown', onEscKeyDown);
   refs.movieModal.classList.add('is-hidden');
+  refs.bodyHtml.classList.remove('body-overflow');
+  refs.movieModal.innerHTML = '';
 }
 
 function onClickBackdrop(e) {
@@ -40,11 +43,12 @@ function onEscKeyDown(e) {
     onCloseModal();
   }
 }
-// =======================Рисует Модалку===============================
+
+// =======================Рисует Модалку по ID===============================
 function modalMarkup(id) {
-  fetchForID(id)
-    .then()
-    .then(results => {
-      refs.movieModal.insertAdjacentHTML('beforeend', modalMarkupHbs(results));
-    });
+  fetchForID(id).then(results => {
+    refs.movieModal.insertAdjacentHTML('beforeend', modalMarkupHbs(results));
+  });
 }
+
+// =======================Рисует жанры в модалке============================

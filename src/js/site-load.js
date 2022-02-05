@@ -12,16 +12,21 @@ function onHomePageLoading() {
   refs.homePageBtn.classList.add('js-navigation__button--current');
   refs.homePageForm.classList.remove('js-visually-hidden');
   refs.libPageBtnNav.classList.add('js-visually-hidden');
+
   // ==========index-js-199==================
   clearMovieContainer()
+  refs.searchBox.placeholder = 'Search for movies...';
+
 }
 
 function onLibraryPageLoading() {
+  refs.searchForm.reset();
   refs.sitePage.classList.replace('js-page-header__home', 'js-page-header__library');
   refs.homePageBtn.classList.remove('js-navigation__button--current');
   refs.libPageBtn.classList.add('js-navigation__button--current');
   refs.libPageBtnNav.classList.remove('js-visually-hidden');
   refs.homePageForm.classList.add('js-visually-hidden');
+
   watchedMyLibrery()
 }
 function onWatchedPageLoading() { 
@@ -32,6 +37,9 @@ function onWatchedPageLoading() {
 function onQueuePageLoading() {
   refs.libBtnQueue.classList.add('js-library__button--current')
   refs.libBtnWatched.classList.remove('js-library__button--current')
+
+
+  refs.errorMessage.classList.add('js-visually-hidden');
 
 }
 

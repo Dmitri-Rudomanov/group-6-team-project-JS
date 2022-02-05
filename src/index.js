@@ -12,7 +12,7 @@ import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
 import { onHomePageLoading, onLibraryPageLoading,onQueuePageLoading,onWatchedPageLoading } from './js/site-load';
 import { onClickInItem, onClickBackdrop } from './js/modal';
-import { appendMovieMarkup, clearMovieContainer } from './js/add-remove-markup';
+import { appendMovieMarkup, clearMovieContainer, clearForm } from './js/add-remove-markup';
 
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
@@ -35,6 +35,7 @@ refs.homePageBtn.addEventListener('click', onHomePageLoading);
 refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
+refs.searchBox.addEventListener('focus', clearForm);
 
 // ======================Открывает-Закрывает Модалку========
 refs.movieList.addEventListener('click', onClickInItem);
@@ -75,12 +76,19 @@ function onSearchInputs(e) {
       .then(processGenres)
       .then(({ results, total_pages }) => {
         totalPages = total_pages;
+        //====обработка некорректного запроса====
+        if (results.length === 0) {
+          refs.errorMessage.classList.remove('js-visually-hidden');
+          return;
+        }
+        refs.errorMessage.classList.add('js-visually-hidden');
         // ==очистка перед отрисовкой=====
         clearMovieContainer();
         appendMovieMarkup(results);
       });
   } else {
     QUERY = undefined;
+    refs.errorMessage.classList.add('js-visually-hidden');
     fetchMarkupPopularityForWeek();
   }
 }
@@ -228,7 +236,7 @@ function processGenres(response) {
     }
     response.results[i].genres = readableGenres.join(', ');
   }
-  // console.log(response)
+  // console.log(response);
   // =======из response используется genres при отрисовке=========
   return response;
 }
