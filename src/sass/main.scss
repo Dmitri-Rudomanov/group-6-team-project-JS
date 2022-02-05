@@ -73,7 +73,7 @@ h2 {
 .movie-item {
   margin-bottom: 30px;
   &:last-child {
-    margin-bottom: 0;
+    margin-bottom: 30px;
   }
   @media (min-width: 768px) {
     width: calc((100% - 2 * 30px) / 2);
@@ -83,7 +83,7 @@ h2 {
       margin-right: 0;
     }
     &:last-child {
-      margin-bottom: 0px;
+      margin-bottom: 30px;
       margin-right: 0px;
     }
   }
@@ -104,7 +104,7 @@ h2 {
       margin-right: 0;
     }
     &:nth-child(n + 7) {
-      margin-bottom: 0;
+      margin-bottom: 0px;
       // ------если убрать margin-bottom: 0; и заскоментировать  margin-bottom: 30px; разметка восстанавливается
       // margin-bottom: 30px;
     }
