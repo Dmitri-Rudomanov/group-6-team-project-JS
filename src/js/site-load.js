@@ -39,8 +39,6 @@ function onWatchedPageLoading() {
 function onQueuePageLoading() {
   refs.libBtnQueue.classList.add('js-library__button--current')
   refs.libBtnWatched.classList.remove('js-library__button--current')
-
-
   refs.errorMessage.classList.add('js-visually-hidden');
 
 }

@@ -199,7 +199,7 @@ function removeQueueFilm() {
   }
   saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST)
   // =========перезагрузка после удаления========
-  watchedMyLibrery()
+  queueMyLibrery()
 }
 // ===============LocalStorage=================
 function saveWatchedListToLocalStorage(watchedFilmsList) {
