@@ -1,6 +1,6 @@
 import getRefs from './get-refs';
 import { clearMovieContainer } from './add-remove-markup';
-import { watchedMyLibrery } from '../index';
+import { watchedMyLibrery,queueMyLibrery } from '../index';
 
 
 const refs = getRefs();
@@ -17,22 +17,22 @@ function onHomePageLoading() {
 }
 
 function onLibraryPageLoading() {
-  clearMovieContainer()
   refs.sitePage.classList.replace('js-page-header__home', 'js-page-header__library');
   refs.homePageBtn.classList.remove('js-navigation__button--current');
   refs.libPageBtn.classList.add('js-navigation__button--current');
   refs.libPageBtnNav.classList.remove('js-visually-hidden');
   refs.homePageForm.classList.add('js-visually-hidden');
   watchedMyLibrery()
+}
+function onWatchedPageLoading() { 
+  refs.libBtnQueue.classList.remove('js-library__button--current')
+  refs.libBtnWatched.classList.add('js-library__button--current')
+
 }
 function onQueuePageLoading() {
-  clearMovieContainer()
-  refs.sitePage.classList.replace('js-page-header__home', 'js-page-header__library');
-  refs.homePageBtn.classList.remove('js-navigation__button--current');
-  refs.libPageBtn.classList.add('js-navigation__button--current');
-  refs.libPageBtnNav.classList.remove('js-visually-hidden');
-  refs.homePageForm.classList.add('js-visually-hidden');
-  watchedMyLibrery()
+  refs.libBtnQueue.classList.add('js-library__button--current')
+  refs.libBtnWatched.classList.remove('js-library__button--current')
+
 }
 
-export { onHomePageLoading, onLibraryPageLoading };
+export { onHomePageLoading, onLibraryPageLoading,onQueuePageLoading,onWatchedPageLoading };

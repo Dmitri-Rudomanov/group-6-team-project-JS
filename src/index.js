@@ -10,7 +10,7 @@ import { GENRES_STORAGE } from './js/fetchMovies';
 import movieListMarkupHbs from './templates/movie-list.hbs';
 import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
-import { onHomePageLoading, onLibraryPageLoading } from './js/site-load';
+import { onHomePageLoading, onLibraryPageLoading,onQueuePageLoading,onWatchedPageLoading } from './js/site-load';
 import { onClickInItem, onClickBackdrop } from './js/modal';
 import { appendMovieMarkup, clearMovieContainer } from './js/add-remove-markup';
 
@@ -33,6 +33,8 @@ refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY
 refs.siteLogo.addEventListener('click', onHomePageLoading);
 refs.homePageBtn.addEventListener('click', onHomePageLoading);
 refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
+refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
+refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
 
 // ======================Открывает-Закрывает Модалку========
 refs.movieList.addEventListener('click', onClickInItem);
