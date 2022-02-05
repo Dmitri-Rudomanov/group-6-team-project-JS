@@ -4,6 +4,46 @@
  * Все паршалы подключаются сюда.
  */
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #f7f7f7;
+  font-weight: 400;
+  line-height: 1.4;
+  font-size: 14px;
+  margin-top: 60px;
+  padding: 30px;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    font-size: 16px;
+  }
+}
+
+.footer_info {
+  text-align: center;
+  color: #545454;
+}
+
+.footer_image {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline;
+}
+
+.footer_link {
+  text-decoration: none;
+  color: #545454;
+}
+
 :root {
   --primary-text-color: #000000;
   --secondary-text-color: #ffffff;
@@ -229,6 +269,13 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -246,6 +293,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 280px;
+  margin-bottom: 22px;
   border-bottom: 0.5px solid #ffffff;
 }
 
@@ -321,6 +369,15 @@
   line-height: 1.14;
 }
 
+.error-message {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ff001b;
+}
+
 /* кнопки WATCHED И QUEUE*/
 .lib-nav {
   display: -webkit-box;
@@ -380,7 +437,13 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 200;
+  z-index: 99;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.body-overflow {
+  overflow: hidden;
 }
 
 .backdrop.is-hidden {
@@ -403,13 +466,49 @@
   padding-right: 30px;
   padding-left: 30px;
   background-color: #ffffff;
-  min-width: 882px;
-  min-height: 568px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+}
+
+@media screen and (min-width: 380px) and (max-width: 768px) {
+  .modal {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding-right: 30px;
+    padding-left: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-width: 680px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .modal {
+    min-width: 882px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
 }
 
 .btn-close {
@@ -431,6 +530,13 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .btn-close {
+    top: 20px;
+    right: 20px;
+  }
+}
+
 .btn-close__icon {
   fill: var(--action-color);
   -webkit-transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -443,50 +549,116 @@
   fill: var(--action-color);
 }
 
-.modal-poster {
-  margin-right: 0px;
-  width: 240px;
-  height: 357px;
+.modal-container {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @media screen and (min-width: 768px) {
-  .modal-poster {
-    width: 264px;
-    height: 374px;
+  .modal-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .modal-poster {
-    width: 396px;
-    height: 478px;
-  }
+.modal-poster {
+  margin-right: 0px;
 }
 
-.modal-img {
-  width: 100%;
-  height: 100%;
+.movie-img.movie-img__modal {
   -o-object-fit: cover;
      object-fit: cover;
 }
 
-.modal-content {
-  margin-left: 30px;
+@media (max-width: 320px) {
+  .movie-img.movie-img__modal {
+    min-width: 240px;
+    min-height: 356px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .movie-img.movie-img__modal {
+    min-width: 240px;
+    min-height: 356px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .movie-img.movie-img__modal {
+    min-width: 266px;
+    min-height: 373px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .movie-img.movie-img__modal {
+    min-width: 396px;
+    min-height: 477px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal-content {
+    margin-left: 30px;
+  }
 }
 
 .modal-title {
-  margin-bottom: 20px;
-  color: var(--primary-text-color);
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1;
+  font-size: 20px;
+  line-height: 1.15;
   letter-spacing: 0em;
   text-align: left;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 767px) {
+  .modal-title {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal-title {
+    margin-bottom: 20px;
+    line-height: 1.17;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .modal-title {
+    margin-bottom: 20px;
+    font-size: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 }
 
 .modal-table {
-  margin-bottom: 20px;
+  table-layout: fixed;
   width: 100%;
+  border-collapse: collapse;
+}
+
+@media screen and (min-width: 768px) {
+  .modal-table {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .modal-table {
+    width: 50%;
+  }
 }
 
 .nomination {
@@ -519,9 +691,24 @@
   text-align: center;
   padding-left: 10px;
   padding-right: 10px;
+  margin-left: auto;
+}
+
+.raiting-slesh {
+  margin-right: 7px;
+}
+
+td {
+  padding-bottom: 10px;
+}
+
+.nomination-genres,
+.data-genres {
+  padding-bottom: 0;
 }
 
 .description-title {
+  margin-top: 20px;
   margin-bottom: 10px;
   color: var(--primary-text-color);
   font-size: 12px;
@@ -541,42 +728,65 @@
   text-align: left;
 }
 
+.btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .btn-watched {
   margin-right: 15px;
-  min-width: 136px;
   border: none;
   background-color: var(--action-color);
   border-radius: 5px;
   cursor: pointer;
-  padding-top: 14px;
-  padding-right: 10px;
-  padding-bottom: 12px;
-  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media screen and (min-width: 320px) {
+  .btn-watched {
+    min-width: 112px;
+  }
+}
+
+.btn-watched__text {
   color: var(--secondary-text-color);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: 0em;
   text-align: center;
+  margin: 0;
 }
 
 .btn-queue {
   margin-right: auto;
   border: 1px solid var(--primary-text-color);
-  min-width: 136px;
   background-color: var(--secondary-text-color);
   border-radius: 5px;
   cursor: pointer;
-  padding-top: 14px;
-  padding-right: 10px;
-  padding-bottom: 12px;
-  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media screen and (min-width: 320px) {
+  .btn-queue {
+    min-width: 112px;
+  }
+}
+
+.btn-queue__text {
   color: var(--primary-text-color);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: 0em;
   text-align: center;
+  margin: 0;
 }
 
 .js-visually-hidden {
@@ -599,7 +809,8 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+ 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fafafa;
@@ -654,7 +865,7 @@ h2 {
   margin-bottom: -30px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .movie-list {
     display: block;
     text-align: center;
@@ -729,17 +940,19 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 5px;
 }
 
 .movie-img {
   max-height: 400px;
-  max-width: 290px;
   position: relative;
   overflow: hidden;
 }
 
-span {
-  margin-left: 10px;
+@media screen and (min-width: 767px) {
+  .movie-img {
+    max-width: 290px;
+  }
 }
 
 .movie-link {

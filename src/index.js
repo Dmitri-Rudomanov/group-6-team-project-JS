@@ -1,4 +1,5 @@
 
+
 // =============код с скроллом ниже==========
 // ==========================================
 
@@ -6,13 +7,14 @@ import './sass/main.scss';
 import { fetchGenres, fetchMovies, fetchPopularity, fetchLibrery } from './js/fetchMovies';
 //import { fetchGenres } from './js/fetchMovies';
 import { GENRES_STORAGE } from './js/fetchMovies';
-// import countryMarkupHbs from './templates/movie.hbs';
 import movieListMarkupHbs from './templates/movie-list.hbs';
 import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
 import { onHomePageLoading, onLibraryPageLoading,onQueuePageLoading,onWatchedPageLoading } from './js/site-load';
 import { onClickInItem, onClickBackdrop } from './js/modal';
 import { appendMovieMarkup, clearMovieContainer, clearForm } from './js/add-remove-markup';
+
+export { fetchMarkupPopularityForWeek };
 
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
@@ -23,7 +25,9 @@ let PAGE = 1;
 let totalPages = undefined;
 const refs = getRefs();
 
+
 // ===================Ищет популярные=====================
+
 refs.sitePage.classList.add('js-page-header__home');
 refs.homePageBtn.classList.add('js-navigation__button--current');
 refs.libPageBtnNav.classList.add('js-visually-hidden');
@@ -37,7 +41,18 @@ refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
 refs.searchBox.addEventListener('focus', clearForm);
 
+
+//===== Отмена обновления страницы при клике на Enter ====
+refs.searchBox.addEventListener('keydown', function (e) {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+  }
+});
+
+// ==============================Открывает-Закрывает Модалку==========================
+
 // ======================Открывает-Закрывает Модалку========
+
 refs.movieList.addEventListener('click', onClickInItem);
 refs.movieModal.addEventListener('click', onClickBackdrop);
 // ==============перезагрузка при переходе на главную страницу====================
@@ -47,12 +62,19 @@ function resetPageHome() {
   location.reload()
 }
 
+
+//==== Загрузка и отрисовка популярных фильмов ====
+
+
+// ===================Ищет популярные=====================
+
 refs.siteLogo.addEventListener("click", onLogoClick)
 function onLogoClick() { 
   fetchMarkupPopularityForWeek()
 }
 // =====================================
 fetchMarkupPopularityForWeek()
+
 function fetchMarkupPopularityForWeek() {
   PAGE = 1;
   fetchPopularity(PAGE)
@@ -64,8 +86,10 @@ function fetchMarkupPopularityForWeek() {
     });
 }
 
+
 // =======первоначальный разовый запрос жанров и сохранение ======
 fetchGenres();
+
 
 // ========первая загрузка по кнопке========
 function onSearchInputs(e) {
