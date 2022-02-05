@@ -35,9 +35,8 @@ function onWatchedPageLoading() {
   refs.libBtnWatched.classList.add('js-library__button--current');
 }
 function onQueuePageLoading() {
-  refs.libBtnQueue.classList.add('js-library__button--current');
-  refs.libBtnWatched.classList.remove('js-library__button--current');
-
+  refs.libBtnQueue.classList.add('js-library__button--current')
+  refs.libBtnWatched.classList.remove('js-library__button--current')
   refs.errorMessage.classList.add('js-visually-hidden');
 }
 
