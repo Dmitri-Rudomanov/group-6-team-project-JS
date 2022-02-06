@@ -1,0 +1,65 @@
+<div class="modal modal--transform" data-modal>
+    <button class="btn-close" type="button" data-modal-close>
+        <svg class="btn-close__icon" width="30" height="30">
+            <path d="M8 8L22 22" stroke="black" stroke-width="2" />
+            <path d="M8 22L22 8" stroke="black" stroke-width="2" />
+        </svg>
+    </button>
+    <div class="modal-container">
+        <div class="modal-poster">
+            {{#if poster_path}}
+
+            <picture>
+                <source media="(min-width: 1200px)" srcset="
+                    https://image.tmdb.org/t/p/w780/{{poster_path}} 1x,
+                    https://image.tmdb.org/t/p/original/{{poster_path}} 2x" />
+                <source media="(min-width: 768px)" srcset="
+                    https://image.tmdb.org/t/p/w500/{{poster_path}} 1x,
+                    https://image.tmdb.org/t/p/w780/{{poster_path}} 2x" />
+                <source media="(max-width: 768px)" srcset="
+                    https://image.tmdb.org/t/p/w342/{{poster_path}} 1x,
+                    https://image.tmdb.org/t/p/w500/{{poster_path}} 2x" />
+                <img src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{title}}"
+                    class="movie-img movie-img__modal" />
+            </picture>
+
+            {{else}}
+            <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png"
+                class="modal-poster">
+            {{/if}}
+        </div>
+        <div class="modal-content">
+            <h2 class="modal-title">{{title}}</h2>
+            <table class="modal-table">
+                <tbody>
+                    <tr>
+                        <td class="nomination">Vote/Votes</td>
+                        <td class="data"><span class="raiting">{{vote_average}}</span><span
+                                class="raiting-slesh">/</span>{{vote_count}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="nomination">Popularity</td>
+                        <td class="data">{{popularity}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="nomination">Original Title</td>
+                        <td class="data">{{original_title}}</td>
+                    </tr>
+
+                    <tr>
+
+                        <td class="nomination">Genre</td>
+                        <td class="data">{{genres.[0].name}} {{genres.[1].name}} {{genres.[2].name}} {{genres.[3].name}}
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <h3 class="description-title">ABOUT</h3>
+            <p class="text-description">{{overview}}</p>
+            <button class="btn-watched" type="submit" value="{{id}}">ADD TO WATCHED</button>
+            <button class="btn-queue_close" type="submit" value="{{id}}">DELETE FROM QUEUE</button>
+        </div>
+    </div>

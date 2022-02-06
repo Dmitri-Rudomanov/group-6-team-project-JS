@@ -14,13 +14,11 @@ function fetchPopularity(page = 1) {
 
 function fetchLibrery(id) {
   return fetch(`
-  https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`).then(
-    response => {
-      if (response.ok) {
-        return response.json();
-      }
-    },
-  );
+  https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+  });
 }
 
 function fetchMovies(name, page = 1) {

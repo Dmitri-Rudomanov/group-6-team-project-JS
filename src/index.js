@@ -1,5 +1,3 @@
-
-
 // =============код с скроллом ниже==========
 // ==========================================
 
@@ -9,13 +7,19 @@ import { fetchGenres, fetchMovies, fetchPopularity, fetchLibrery } from './js/fe
 import { GENRES_STORAGE } from './js/fetchMovies';
 import movieListMarkupHbs from './templates/movie-list.hbs';
 import modalMarkupHbs from './templates/modal.hbs';
+// import modalMarkupHbsDelete from '../templates/modalBtnDelete.hbs';
 import getRefs from './js/get-refs';
-import { onHomePageLoading, onLibraryPageLoading,onQueuePageLoading,onWatchedPageLoading } from './js/site-load';
-import { onClickInItem, onClickBackdrop } from './js/modal';
+import {
+  onHomePageLoading,
+  onLibraryPageLoading,
+  onQueuePageLoading,
+  onWatchedPageLoading,
+} from './js/site-load';
+import { onClickInItem, onClickBackdrop, onOpenModal } from './js/modal';
 import { appendMovieMarkup, clearMovieContainer, clearForm } from './js/add-remove-markup';
 
-export { fetchMarkupPopularityForWeek };
-
+export { fetchMarkupPopularityForWeek, addQueueFilm, addWatchedFilm };
+export { QUEUE_FILMS_LIST, WATCHED_FILMS_LIST };
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 600;
 
@@ -24,7 +28,6 @@ let QUERY = undefined;
 let PAGE = 1;
 let totalPages = undefined;
 const refs = getRefs();
-
 
 // ===================Ищет популярные=====================
 
@@ -41,7 +44,6 @@ refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
 refs.searchBox.addEventListener('focus', clearForm);
 
-
 //===== Отмена обновления страницы при клике на Enter ====
 refs.searchBox.addEventListener('keydown', function (e) {
   if (e.keyCode === 13) {
@@ -56,24 +58,22 @@ refs.searchBox.addEventListener('keydown', function (e) {
 refs.movieList.addEventListener('click', onClickInItem);
 refs.movieModal.addEventListener('click', onClickBackdrop);
 // ==============перезагрузка при переходе на главную страницу====================
-const resetHomePage = document.getElementById('home')
-resetHomePage.addEventListener('click', resetPageHome)
+const resetHomePage = document.getElementById('home');
+resetHomePage.addEventListener('click', resetPageHome);
 function resetPageHome() {
-  location.reload()
+  location.reload();
 }
-
 
 //==== Загрузка и отрисовка популярных фильмов ====
 
-
 // ===================Ищет популярные=====================
 
-refs.siteLogo.addEventListener("click", onLogoClick)
-function onLogoClick() { 
-  fetchMarkupPopularityForWeek()
+refs.siteLogo.addEventListener('click', onLogoClick);
+function onLogoClick() {
+  fetchMarkupPopularityForWeek();
 }
 // =====================================
-fetchMarkupPopularityForWeek()
+fetchMarkupPopularityForWeek();
 
 function fetchMarkupPopularityForWeek() {
   PAGE = 1;
@@ -86,10 +86,8 @@ function fetchMarkupPopularityForWeek() {
     });
 }
 
-
 // =======первоначальный разовый запрос жанров и сохранение ======
 fetchGenres();
-
 
 // ========первая загрузка по кнопке========
 function onSearchInputs(e) {
@@ -118,49 +116,49 @@ function onSearchInputs(e) {
 }
 
 // =====всплывающий клик на добавление фильмов==============
-refs.movieModal.addEventListener("mousedown", function (e) {
+refs.movieModal.addEventListener('mousedown', function (e) {
   let classes = e.target.className;
-  if (classes = ".btn-watched") {
-    let liClick = document.getElementsByTagName("button");
+  if ((classes = '.btn-watched')) {
+    let liClick = document.getElementsByTagName('button');
     for (var i = 0; i < liClick.length; i++) {
-      if (liClick[i].matches(".btn-watched")) {
-        liClick[i].addEventListener("click", addWatchedFilm);
+      if (liClick[i].matches('.btn-watched')) {
+        liClick[i].addEventListener('click', addWatchedFilm);
       }
     }
   }
-  if (classes = ".btn-queue") {
+  if ((classes = '.btn-queue')) {
     // let classes = e.target.className;
-    let liClick2 = document.getElementsByTagName("button");
+    let liClick2 = document.getElementsByTagName('button');
     for (var i = 0; i < liClick2.length; i++) {
-      if (liClick2[i].matches(".btn-queue")) {
-        liClick2[i].addEventListener("click", addQueueFilm);
+      if (liClick2[i].matches('.btn-queue')) {
+        liClick2[i].addEventListener('click', addQueueFilm);
       }
     }
   }
 });
 // =====всплывающий клик на удаление фильмов==============
-refs.movieModal.addEventListener("mousedown", function (e) {
+refs.movieModal.addEventListener('mousedown', function (e) {
   let classes = e.target.className;
-  if (classes = ".btn-watched_close") {
-    let liClick = document.getElementsByTagName("button");
+  if ((classes = '.btn-watched_close')) {
+    let liClick = document.getElementsByTagName('button');
     for (var i = 0; i < liClick.length; i++) {
-      if (liClick[i].matches(".btn-watched_close")) {
-        liClick[i].addEventListener("click", removeWatchedFilm);
+      if (liClick[i].matches('.btn-watched_close')) {
+        liClick[i].addEventListener('click', removeWatchedFilm);
       }
     }
   }
-  if (classes = ".btn-queue_close") {
-    let liClick2 = document.getElementsByTagName("button");
+  if ((classes = '.btn-queue_close')) {
+    let liClick2 = document.getElementsByTagName('button');
     for (var i = 0; i < liClick2.length; i++) {
-      if (liClick2[i].matches(".btn-queue_close")) {
-        liClick2[i].addEventListener("click", removeQueueFilm);
+      if (liClick2[i].matches('.btn-queue_close')) {
+        liClick2[i].addEventListener('click', removeQueueFilm);
       }
     }
   }
 });
 // ===========клик на запросы для добавления в библиотеки=============
-refs.libBtnWatched.addEventListener('click', watchedMyLibrery)
-refs.libBtnQueue.addEventListener('click', queueMyLibrery)
+refs.libBtnWatched.addEventListener('click', watchedMyLibrery);
+refs.libBtnQueue.addEventListener('click', queueMyLibrery);
 // =======================LocalStorage===============================
 let WATCHED_FILMS_LIST = [];
 let QUEUE_FILMS_LIST = [];
@@ -168,38 +166,50 @@ let QUEUE_FILMS_LIST = [];
 readWatchedListFromLocalStorage();
 readQueueListFromLocalStorage();
 // ==========функции на добавление===================
-function addWatchedFilm() {
+function addWatchedFilm(e) {
   const filmID = this.value;
   WATCHED_FILMS_LIST.push(filmID);
-  WATCHED_FILMS_LIST = Array.from(new Set(WATCHED_FILMS_LIST))
-  saveWatchedListToLocalStorage(WATCHED_FILMS_LIST)
+  WATCHED_FILMS_LIST = Array.from(new Set(WATCHED_FILMS_LIST));
+  saveWatchedListToLocalStorage(WATCHED_FILMS_LIST);
+  if (WATCHED_FILMS_LIST.includes(filmID)) {
+    e.target.textContent = 'DELETE FROM WATCHED';
+  }
 }
-function addQueueFilm() {
+function addQueueFilm(e) {
   const filmID = this.value;
   QUEUE_FILMS_LIST.push(filmID);
-  QUEUE_FILMS_LIST = Array.from(new Set(QUEUE_FILMS_LIST))
-  saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST)
+  QUEUE_FILMS_LIST = Array.from(new Set(QUEUE_FILMS_LIST));
+  saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST);
+  if (QUEUE_FILMS_LIST.includes(filmID)) {
+    e.target.textContent = 'DELETE FROM QUEUE';
+  }
 }
 // =======функции на удаление================
-function removeWatchedFilm() {
+function removeWatchedFilm(e) {
   const filmID = this.value;
   if (WATCHED_FILMS_LIST.includes(filmID)) {
     const filmIndex = WATCHED_FILMS_LIST.indexOf(filmID);
-    WATCHED_FILMS_LIST.splice(filmIndex, 1)
+    WATCHED_FILMS_LIST.splice(filmIndex, 1);
   }
-  saveWatchedListToLocalStorage(WATCHED_FILMS_LIST)
+  saveWatchedListToLocalStorage(WATCHED_FILMS_LIST);
+  if (!WATCHED_FILMS_LIST.includes(filmID)) {
+    e.target.textContent = 'ADD TO QUEUE';
+  }
   // =========перезагрузка после удаления===========
-  watchedMyLibrery()
+  watchedMyLibrery();
 }
-function removeQueueFilm() {
+function removeQueueFilm(e) {
   const filmID = this.value;
   if (QUEUE_FILMS_LIST.includes(filmID)) {
     const filmIndex = QUEUE_FILMS_LIST.indexOf(filmID);
-    QUEUE_FILMS_LIST.splice(filmIndex, 1)
+    QUEUE_FILMS_LIST.splice(filmIndex, 1);
   }
-  saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST)
+  saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST);
+  if (!QUEUE_FILMS_LIST.includes(filmID)) {
+    e.target.textContent = 'ADD TO QUEUE';
+  }
   // =========перезагрузка после удаления========
-  queueMyLibrery()
+  watchedMyLibrery();
 }
 // ===============LocalStorage=================
 function saveWatchedListToLocalStorage(watchedFilmsList) {
@@ -220,34 +230,32 @@ function readQueueListFromLocalStorage() {
 
 // ===============запросы на сервер для библиотек=========================
 function watchedMyLibrery() {
-  let watchedlifeLibrery = []
+  let watchedlifeLibrery = [];
   clearMovieContainer();
   for (let i = 0; i < WATCHED_FILMS_LIST.length; i++) {
     let ID = WATCHED_FILMS_LIST[i];
-    fetchLibrery(ID)
-      .then(results => {
-        watchedlifeLibrery.push(results);
-        // console.log(results)
-        // console.log(watchedlifeLibrery)
-        appendMovieMarkup([results]);
-      })
+    fetchLibrery(ID).then(results => {
+      watchedlifeLibrery.push(results);
+      // console.log(results)
+      // console.log(watchedlifeLibrery)
+      appendMovieMarkup([results]);
+    });
   }
 }
-export { watchedMyLibrery}
+export { watchedMyLibrery };
 function queueMyLibrery() {
-  let queuelifeLibrery = []
+  let queuelifeLibrery = [];
   clearMovieContainer();
   for (let i = 0; i < QUEUE_FILMS_LIST.length; i++) {
     let ID = QUEUE_FILMS_LIST[i];
     // console.log('queueClikLifeFilms[i]-', ID)
-    fetchLibrery(ID)
-      .then(results => {
-        queuelifeLibrery.push(results);
-        appendMovieMarkup([results]);
-      });
+    fetchLibrery(ID).then(results => {
+      queuelifeLibrery.push(results);
+      appendMovieMarkup([results]);
+    });
   }
 }
-export { queueMyLibrery}
+export { queueMyLibrery };
 // ===========обработка строки жанров===============
 function processGenres(response) {
   for (let i = 0; i < response.results.length; i++) {
@@ -281,18 +289,18 @@ function convertGenres(genre_ids) {
   return resultGenre;
 }
 // ======================слежения какая вкладка открыта для подключения скролла=================================
-const HOME_PAGE = 'HOME'
-const LIBRARY_PAGE = 'LIBRARY'
+const HOME_PAGE = 'HOME';
+const LIBRARY_PAGE = 'LIBRARY';
 
-let currentPage = HOME_PAGE
-const navigationButtons = document.querySelectorAll('.navigation__button')
+let currentPage = HOME_PAGE;
+const navigationButtons = document.querySelectorAll('.navigation__button');
 
 navigationButtons.forEach(function (button) {
-  button.addEventListener('click', onNavigationButtonCLICK)
-})
+  button.addEventListener('click', onNavigationButtonCLICK);
+});
 
 function onNavigationButtonCLICK(e) {
-  const button = e.target
+  const button = e.target;
   if (button.id === 'home') {
     currentPage = HOME_PAGE;
   } else if (button.id === 'library') {
@@ -325,8 +333,7 @@ const onEntry = entries => {
         .then(({ results }) => {
           appendMovieMarkup(results);
         });
-    }
-    else {
+    } else {
       // console.log('Пора грузить еще');
       PAGE += 1;
       if (PAGE > totalPages) {
@@ -346,11 +353,23 @@ const observer = new IntersectionObserver(onEntry, {
 });
 observer.observe(refs.sentinel);
 
+// =================ADD-DELETE Modal Button==============
 
+// function onTextContenInBtnModalQueue(e) {
+//   if (QUEUE_FILMS_LIST.includes(filmID) && onOpenModal) {
+//     e.target.textContent = 'DELETE FROM QUEUE';
+//   } else {
+//     e.target.textContent = 'ADD TO QUEUE';
+//   }
+// }
 
-
-
-
+// function onTextContenInBtnModalWatched(e) {
+//   if (WATCHED_FILMS_LIST.includes(filmID) && onOpenModal) {
+//     e.target.textContent = 'DELETE FROM WATCHED';
+//   } else {
+//     e.target.textContent = 'ADD TO WATCHED';
+//   }
+// }
 // =========сохранение в localStorage отложенных :фильмы смотреть и фильмы в очередь=============
 // =======фильмы смотреть:let arr_1watchedFilms, фильмы в очередь: let arr_2queueFilms=====
 
@@ -379,7 +398,6 @@ observer.observe(refs.sentinel);
 // localStorage.setItem('queueFilms-id', JSON.stringify(arr_2queueFilms));
 // // console.log('arr_2queueFilms-в очередь', arr_2queueFilms);
 
-
 // function myFunctionClickWatched() {
 //   // ====выбираю фильмы по id смотреть======
 //   watchClikLifeFilms.push(this.value)
@@ -394,7 +412,6 @@ observer.observe(refs.sentinel);
 // }
 
 // // =================================================
-
 
 // // ====================watchedlifeLibrery======================
 // function watchedMyLibrery(id) {
