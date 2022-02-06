@@ -173,6 +173,8 @@ function addWatchedFilm(e) {
   saveWatchedListToLocalStorage(WATCHED_FILMS_LIST);
   if (WATCHED_FILMS_LIST.includes(filmID)) {
     e.target.textContent = 'DELETE FROM WATCHED';
+  } else {
+    e.target.textContent = 'ADD TO WATCHED';
   }
 }
 function addQueueFilm(e) {
@@ -182,6 +184,8 @@ function addQueueFilm(e) {
   saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST);
   if (QUEUE_FILMS_LIST.includes(filmID)) {
     e.target.textContent = 'DELETE FROM QUEUE';
+  } else {
+    e.target.textContent = 'ADD TO QUEUE';
   }
 }
 // =======функции на удаление================
@@ -193,7 +197,9 @@ function removeWatchedFilm(e) {
   }
   saveWatchedListToLocalStorage(WATCHED_FILMS_LIST);
   if (!WATCHED_FILMS_LIST.includes(filmID)) {
-    e.target.textContent = 'ADD TO QUEUE';
+    e.target.textContent = 'ADD TO WATCHED';
+  } else {
+    e.target.textContent = 'DELETE FROM WATCHED';
   }
   // =========перезагрузка после удаления===========
   watchedMyLibrery();
@@ -207,6 +213,8 @@ function removeQueueFilm(e) {
   saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST);
   if (!QUEUE_FILMS_LIST.includes(filmID)) {
     e.target.textContent = 'ADD TO QUEUE';
+  } else {
+    e.target.textContent = 'DELETE FROM QUEUE';
   }
   // =========перезагрузка после удаления========
   watchedMyLibrery();
