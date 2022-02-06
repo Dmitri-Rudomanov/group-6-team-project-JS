@@ -166,7 +166,7 @@
   justify-content: space-between;
   width: 280px;
   margin-bottom: 22px;
-  border-bottom: 0.5px solid #ffffff;
+ 
   @media screen and (min-width: 768px) {
     width: 336px;
   }
@@ -181,6 +181,7 @@
   border: none;
 }
 .search-form__input {
+   border-bottom: 0.5px solid #ffffff;
   &:focus {
     box-shadow: 0 5px 15px rgb(255, 107, 8);
     outline: none;

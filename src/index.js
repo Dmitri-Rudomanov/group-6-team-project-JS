@@ -12,7 +12,7 @@ import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
 import { onHomePageLoading, onLibraryPageLoading, onQueuePageLoading, onWatchedPageLoading } from './js/site-load';
 import { onClickInItem, onClickBackdrop } from './js/modal';
-import { appendMovieMarkup, clearMovieContainer, clearForm } from './js/add-remove-markup';
+import { appendMovieMarkup, clearMovieContainer, clearForm,fillForm } from './js/add-remove-markup';
 
 export { fetchMarkupPopularityForWeek };
 
@@ -40,6 +40,7 @@ refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
 refs.searchBox.addEventListener('focus', clearForm);
+refs.searchBox.addEventListener('blur', fillForm);
 
 
 //===== Отмена обновления страницы при клике на Enter ====

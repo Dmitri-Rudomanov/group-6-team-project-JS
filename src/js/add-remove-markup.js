@@ -3,7 +3,7 @@ import getRefs from './get-refs';
 
 const refs = getRefs();
 
-export { appendMovieMarkup, clearMovieContainer, clearForm };
+export { appendMovieMarkup, clearMovieContainer, clearForm,fillForm};
 
 // =======добавление разметки и отрисовка==============
 function appendMovieMarkup(r) {
@@ -16,4 +16,7 @@ function clearMovieContainer() {
 
 function clearForm() {
   refs.searchBox.placeholder = '';
+}
+function fillForm() {
+  refs.searchBox.placeholder = 'Search for movies...';
 }
