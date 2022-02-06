@@ -61,6 +61,7 @@
   padding-left: 21px;
   padding-right: 21px;
   padding-bottom: 0px;
+  margin-bottom: 30px;
   height: 230px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.56)), to(rgba(0, 0, 0, 0.56))), url(/images/background1/header_mob.jpg);
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/images/background1/header_mob.jpg);
@@ -125,6 +126,7 @@
   padding-right: 21px;
   padding-bottom: 0px;
   height: 230px;
+  margin-bottom: 30px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.56)), to(rgba(0, 0, 0, 0.56))), url(/images/background2/header_library_mob.jpg);
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/images/background2/header_library_mob.jpg);
   background-image: -o-linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/images/background2/header_library_mob.jpg);
@@ -868,67 +870,38 @@ h2 {
 }
 
 .movie-wrapper {
-  padding: 0 15px;
   margin: 0 auto;
+  min-height: 50vh;
   max-width: 480px;
 }
 
 @media (min-width: 768px) {
   .movie-wrapper {
     max-width: 768px;
+    padding-left: 60px;
   }
 }
 
 @media (min-width: 1024px) {
   .movie-wrapper {
     max-width: 1024px;
+    padding-left: 30px;
   }
 }
 
-.movie-item {
+.movie-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-width: calc(100vw - 80px);
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 30px;
-}
-
-.movie-item:last-child {
-  margin-bottom: 0;
-}
-
-@media (min-width: 768px) {
-  .movie-item {
-    width: calc((100% - 2 * 30px) / 2);
-    margin-right: 30px;
-    margin-bottom: 30px;
-  }
-  .movie-item:nth-child(2n) {
-    margin-right: 0;
-  }
-  .movie-item:last-child {
-    margin-bottom: 0px;
-    margin-right: 0px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .movie-item {
-    width: calc((100% - 3 * 30px) / 3);
-    margin-right: 30px;
-    margin-bottom: 30px;
-  }
-  .movie-item:nth-child(2n) {
-    margin-right: 30px;
-  }
-  .movie-item:nth-child(3) {
-    margin-right: 0;
-  }
-  .movie-item:nth-child(6) {
-    margin-right: 0;
-  }
-  .movie-item:nth-child(9) {
-    margin-right: 0;
-  }
-  .movie-item:nth-child(n + 7) {
-    margin-bottom: 30px;
-  }
 }
 
 img {

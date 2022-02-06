@@ -9,14 +9,11 @@ import movieListMarkupHbs from './templates/movie-list.hbs';
 import modalMarkupHbs from './templates/modal.hbs';
 // import modalMarkupHbsDelete from '../templates/modalBtnDelete.hbs';
 import getRefs from './js/get-refs';
-import {
-  onHomePageLoading,
-  onLibraryPageLoading,
-  onQueuePageLoading,
-  onWatchedPageLoading,
-} from './js/site-load';
+
 import { onClickInItem, onClickBackdrop, onOpenModal } from './js/modal';
-import { appendMovieMarkup, clearMovieContainer, clearForm } from './js/add-remove-markup';
+import { onHomePageLoading, onLibraryPageLoading, onQueuePageLoading, onWatchedPageLoading } from './js/site-load';
+import { appendMovieMarkup, clearMovieContainer, clearForm,fillForm } from './js/add-remove-markup';
+
 
 export { fetchMarkupPopularityForWeek, addQueueFilm, addWatchedFilm };
 export { QUEUE_FILMS_LIST, WATCHED_FILMS_LIST };
@@ -43,6 +40,7 @@ refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
 refs.searchBox.addEventListener('focus', clearForm);
+refs.searchBox.addEventListener('blur', fillForm);
 
 //===== Отмена обновления страницы при клике на Enter ====
 refs.searchBox.addEventListener('keydown', function (e) {
@@ -243,6 +241,7 @@ function watchedMyLibrery() {
   }
 }
 export { watchedMyLibrery };
+
 function queueMyLibrery() {
   let queuelifeLibrery = [];
   clearMovieContainer();
@@ -255,7 +254,9 @@ function queueMyLibrery() {
     });
   }
 }
+
 export { queueMyLibrery };
+
 // ===========обработка строки жанров===============
 function processGenres(response) {
   for (let i = 0; i < response.results.length; i++) {
@@ -451,3 +452,23 @@ observer.observe(refs.sentinel);
 // }
 
 // =================================================
+
+const btnScrollToTop = document.getElementById("btnScrollToTop");
+
+btnScrollToTop.addEventListener("click", function () {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior:"smooth",
+  });
+})
+window.addEventListener('scroll', (e) => {
+  const currentValue = window.scrollY;
+  const value = document.documentElement.clientHeight;
+
+  if (currentValue > value) {
+    btnScrollToTop.classList.remove("is-hidden")
+  } else {
+    btnScrollToTop.classList.add("is-hidden")
+  }
+});

@@ -3,6 +3,9 @@
   padding-left: 21px;
   padding-right: 21px;
   padding-bottom: 0px;
+  // =====под гриды======
+  margin-bottom: 30px;
+  // ======под гриды=====
   height: 230px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url(/images/background1/header_mob.jpg);
@@ -44,6 +47,9 @@
   padding-right: 21px;
   padding-bottom: 0px;
   height: 230px;
+    // ===========
+    margin-bottom: 30px;
+    // ===========
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url(/images/background2/header_library_mob.jpg);
   background-repeat: no-repeat;
@@ -160,7 +166,7 @@
   justify-content: space-between;
   width: 280px;
   margin-bottom: 22px;
-  border-bottom: 0.5px solid #ffffff;
+ 
   @media screen and (min-width: 768px) {
     width: 336px;
   }
@@ -175,6 +181,7 @@
   border: none;
 }
 .search-form__input {
+   border-bottom: 0.5px solid #ffffff;
   &:focus {
     box-shadow: 0 5px 15px rgb(255, 107, 8);
     outline: none;
