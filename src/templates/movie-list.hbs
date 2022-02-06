@@ -15,11 +15,11 @@
 {{else}}
         <img src="https://papik.pro/uploads/posts/2021-12/thumbs/1639516371_5-papik-pro-p-kinolenta-risunok-5.png" class="movie-img"> 
 {{/if}}
-<div class="movie-link__content" style="padding-top: 10px; max-width: 398px; display: flex;align-items: flex-start; flex-direction: column;">
+<div class="movie-link__content" id="{{id}}" style="padding-top: 10px; max-width: 398px; display: flex;align-items: flex-start; flex-direction: column;">
         <p class="movie-name">{{title}}</p>
-        <div class="movie-item__genre" style="display: flex; align-items: baseline;">
+        <div class="movie-item__genre" id="{{id}}" style="display: flex; align-items: baseline;">
 {{#if runtime}}
-<p class="genre">{{genres.[0].name}} {{genres.[1].name}} {{genres.[2].name}}</p>
+<p class="genre" >{{genres.[0].name}} {{genres.[1].name}} {{genres.[2].name}}</p>
 {{else}}
 <p class="genre">{{genres}}</p>
 {{/if}}
@@ -28,7 +28,7 @@
 {{else}}
         <span class="movie-item__slash-zero" style="margin-left: 0px;"></span>
 {{/if}}
-        <p style="margin-top: 0;">
+        <p id="{{id}}" style="margin-top: 0;">
         <span class="movie-item__year">{{release_date.[0]}}{{release_date.[1]}}{{release_date.[2]}}{{release_date.[3]}}</span>
         {{#if runtime}}
         <span class="movie-item__vote-average">{{vote_average}}</span>
