@@ -25,7 +25,13 @@
   padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  @media screen and (min-width: 440px) and (max-width: 1440px) {
+  @media screen and (min-width: 440px) and (max-width: 768px) {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media screen and (min-width: 768px) and (max-width: 1440px) {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -33,6 +39,7 @@
   }
   @media screen and (min-width: 440px) and(max-width:768px) {
     width: 410px;
+    max-height: 900px;
     margin: 0 auto;
     padding: 15px;
   }
