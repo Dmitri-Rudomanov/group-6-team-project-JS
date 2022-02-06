@@ -12,6 +12,7 @@ import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
 import { onHomePageLoading, onLibraryPageLoading,onQueuePageLoading,onWatchedPageLoading } from './js/site-load';
 import { onClickInItem, onClickBackdrop } from './js/modal';
+// import { toggleModalTeam } from './js/modal-team';
 import { appendMovieMarkup, clearMovieContainer, clearForm } from './js/add-remove-markup';
 
 export { fetchMarkupPopularityForWeek };
@@ -40,6 +41,7 @@ refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
 refs.searchBox.addEventListener('focus', clearForm);
+
 
 
 //===== Отмена обновления страницы при клике на Enter ====
@@ -346,10 +348,22 @@ const observer = new IntersectionObserver(onEntry, {
 });
 observer.observe(refs.sentinel);
 
+// ======================Открывает-Закрывает Модалку Команда========
 
+(() => {
+  const refs = {
+    openModalTeamBtn: document.querySelector('[data-modal-team-open]'),
+    closeModalTeamBtn: document.querySelector('[data-modal-team-close]'),
+    modalTeam: document.querySelector('[data-modal-team]'),
+  };
 
+  refs.openModalTeamBtn.addEventListener('click', toggleModalTeam);
+  refs.closeModalTeamBtn.addEventListener('click', toggleModalTeam);
 
-
+  function toggleModalTeam() {
+    refs.modalTeam.classList.toggle('is-hidden');
+  }
+})();
 
 // =========сохранение в localStorage отложенных :фильмы смотреть и фильмы в очередь=============
 // =======фильмы смотреть:let arr_1watchedFilms, фильмы в очередь: let arr_2queueFilms=====
