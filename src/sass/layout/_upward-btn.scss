@@ -5,6 +5,10 @@
     bottom: 70px;
     width: 35px;
     height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   position: fixed;
   right: 50px;
