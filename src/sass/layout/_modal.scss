@@ -232,7 +232,8 @@ td {
   justify-content: center;
 }
 
-.btn-watched {
+.btn-watched,
+.btn-watched_close {
   @media screen and (min-width: 320px) {
     min-width: 112px;
   }
@@ -252,7 +253,9 @@ td {
   text-align: center;
   margin: 0;
 }
-.btn-queue {
+
+.btn-queue,
+.btn-queue_close {
   @media screen and (min-width: 320px) {
     min-width: 112px;
   }

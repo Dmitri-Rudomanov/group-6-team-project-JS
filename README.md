@@ -56,3 +56,10 @@ npm run dev
 - Изображения добавляйте в папку `src/images`, заранее оптимизировав их. Сборщик просто копирует
   используемые изображения чтобы не нагружать систему оптимизацией картинок, так как на слабых
   компьютерах это может занять много времени.
+
+=== 'DELETE TO WATCHED';
+
+export { QUEUE_FILMS_LIST };
+
+if (QUEUE_FILMS_LIST.includes(filmID)) { e.target.textContent = 'DELETE FROM QUEUE'; } else {
+e.target.textContent = 'ADD TO QUEUE'; }
