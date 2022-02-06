@@ -75,7 +75,7 @@ function modalMarkup(id) {
     console.log(id);
     if (!QUEUE_FILMS_LIST.includes(id) && WATCHED_FILMS_LIST.includes(id)) {
       refs.movieModal.insertAdjacentHTML('beforeend', del(results));
-    } else if (WATCHED_FILMS_LIST.includes(id) && QUEUE_FILMS_LIST.includes(id)) {
+    } else if (!WATCHED_FILMS_LIST.includes(id) && QUEUE_FILMS_LIST.includes(id)) {
       refs.movieModal.insertAdjacentHTML('beforeend', delqueue(results));
     } else if (QUEUE_FILMS_LIST.includes(id) && WATCHED_FILMS_LIST.includes(id)) {
       refs.movieModal.insertAdjacentHTML('beforeend', allbtn(results));
