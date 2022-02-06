@@ -445,3 +445,13 @@ btnScrollToTop.addEventListener("click", function () {
     behavior:"smooth",
   });
 })
+window.addEventListener('scroll', (e) => {
+  const currentValue = window.scrollY;
+  const value = document.documentElement.clientHeight;
+
+  if (currentValue > value) {
+    btnScrollToTop.classList.remove("is-hidden")
+  } else {
+    btnScrollToTop.classList.add("is-hidden")
+  }
+});
