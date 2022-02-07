@@ -26,5 +26,3 @@ function listWatchedMarkup(params) {
 function listQueueMarkup(params) {
   refs.watchedList.insertAdjacentHTML('beforeend', movieListMarkupHbs(params));
 }
-
-

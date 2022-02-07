@@ -25,12 +25,9 @@
   padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  @media screen and (min-width: 440px) and (max-width: 768px) {
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  // @media screen and (min-width: 440px) and (max-width: 768px) {
+
+  // }
   @media screen and (min-width: 768px) and (max-width: 1440px) {
     position: absolute;
     top: 50%;
@@ -38,19 +35,24 @@
     transform: translate(-50%, -50%);
   }
   @media screen and (min-width: 440px) and(max-width:768px) {
-    width: 410px;
-    max-height: 900px;
+    width: 350px;
+    max-height: 850px;
     margin: 0 auto;
-    padding: 15px;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   @media screen and (min-width: 768px) {
     padding-right: 30px;
     padding-left: 30px;
+    padding-top: 40px;
     display: flex;
-    min-width: 680px;
+    min-width: 620px;
   }
   @media screen and (min-width: 1024px) {
+    padding-top: 50px;
     min-width: 882px;
     position: absolute;
     top: 50%;
@@ -60,7 +62,7 @@
 }
 
 .btn-close {
-  @media screen and (min-width: 480px) and (max-width: 768px) {
+  @media screen and (min-width: 440px) {
     top: 10px;
     right: 10px;
   }
@@ -69,8 +71,8 @@
   //   right: 20px;
   // }
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 25px;
+  right: 25px;
   display: flex;
   margin-left: auto;
 
@@ -117,8 +119,8 @@
     margin: 0 auto;
   }
   @media screen and (min-width: 768px) {
-    min-width: 266px;
-    min-height: 373px;
+    min-width: 265px;
+    min-height: 375px;
   }
   @media screen and (min-width: 1024px) {
     min-width: 396px;
@@ -152,6 +154,7 @@
   @media screen and (min-width: 1024px) {
     margin-bottom: 20px;
     font-size: 30px;
+    line-height: 1.167;
     letter-spacing: 0em;
     text-align: left;
   }
@@ -159,14 +162,14 @@
 
 .modal-table {
   table-layout: fixed;
-  width: 70%;
+  width: 100%;
   border-collapse: collapse;
   @media screen and (min-width: 768px) {
     width: 80%;
   }
-  @media screen and (min-width: 1024px) {
-    width: 90%;
-  }
+  // @media screen and (min-width: 1024px) {
+  //   width: 90%;
+  // }
 }
 
 .nomination {
@@ -210,9 +213,8 @@ td {
   padding-bottom: 10px;
 }
 
-.nomination-genres,
-.data-genres {
-  padding-bottom: 0;
+td.last-child {
+  padding: 0;
 }
 
 .description-title {
@@ -238,13 +240,17 @@ td {
 .btn-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn-watched,
 .btn-watched_close {
-  @media screen and (max-width: 319px) {
-    margin-bottom: 10px;
+  @media screen and (max-width: 320px) {
+    margin-left: auto;
     margin-right: auto;
+  }
+  @media screen and (max-width: 280px) {
+    margin-bottom: 10px;
   }
   @media screen and (min-width: 440px) {
     min-width: 130px;
@@ -252,11 +258,10 @@ td {
   @media screen and (min-width: 1024px) {
     min-width: 140px;
   }
-  // @media screen and (min-width: 440px) {
-  //   max-width: 112px;
-  // }
+  @media screen and (min-width: 320px) {
+    margin-right: 15px;
+  }
 
-  margin-right: 15px;
   max-width: 112px;
   border: none;
   background-color: var(--action-color);
@@ -271,9 +276,25 @@ td {
   letter-spacing: 0em;
   text-align: center;
 }
+// ========================hover button watched===================
+// .btn-watched:hover,
+// .btn-watched:focus,
+// .btn-watched_close:hover,
+// .btn-watched_close:focus {
+//   background-color: var(--secondary-text-color);
+//   color: var(--primary-text-color);
+//   border: 1px solid var(--primary-text-color);
+//   transition-duration: 500ms;
+//   transition-timing-function: ease;
+//   box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+// }
 
 .btn-queue,
 .btn-queue_close {
+  @media screen and (max-width: 304px) {
+    margin-left: auto;
+  }
+
   @media screen and (min-width: 440px) {
     max-width: 125px;
   }
@@ -282,7 +303,8 @@ td {
   }
   margin-right: auto;
   border: 1px solid var(--primary-text-color);
-  max-width: 104px;
+  min-width: 104px;
+  max-width: 112px;
   background-color: var(--secondary-text-color);
   border-radius: 5px;
   cursor: pointer;
@@ -296,3 +318,24 @@ td {
   letter-spacing: 0em;
   text-align: center;
 }
+.btn-watched_close,
+.btn-queue_close {
+  @media screen and (max-width: 1024px) {
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+}
+
+// ========================hover button==============================
+// .btn-queue:hover,
+// .btn-queue:focus,
+// .btn-queue_close:hover,
+// .btn-queue_close:focus {
+//   background-color: var(--action-color);
+//   color: var(--secondary-text-color);
+//   border: 1px solid var(--action-color);
+//   transition-duration: 500ms;
+//   transition-timing-function: ease;
+//   box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+// }
