@@ -215,7 +215,7 @@ function removeQueueFilm(e) {
     e.target.textContent = 'DELETE FROM QUEUE';
   }
   // =========перезагрузка после удаления========
-  watchedMyLibrery();
+  queueMyLibrery();
 }
 // ===============LocalStorage=================
 function saveWatchedListToLocalStorage(watchedFilmsList) {
