@@ -11,9 +11,18 @@ import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
 
 import { onClickInItem, onClickBackdrop, onOpenModal } from './js/modal';
-import { onHomePageLoading, onLibraryPageLoading, onQueuePageLoading, onWatchedPageLoading } from './js/site-load';
-import { appendMovieMarkup, clearMovieContainer, clearForm,fillForm } from './js/add-remove-markup';
-
+import {
+  onHomePageLoading,
+  onLibraryPageLoading,
+  onQueuePageLoading,
+  onWatchedPageLoading,
+} from './js/site-load';
+import {
+  appendMovieMarkup,
+  clearMovieContainer,
+  clearForm,
+  fillForm,
+} from './js/add-remove-markup';
 
 export { fetchMarkupPopularityForWeek, addQueueFilm, addWatchedFilm };
 export { QUEUE_FILMS_LIST, WATCHED_FILMS_LIST };
@@ -171,8 +180,10 @@ function addWatchedFilm(e) {
   saveWatchedListToLocalStorage(WATCHED_FILMS_LIST);
   if (WATCHED_FILMS_LIST.includes(filmID)) {
     e.target.textContent = 'DELETE FROM WATCHED';
+    e.target.className = 'btn-watched_close';
   } else {
     e.target.textContent = 'ADD TO WATCHED';
+    e.target.className = 'btn-watched';
   }
 }
 function addQueueFilm(e) {
@@ -182,8 +193,10 @@ function addQueueFilm(e) {
   saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST);
   if (QUEUE_FILMS_LIST.includes(filmID)) {
     e.target.textContent = 'DELETE FROM QUEUE';
+    e.target.className = 'btn-queue_close';
   } else {
     e.target.textContent = 'ADD TO QUEUE';
+    e.target.className = 'btn-queue';
   }
 }
 // =======функции на удаление================
@@ -196,8 +209,10 @@ function removeWatchedFilm(e) {
   saveWatchedListToLocalStorage(WATCHED_FILMS_LIST);
   if (!WATCHED_FILMS_LIST.includes(filmID)) {
     e.target.textContent = 'ADD TO WATCHED';
+    e.target.className = 'btn-watched';
   } else {
     e.target.textContent = 'DELETE FROM WATCHED';
+    e.target.className = 'btn-watched_close';
   }
   // =========перезагрузка после удаления===========
   watchedMyLibrery();
@@ -211,11 +226,13 @@ function removeQueueFilm(e) {
   saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST);
   if (!QUEUE_FILMS_LIST.includes(filmID)) {
     e.target.textContent = 'ADD TO QUEUE';
+    e.target.className = 'btn-queue';
   } else {
     e.target.textContent = 'DELETE FROM QUEUE';
+    e.target.className = 'btn-queue_close';
   }
   // =========перезагрузка после удаления========
-  watchedMyLibrery();
+  queueMyLibrery();
 }
 // ===============LocalStorage=================
 function saveWatchedListToLocalStorage(watchedFilmsList) {
@@ -461,22 +478,22 @@ observer.observe(refs.sentinel);
 
 // =================================================
 
-const btnScrollToTop = document.getElementById("btnScrollToTop");
+const btnScrollToTop = document.getElementById('btnScrollToTop');
 
-btnScrollToTop.addEventListener("click", function () {
+btnScrollToTop.addEventListener('click', function () {
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior:"smooth",
+    behavior: 'smooth',
   });
-})
-window.addEventListener('scroll', (e) => {
+});
+window.addEventListener('scroll', e => {
   const currentValue = window.scrollY;
   const value = document.documentElement.clientHeight;
 
   if (currentValue > value) {
-    btnScrollToTop.classList.remove("is-hidden")
+    btnScrollToTop.classList.remove('is-hidden');
   } else {
-    btnScrollToTop.classList.add("is-hidden")
+    btnScrollToTop.classList.add('is-hidden');
   }
 });
