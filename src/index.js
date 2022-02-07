@@ -453,6 +453,7 @@ observer.observe(refs.sentinel);
 
 // =================================================
 
+// btn upward
 const btnScrollToTop = document.getElementById("btnScrollToTop");
 
 btnScrollToTop.addEventListener("click", function () {
@@ -472,3 +473,14 @@ window.addEventListener('scroll', (e) => {
     btnScrollToTop.classList.add("is-hidden")
   }
 });
+
+//spinner
+
+const spinner = document.querySelector("#fountainG");
+function show() {
+    spinner.classList.remove('invisible');
+  }
+
+function hide() {
+    spinner.classList.add('invisible');
+  }
