@@ -5,6 +5,11 @@
   background-color: rgba(0, 0, 0, 0.2);
   top: 0;
   transition: opacity 250ms, visibility 250ms;
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 .modal-team {
@@ -12,41 +17,59 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: url(/images/modal_team10.png);
+  background-image: url(/images/modal_team22.png);
   background-color: transparent;
-  width: 1000px;
-  height: 1000px;
+  width: 300px;
+  height: 300px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  padding-top: 520px;
-  padding-left: 90px;
+  padding-top: 100px;
+  padding-left: 0px;
+  @media screen and (min-width: 768px) {
+    padding-top: 175px;
+    padding-left: 40px;
+    width: 500px;
+    height: 500px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding-top: 300px;
+    padding-left: 110px;
+    width: 850px;
+    height: 850px;
+  }
 }
 .button-open {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   background-color: #ffffff;
   border: 1px solid #ff6b08;
   border-radius: 50%;
   position: absolute;
-  right: 5px;
-  top: 8px;
+  right: 20px;
+  top: 5px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (min-width: 768px) {
+    width: 25px;
+    height: 25px;
+    right: 35px;
+    top: 15px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 40px;
+    height: 40px;
+    right: 50px;
+    top: 30px;
+  }
 }
 
 .button-open:hover,
 .button-open:focus {
-  background-color: #ff6b08;
+  background-color: rgba(252, 170, 116);
   cursor: pointer;
-}
-
-.backdrop-team.is-hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
 }
 
 .form-team-info {
@@ -64,12 +87,23 @@
 
 .team_title {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 17px;
   line-height: 23px;
-  text-align: center;
+  padding-left: 55px;
   letter-spacing: 0.03em;
   color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  text-shadow: 0 5px 15px rgb(255, 107, 8);
+
+  @media screen and (min-width: 768px) {
+    padding-left: 70px;
+    margin-bottom: 25px;
+    font-size: 25px;
+  }
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 65px;
+    font-size: 45px;
+  }
 }
 
 .modal-close {
@@ -80,41 +114,94 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  margin-left: -30px;
-  margin-top: -30px;
+  width: 250px;
+  padding-left: 50px;
+  margin-left: -15px;
+  margin-top: -15px;
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    padding-left: 50px;
+    margin-left: -10px;
+    margin-top: -10px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 600px;
+    padding-left: 110px;
+    margin-left: -25px;
+    margin-top: -25px;
+  }
 }
 
 .team_wrap {
-  flex-basis: calc(100% / 3 - 30px);
-  margin-left: 30px;
-  margin-top: 30px;
+  flex-basis: calc(100% / 3 - 15px);
+  margin-left: 15px;
+  margin-top: 15px;
+  @media screen and (min-width: 768px) {
+    flex-basis: calc(100% / 3 - 10px);
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  @media screen and (min-width: 1200px) {
+    flex-basis: calc(100% / 3 - 25px);
+    margin-left: 25px;
+    margin-top: 25px;
+  }
 }
 .team_wrap_info {
-  color: #ff6b08;
-  padding-left: 30px;
-  padding-top: 5px;
-  font-size: 15px;
+  display: none;
+  @media screen and (min-width: 1200px) {
+    display: block;
+    color: #fff;
+    padding-left: 30px;
+    padding-top: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 5px 15px rgb(255, 107, 8);
+  }
 }
 
 .team_wrap_name {
-  color: #fff;
-  //   padding-left: 0px;
-  font-size: 18px;
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+    color: #000;
+    padding-left: 0px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+  }
 }
 .test {
   color: #fff;
 }
 
 .team_photo {
-  width: 130px;
+  margin-left: 13px;
+  width: 40px;
   border-radius: 90px;
   &:hover {
     box-shadow: 0 5px 15px rgb(255, 107, 8);
+  }
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 23px;
+    width: 60px;
+  }
+  @media screen and (min-width: 1200px) {
+    margin-left: 13px;
+    width: 90px;
   }
 }
 
 .close_modal {
   color: #000000;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 10px;
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 20px;
+  }
 }
