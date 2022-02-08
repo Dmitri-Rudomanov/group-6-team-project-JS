@@ -30,6 +30,7 @@ function onLibraryPageLoading() {
 
   watchedMyLibrery();
 }
+
 function onWatchedPageLoading() {
   refs.libBtnQueue.classList.remove('js-library__button--current');
   refs.libBtnWatched.classList.add('js-library__button--current');

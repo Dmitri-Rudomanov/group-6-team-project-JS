@@ -262,7 +262,7 @@
   position: absolute;
   bottom: -3px;
   left: 0;
-  content: "";
+  content: '';
   display: block;
   background-color: #ff6b08;
   height: 3px;
@@ -299,7 +299,6 @@
           justify-content: space-between;
   width: 280px;
   margin-bottom: 22px;
-  border-bottom: 0.5px solid #ffffff;
 }
 
 @media screen and (min-width: 768px) {
@@ -321,6 +320,7 @@
 }
 
 .search-form__input {
+  border-bottom: 0.5px solid #ffffff;
   color: #ffffff;
   width: 324px;
 }
@@ -328,6 +328,7 @@
 .search-form__input:focus {
   -webkit-box-shadow: 0 5px 15px #ff6b08;
           box-shadow: 0 5px 15px #ff6b08;
+  outline: none;
 }
 
 .search-form__input::-webkit-input-placeholder {
@@ -479,10 +480,17 @@
   }
 }
 
-@media screen and (min-width: 380px) and (max-width: 768px) {
+@media screen and (min-width: 440px) and (max-width: 768px) {
   .modal {
-    max-width: 380px;
+    width: 350px;
+    max-height: 850px;
     margin: 0 auto;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
   }
 }
 
@@ -490,15 +498,17 @@
   .modal {
     padding-right: 30px;
     padding-left: 30px;
+    padding-top: 40px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    min-width: 680px;
+    min-width: 620px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .modal {
+    padding-top: 50px;
     min-width: 882px;
     position: absolute;
     top: 50%;
@@ -511,8 +521,8 @@
 
 .btn-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 25px;
+  right: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -528,10 +538,10 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 440px) {
   .btn-close {
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
   }
 }
 
@@ -580,18 +590,18 @@
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .movie-img.movie-img__modal {
-    min-width: 240px;
-    min-height: 356px;
+    min-width: 100px;
+    min-height: 200px;
     margin: 0 auto;
   }
 }
 
 @media screen and (min-width: 768px) {
   .movie-img.movie-img__modal {
-    min-width: 266px;
-    min-height: 373px;
+    min-width: 265px;
+    min-height: 375px;
   }
 }
 
@@ -636,6 +646,7 @@
   .modal-title {
     margin-bottom: 20px;
     font-size: 30px;
+    line-height: 1.167;
     letter-spacing: 0em;
     text-align: left;
   }
@@ -650,12 +661,6 @@
 @media screen and (min-width: 768px) {
   .modal-table {
     width: 80%;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .modal-table {
-    width: 50%;
   }
 }
 
@@ -700,9 +705,8 @@ td {
   padding-bottom: 10px;
 }
 
-.nomination-genres,
-.data-genres {
-  padding-bottom: 0;
+td.last-child {
+  padding: 0;
 }
 
 .description-title {
@@ -733,58 +737,110 @@ td {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-.btn-watched {
-  margin-right: 15px;
+.btn-watched,
+.btn-watched_close {
+  max-width: 112px;
   border: none;
   background-color: var(--action-color);
   border-radius: 5px;
   cursor: pointer;
   padding-top: 10px;
   padding-bottom: 10px;
-}
-
-@media screen and (min-width: 320px) {
-  .btn-watched {
-    min-width: 112px;
-  }
-}
-
-.btn-watched__text {
   color: var(--secondary-text-color);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: 0em;
   text-align: center;
-  margin: 0;
 }
 
-.btn-queue {
+@media screen and (max-width: 320px) {
+  .btn-watched,
+  .btn-watched_close {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .btn-watched,
+  .btn-watched_close {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 440px) {
+  .btn-watched,
+  .btn-watched_close {
+    min-width: 130px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .btn-watched,
+  .btn-watched_close {
+    min-width: 140px;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .btn-watched,
+  .btn-watched_close {
+    margin-right: 15px;
+  }
+}
+
+.btn-queue,
+.btn-queue_close {
   margin-right: auto;
   border: 1px solid var(--primary-text-color);
+  min-width: 104px;
+  max-width: 112px;
   background-color: var(--secondary-text-color);
   border-radius: 5px;
   cursor: pointer;
   padding-top: 10px;
   padding-bottom: 10px;
-}
-
-@media screen and (min-width: 320px) {
-  .btn-queue {
-    min-width: 112px;
-  }
-}
-
-.btn-queue__text {
   color: var(--primary-text-color);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: 0em;
   text-align: center;
-  margin: 0;
+}
+
+@media screen and (max-width: 304px) {
+  .btn-queue,
+  .btn-queue_close {
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 440px) {
+  .btn-queue,
+  .btn-queue_close {
+    max-width: 125px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .btn-queue,
+  .btn-queue_close {
+    max-width: 136px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .btn-watched_close,
+  .btn-queue_close {
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
 }
 
 .js-visually-hidden {
@@ -801,6 +857,40 @@ td {
   overflow: hidden;
 }
 
+#btnScrollToTop {
+  z-index: 1;
+  position: fixed;
+  right: 50px;
+  bottom: 100px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: #d3d3d3;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  color: black;
+  outline: none;
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  #btnScrollToTop {
+    right: 10px;
+    bottom: 70px;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+#btnScrollToTop:active {
+  background-color: #bbbbbb;
+}
+
+.is-hidden {
+  display: none;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -814,6 +904,14 @@ body {
   color: #212121;
   line-height: 1.5;
   margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 p,
@@ -869,9 +967,14 @@ h2 {
   }
 }
 
+.main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
 .movie-wrapper {
   margin: 0 auto;
-  min-height: 50vh;
   max-width: 480px;
 }
 

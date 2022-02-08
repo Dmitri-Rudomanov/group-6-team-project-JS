@@ -50,8 +50,8 @@
 
                     <tr>
 
-                        <td class="nomination">Genre</td>
-                        <td class="data">{{genres.[0].name}} {{genres.[1].name}} {{genres.[2].name}} {{genres.[3].name}}
+                        <td class="nomination last-child">Genre</td>
+                        <td class="data last-child">{{genres.[0].name}} {{genres.[1].name}} {{genres.[2].name}} {{genres.[3].name}}
                         </td>
 
                     </tr>
@@ -59,7 +59,7 @@
             </table>
             <h3 class="description-title">ABOUT</h3>
             <p class="text-description">{{overview}}</p>
-            <button class="btn-watched_close" type="submit" value="{{id}}">DELETE FROM WATCHED</button>
-            <button class="btn-queue_close" type="submit" value="{{id}}">DELETE FROM QUEUE</button>
+            <div class="btn-container"><button class="btn-watched_close" type="submit" value="{{id}}">DELETE FROM WATCHED</button>
+            <button class="btn-queue_close" type="submit" value="{{id}}">DELETE FROM QUEUE</button></div>
         </div>
     </div>
