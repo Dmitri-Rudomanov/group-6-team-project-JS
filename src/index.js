@@ -41,7 +41,8 @@ refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
 refs.searchBox.addEventListener('focus', clearForm);
-
+// refs.libBtnWatched.addEventListener('click', addPhotoBackground);
+// refs.libBtnQueue.addEventListener('click', addPhotoBackground2);
 
 
 //===== Отмена обновления страницы при клике на Enter ====
@@ -169,6 +170,7 @@ let QUEUE_FILMS_LIST = [];
 
 readWatchedListFromLocalStorage();
 readQueueListFromLocalStorage();
+
 // ==========функции на добавление===================
 function addWatchedFilm() {
   const filmID = this.value;
@@ -219,6 +221,25 @@ function readWatchedListFromLocalStorage() {
 function readQueueListFromLocalStorage() {
   QUEUE_FILMS_LIST = JSON.parse(localStorage.getItem('queueFilms-id') || '[]');
 }
+
+/* ЗАГЛУШКА библиотека*/
+refs.libBtnWatched.addEventListener('click', addPhotoBackground);
+refs.libBtnQueue.addEventListener('click', addPhotoBackground2);
+
+function addPhotoBackground (){
+    if (WATCHED_FILMS_LIST.length === 0 || !document.querySelector(".movie-list").classList.contains("photo_bg")) {
+  document.querySelector(".movie-list").insertAdjacentHTML('afterend', '<p class="photo_bg">There are no movies added here yet</p>')};
+  if (WATCHED_FILMS_LIST.length !== 0 ) 
+  {document.querySelector(".photo_bg").classList.add('hidden')}
+  }
+
+  function addPhotoBackground2 (){
+    if (QUEUE_FILMS_LIST.length === 0 || !document.querySelector(".movie-list").classList.contains("photo_bg")) {
+    document.querySelector(".movie-list").insertAdjacentHTML('afterend', '<p class="photo_bg">There are no movies added here yet</p>')};
+    if (QUEUE_FILMS_LIST.length !== 0) 
+    {document.querySelector(".photo_bg").classList.add('hidden')}
+    }
+
 
 // ===============запросы на сервер для библиотек=========================
 function watchedMyLibrery() {
