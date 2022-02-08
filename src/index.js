@@ -216,6 +216,12 @@ function removeWatchedFilm(e) {
     e.target.className = 'btn-watched_close';
   }
   // =========перезагрузка после удаления===========
+  if (refs.homePageBtn.classList=='navigation__button js-navigation__button--current') { 
+    return
+  }
+  if (refs.libBtnQueue.classList == 'library-button js-library__button--current') { 
+    return
+  }
   watchedMyLibrery();
 }
 function removeQueueFilm(e) {
@@ -233,7 +239,14 @@ function removeQueueFilm(e) {
     e.target.className = 'btn-queue_close';
   }
   // =========перезагрузка после удаления========
+    if (refs.homePageBtn.classList=='navigation__button js-navigation__button--current') { 
+    return
+  }
+    if (refs.libBtnWatched.classList == 'library-button js-library__button--current') { 
+    return
+  }
   queueMyLibrery();
+
 }
 // ===============LocalStorage=================
 function saveWatchedListToLocalStorage(watchedFilmsList) {
