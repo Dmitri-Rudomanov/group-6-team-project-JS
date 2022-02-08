@@ -215,6 +215,12 @@ function removeWatchedFilm(e) {
     e.target.className = 'btn-watched_close';
   }
   // =========перезагрузка после удаления===========
+  if (refs.homePageBtn.classList=='navigation__button js-navigation__button--current') { 
+    return
+  }
+  if (refs.libBtnQueue.classList == 'library-button js-library__button--current') { 
+    return
+  }
   watchedMyLibrery();
 }
 function removeQueueFilm(e) {
@@ -232,7 +238,14 @@ function removeQueueFilm(e) {
     e.target.className = 'btn-queue_close';
   }
   // =========перезагрузка после удаления========
+    if (refs.homePageBtn.classList=='navigation__button js-navigation__button--current') { 
+    return
+  }
+    if (refs.libBtnWatched.classList == 'library-button js-library__button--current') { 
+    return
+  }
   queueMyLibrery();
+
 }
 // ===============LocalStorage=================
 function saveWatchedListToLocalStorage(watchedFilmsList) {
@@ -251,9 +264,11 @@ function readQueueListFromLocalStorage() {
   QUEUE_FILMS_LIST = JSON.parse(localStorage.getItem('queueFilms-id') || '[]');
 }
 
+
 // ===============запросы на сервер для библиотек=========================
 function watchedMyLibrery() {
-  let watchedlifeLibrery = [];
+
+let watchedlifeLibrery = [];
   clearMovieContainer();
   for (let i = 0; i < WATCHED_FILMS_LIST.length; i++) {
     let ID = WATCHED_FILMS_LIST[i];
@@ -511,4 +526,3 @@ function show() {
 function hide() {
     spinner.classList.add('invisible');
   }
-
