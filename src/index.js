@@ -129,7 +129,9 @@ refs.movieModal.addEventListener('mousedown', function (e) {
     let liClick = document.getElementsByTagName('button');
     for (var i = 0; i < liClick.length; i++) {
       if (liClick[i].matches('.btn-watched')) {
+        liClick[i].removeEventListener('click', removeWatchedFilm);
         liClick[i].addEventListener('click', addWatchedFilm);
+        
       }
     }
   }
@@ -138,6 +140,7 @@ refs.movieModal.addEventListener('mousedown', function (e) {
     let liClick2 = document.getElementsByTagName('button');
     for (var i = 0; i < liClick2.length; i++) {
       if (liClick2[i].matches('.btn-queue')) {
+        liClick2[i].removeEventListener('click', removeQueueFilm);
         liClick2[i].addEventListener('click', addQueueFilm);
       }
     }
@@ -150,6 +153,7 @@ refs.movieModal.addEventListener('mousedown', function (e) {
     let liClick = document.getElementsByTagName('button');
     for (var i = 0; i < liClick.length; i++) {
       if (liClick[i].matches('.btn-watched_close')) {
+        liClick[i].removeEventListener('click', addWatchedFilm);
         liClick[i].addEventListener('click', removeWatchedFilm);
       }
     }
@@ -158,6 +162,7 @@ refs.movieModal.addEventListener('mousedown', function (e) {
     let liClick2 = document.getElementsByTagName('button');
     for (var i = 0; i < liClick2.length; i++) {
       if (liClick2[i].matches('.btn-queue_close')) {
+        liClick2[i].removeEventListener('click', addQueueFilm);
         liClick2[i].addEventListener('click', removeQueueFilm);
       }
     }
