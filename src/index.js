@@ -2,7 +2,7 @@
 // ==========================================
 
 import './sass/main.scss';
-import { fetchGenres, fetchMovies, fetchPopularity, fetchLibrery } from './js/fetchMovies';
+import { fetchGenres, fetchMovies, fetchPopularity, fetchLibrery, fetchForID } from './js/fetchMovies';
 //import { fetchGenres } from './js/fetchMovies';
 import { GENRES_STORAGE } from './js/fetchMovies';
 import movieListMarkupHbs from './templates/movie-list.hbs';
@@ -287,9 +287,10 @@ function readQueueListFromLocalStorage() {
   QUEUE_FILMS_LIST = JSON.parse(localStorage.getItem('queueFilms-id') || '[]');
 }
 
+
 // ===============запросы на сервер для библиотек=========================
+let watchedlifeLibrery = [];
 function watchedMyLibrery() {
-  let watchedlifeLibrery = [];
   clearMovieContainer();
   for (let i = 0; i < WATCHED_FILMS_LIST.length; i++) {
     let ID = WATCHED_FILMS_LIST[i];
@@ -301,6 +302,8 @@ function watchedMyLibrery() {
     });
   }
 }
+
+
 export { watchedMyLibrery };
 
 function queueMyLibrery() {
@@ -545,6 +548,7 @@ function show() {
 }
 
 function hide() {
-  spinner.classList.add('invisible');
-}
+    spinner.classList.add('invisible');
+  }
+
 
