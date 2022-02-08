@@ -57,16 +57,17 @@
 
                 <tr>
 
-                    <td class="nomination">Genre</td>
-                    <td class="data">{{genres.[0].name}}  {{genres.[1].name}}  {{genres.[2].name}}  {{genres.[3].name}}</td>
+                    <td class="nomination last-child">Genre</td>
+                    <td class="data last-child">{{genres.[0].name}}  {{genres.[1].name}}  {{genres.[2].name}}  {{genres.[3].name}}</td>
 
                 </tr>
             </tbody>
         </table>
         <h3 class="description-title">ABOUT</h3>
         <p class="text-description">{{overview}}</p>
-
-        <button class="btn-watched" id = "watchedset" type="submit" value="{{id}}">ADD TO WATCHED</button>
-        <button class="btn-queue" id = "qwe" type="submit" value="{{id}}">ADD TO QUEUE</button>
-    </div>
+        <div class="btn-container"><button class="btn-watched" id="watchedset" type="submit" value="{{id}}">ADD TO WATCHED</button>
+        <button class="btn-queue" id="qwe" type="submit" value="{{id}}">ADD TO QUEUE</button></div></div>
+   
 </div>
+
+

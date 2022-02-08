@@ -2,7 +2,7 @@
 // ==========================================
 
 import './sass/main.scss';
-import { fetchGenres, fetchMovies, fetchPopularity, fetchLibrery } from './js/fetchMovies';
+import { fetchGenres, fetchMovies, fetchPopularity, fetchLibrery, fetchForID } from './js/fetchMovies';
 //import { fetchGenres } from './js/fetchMovies';
 import { GENRES_STORAGE } from './js/fetchMovies';
 import movieListMarkupHbs from './templates/movie-list.hbs';
@@ -11,14 +11,23 @@ import modalMarkupHbs from './templates/modal.hbs';
 import getRefs from './js/get-refs';
 
 import { onClickInItem, onClickBackdrop, onOpenModal } from './js/modal';
-import { onHomePageLoading, onLibraryPageLoading, onQueuePageLoading, onWatchedPageLoading } from './js/site-load';
-import { appendMovieMarkup, clearMovieContainer, clearForm,fillForm } from './js/add-remove-markup';
-
+import {
+  onHomePageLoading,
+  onLibraryPageLoading,
+  onQueuePageLoading,
+  onWatchedPageLoading,
+} from './js/site-load';
+import {
+  appendMovieMarkup,
+  clearMovieContainer,
+  clearForm,
+  fillForm,
+} from './js/add-remove-markup';
 
 export { fetchMarkupPopularityForWeek, addQueueFilm, addWatchedFilm };
 export { QUEUE_FILMS_LIST, WATCHED_FILMS_LIST };
 var debounce = require('lodash.debounce');
-const DEBOUNCE_DELAY = 600;
+const DEBOUNCE_DELAY = 500;
 
 // ====объявление глобальных переменных: текст запроса. страницы. кол страниц. ref'ов ====
 let QUERY = undefined;
@@ -36,7 +45,8 @@ refs.libBtnWatched.classList.add('js-library__button--current');
 refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
 refs.siteLogo.addEventListener('click', onHomePageLoading);
 refs.homePageBtn.addEventListener('click', onHomePageLoading);
-refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
+ refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
+//refs.libPageBtn.addEventListener('click', debounce(onLibraryPageLoading, DEBOUNCE_DELAY));
 refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
 refs.searchBox.addEventListener('focus', clearForm);
@@ -120,7 +130,9 @@ refs.movieModal.addEventListener('mousedown', function (e) {
     let liClick = document.getElementsByTagName('button');
     for (var i = 0; i < liClick.length; i++) {
       if (liClick[i].matches('.btn-watched')) {
+        liClick[i].removeEventListener('click', removeWatchedFilm);
         liClick[i].addEventListener('click', addWatchedFilm);
+        
       }
     }
   }
@@ -129,6 +141,7 @@ refs.movieModal.addEventListener('mousedown', function (e) {
     let liClick2 = document.getElementsByTagName('button');
     for (var i = 0; i < liClick2.length; i++) {
       if (liClick2[i].matches('.btn-queue')) {
+        liClick2[i].removeEventListener('click', removeQueueFilm);
         liClick2[i].addEventListener('click', addQueueFilm);
       }
     }
@@ -141,6 +154,7 @@ refs.movieModal.addEventListener('mousedown', function (e) {
     let liClick = document.getElementsByTagName('button');
     for (var i = 0; i < liClick.length; i++) {
       if (liClick[i].matches('.btn-watched_close')) {
+        liClick[i].removeEventListener('click', addWatchedFilm);
         liClick[i].addEventListener('click', removeWatchedFilm);
       }
     }
@@ -149,6 +163,7 @@ refs.movieModal.addEventListener('mousedown', function (e) {
     let liClick2 = document.getElementsByTagName('button');
     for (var i = 0; i < liClick2.length; i++) {
       if (liClick2[i].matches('.btn-queue_close')) {
+        liClick2[i].removeEventListener('click', addQueueFilm);
         liClick2[i].addEventListener('click', removeQueueFilm);
       }
     }
@@ -171,7 +186,20 @@ function addWatchedFilm(e) {
   saveWatchedListToLocalStorage(WATCHED_FILMS_LIST);
   if (WATCHED_FILMS_LIST.includes(filmID)) {
     e.target.textContent = 'DELETE FROM WATCHED';
+    e.target.className = 'btn-watched_close';
+  } else {
+    e.target.textContent = 'ADD TO WATCHED';
+    e.target.className = 'btn-watched';
   }
+  if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnWatched.classList=="library-button js-library__button--current") {
+    fetchLibrery(filmID).then(results => {
+      watchedlifeLibrery.push(results);
+      // console.log(results)
+      // console.log(watchedlifeLibrery)
+      appendMovieMarkup([results]);
+    });
+  }
+
 }
 function addQueueFilm(e) {
   const filmID = this.value;
@@ -180,6 +208,18 @@ function addQueueFilm(e) {
   saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST);
   if (QUEUE_FILMS_LIST.includes(filmID)) {
     e.target.textContent = 'DELETE FROM QUEUE';
+    e.target.className = 'btn-queue_close';
+  } else {
+    e.target.textContent = 'ADD TO QUEUE';
+    e.target.className = 'btn-queue';
+  }
+    if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnQueue.classList=="library-button js-library__button--current") {
+    fetchLibrery(filmID).then(results => {
+      watchedlifeLibrery.push(results);
+      // console.log(results)
+      // console.log(watchedlifeLibrery)
+      appendMovieMarkup([results]);
+    });
   }
 }
 // =======функции на удаление================
@@ -191,9 +231,19 @@ function removeWatchedFilm(e) {
   }
   saveWatchedListToLocalStorage(WATCHED_FILMS_LIST);
   if (!WATCHED_FILMS_LIST.includes(filmID)) {
-    e.target.textContent = 'ADD TO QUEUE';
+    e.target.textContent = 'ADD TO WATCHED';
+    e.target.className = 'btn-watched';
+  } else {
+    e.target.textContent = 'DELETE FROM WATCHED';
+    e.target.className = 'btn-watched_close';
   }
   // =========перезагрузка после удаления===========
+  if (refs.homePageBtn.classList=='navigation__button js-navigation__button--current') { 
+    return
+  }
+  if (refs.libBtnQueue.classList == 'library-button js-library__button--current') { 
+    return
+  }
   watchedMyLibrery();
 }
 function removeQueueFilm(e) {
@@ -205,9 +255,20 @@ function removeQueueFilm(e) {
   saveFilmQueueToLocalStorage(QUEUE_FILMS_LIST);
   if (!QUEUE_FILMS_LIST.includes(filmID)) {
     e.target.textContent = 'ADD TO QUEUE';
+    e.target.className = 'btn-queue';
+  } else {
+    e.target.textContent = 'DELETE FROM QUEUE';
+    e.target.className = 'btn-queue_close';
   }
   // =========перезагрузка после удаления========
-  watchedMyLibrery();
+    if (refs.homePageBtn.classList=='navigation__button js-navigation__button--current') { 
+    return
+  }
+    if (refs.libBtnWatched.classList == 'library-button js-library__button--current') { 
+    return
+  }
+  queueMyLibrery();
+
 }
 // ===============LocalStorage=================
 function saveWatchedListToLocalStorage(watchedFilmsList) {
@@ -226,9 +287,10 @@ function readQueueListFromLocalStorage() {
   QUEUE_FILMS_LIST = JSON.parse(localStorage.getItem('queueFilms-id') || '[]');
 }
 
+
 // ===============запросы на сервер для библиотек=========================
+let watchedlifeLibrery = [];
 function watchedMyLibrery() {
-  let watchedlifeLibrery = [];
   clearMovieContainer();
   for (let i = 0; i < WATCHED_FILMS_LIST.length; i++) {
     let ID = WATCHED_FILMS_LIST[i];
@@ -240,6 +302,8 @@ function watchedMyLibrery() {
     });
   }
 }
+
+
 export { watchedMyLibrery };
 
 function queueMyLibrery() {
@@ -265,7 +329,7 @@ function processGenres(response) {
     // console.log(readableGenres)
     if (readableGenres.length > 3) {
       readableGenres = readableGenres.slice(0, 2);
-      readableGenres.push('...Other');
+      readableGenres.push('   Other');
     }
     response.results[i].genres = readableGenres.join(', ');
   }
@@ -456,27 +520,31 @@ observer.observe(refs.sentinel);
 // btn upward
 const btnScrollToTop = document.getElementById("btnScrollToTop");
 
-btnScrollToTop.addEventListener("click", function () {
+
+btnScrollToTop.addEventListener('click', function () {
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior:"smooth",
+    behavior: 'smooth',
   });
-})
-window.addEventListener('scroll', (e) => {
+});
+window.addEventListener('scroll', e => {
   const currentValue = window.scrollY;
   const value = document.documentElement.clientHeight;
 
   if (currentValue > value) {
-    btnScrollToTop.classList.remove("is-hidden")
+    btnScrollToTop.classList.remove('is-hidden');
   } else {
-    btnScrollToTop.classList.add("is-hidden")
+    btnScrollToTop.classList.add('is-hidden');
   }
 });
 
+
 //spinner
+
 
 window.onload = function () {
   let spinner = document.querySelector(".spinner");
   spinner.style.display = 'none'
 }
+
