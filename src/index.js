@@ -27,7 +27,7 @@ import {
 export { fetchMarkupPopularityForWeek, addQueueFilm, addWatchedFilm };
 export { QUEUE_FILMS_LIST, WATCHED_FILMS_LIST };
 var debounce = require('lodash.debounce');
-const DEBOUNCE_DELAY = 600;
+const DEBOUNCE_DELAY = 500;
 
 // ====объявление глобальных переменных: текст запроса. страницы. кол страниц. ref'ов ====
 let QUERY = undefined;
@@ -45,7 +45,8 @@ refs.libBtnWatched.classList.add('js-library__button--current');
 refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
 refs.siteLogo.addEventListener('click', onHomePageLoading);
 refs.homePageBtn.addEventListener('click', onHomePageLoading);
-refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
+// refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
+refs.libPageBtn.addEventListener('click', debounce(onLibraryPageLoading, DEBOUNCE_DELAY));
 refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
 refs.searchBox.addEventListener('focus', clearForm);
@@ -290,7 +291,7 @@ function processGenres(response) {
     // console.log(readableGenres)
     if (readableGenres.length > 3) {
       readableGenres = readableGenres.slice(0, 2);
-      readableGenres.push('...Other');
+      readableGenres.push('   Other');
     }
     response.results[i].genres = readableGenres.join(', ');
   }
@@ -505,10 +506,10 @@ window.addEventListener('scroll', e => {
 
 const spinner = document.querySelector("#fountainG");
 function show() {
-    spinner.classList.remove('invisible');
-  }
+  spinner.classList.remove('invisible');
+}
 
 function hide() {
-    spinner.classList.add('invisible');
-  }
+  spinner.classList.add('invisible');
+}
 
