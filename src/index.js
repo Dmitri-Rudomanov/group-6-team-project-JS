@@ -45,8 +45,8 @@ refs.libBtnWatched.classList.add('js-library__button--current');
 refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
 refs.siteLogo.addEventListener('click', onHomePageLoading);
 refs.homePageBtn.addEventListener('click', onHomePageLoading);
- refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
-//refs.libPageBtn.addEventListener('click', debounce(onLibraryPageLoading, DEBOUNCE_DELAY));
+//  refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
+refs.libPageBtn.addEventListener('click', debounce(onLibraryPageLoading, DEBOUNCE_DELAY));
 refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
 refs.searchBox.addEventListener('focus', clearForm);
@@ -132,7 +132,6 @@ refs.movieModal.addEventListener('mousedown', function (e) {
       if (liClick[i].matches('.btn-watched')) {
         liClick[i].removeEventListener('click', removeWatchedFilm);
         liClick[i].addEventListener('click', addWatchedFilm);
-        
       }
     }
   }
@@ -191,7 +190,7 @@ function addWatchedFilm(e) {
     e.target.textContent = 'ADD TO WATCHED';
     e.target.className = 'btn-watched';
   }
-  if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnWatched.classList=="library-button js-library__button--current") {
+  if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current' && refs.libBtnWatched.classList == "library-button js-library__button--current") {
     fetchLibrery(filmID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
@@ -213,7 +212,7 @@ function addQueueFilm(e) {
     e.target.textContent = 'ADD TO QUEUE';
     e.target.className = 'btn-queue';
   }
-    if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnQueue.classList=="library-button js-library__button--current") {
+  if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current' && refs.libBtnQueue.classList == "library-button js-library__button--current") {
     fetchLibrery(filmID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
@@ -238,10 +237,10 @@ function removeWatchedFilm(e) {
     e.target.className = 'btn-watched_close';
   }
   // =========перезагрузка после удаления===========
-  if (refs.homePageBtn.classList=='navigation__button js-navigation__button--current') { 
+  if (refs.homePageBtn.classList == 'navigation__button js-navigation__button--current') {
     return
   }
-  if (refs.libBtnQueue.classList == 'library-button js-library__button--current') { 
+  if (refs.libBtnQueue.classList == 'library-button js-library__button--current') {
     return
   }
   watchedMyLibrery();
@@ -261,10 +260,10 @@ function removeQueueFilm(e) {
     e.target.className = 'btn-queue_close';
   }
   // =========перезагрузка после удаления========
-    if (refs.homePageBtn.classList=='navigation__button js-navigation__button--current') { 
+  if (refs.homePageBtn.classList == 'navigation__button js-navigation__button--current') {
     return
   }
-    if (refs.libBtnWatched.classList == 'library-button js-library__button--current') { 
+  if (refs.libBtnWatched.classList == 'library-button js-library__button--current') {
     return
   }
   queueMyLibrery();
@@ -548,7 +547,7 @@ function show() {
 }
 
 function hide() {
-    spinner.classList.add('invisible');
-  }
+  spinner.classList.add('invisible');
+}
 
 
