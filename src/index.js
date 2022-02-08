@@ -2,7 +2,7 @@
 // ==========================================
 
 import './sass/main.scss';
-import { fetchGenres, fetchMovies, fetchPopularity, fetchLibrery, fetchForID } from './js/fetchMovies';
+import { fetchGenres, fetchMovies, fetchPopularity, fetchForID } from './js/fetchMovies';
 //import { fetchGenres } from './js/fetchMovies';
 import { GENRES_STORAGE } from './js/fetchMovies';
 import movieListMarkupHbs from './templates/movie-list.hbs';
@@ -192,7 +192,7 @@ function addWatchedFilm(e) {
     e.target.className = 'btn-watched';
   }
   if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnWatched.classList=="library-button js-library__button--current") {
-    fetchLibrery(filmID).then(results => {
+    fetchForID(filmID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
       // console.log(watchedlifeLibrery)
@@ -214,7 +214,7 @@ function addQueueFilm(e) {
     e.target.className = 'btn-queue';
   }
     if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnQueue.classList=="library-button js-library__button--current") {
-    fetchLibrery(filmID).then(results => {
+    fetchForID(filmID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
       // console.log(watchedlifeLibrery)
@@ -294,7 +294,7 @@ function watchedMyLibrery() {
   clearMovieContainer();
   for (let i = 0; i < WATCHED_FILMS_LIST.length; i++) {
     let ID = WATCHED_FILMS_LIST[i];
-    fetchLibrery(ID).then(results => {
+    fetchForID(ID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
       // console.log(watchedlifeLibrery)
@@ -312,7 +312,7 @@ function queueMyLibrery() {
   for (let i = 0; i < QUEUE_FILMS_LIST.length; i++) {
     let ID = QUEUE_FILMS_LIST[i];
     // console.log('queueClikLifeFilms[i]-', ID)
-    fetchLibrery(ID).then(results => {
+    fetchForID(ID).then(results => {
       queuelifeLibrery.push(results);
       appendMovieMarkup([results]);
     });
