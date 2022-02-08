@@ -186,7 +186,7 @@ function addWatchedFilm(e) {
     e.target.textContent = 'ADD TO WATCHED';
     e.target.className = 'btn-watched';
   }
-  if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current') {
+  if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnWatched.classList=="library-button js-library__button--current") {
     fetchLibrery(filmID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
@@ -208,7 +208,7 @@ function addQueueFilm(e) {
     e.target.textContent = 'ADD TO QUEUE';
     e.target.className = 'btn-queue';
   }
-    if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current') {
+    if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnQueue.classList=="library-button js-library__button--current") {
     fetchLibrery(filmID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
