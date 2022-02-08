@@ -25,6 +25,10 @@ body {
   color: #212121;
   line-height: 1.5;
   margin: 0;
+  // =====прижатие футора=====
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 p,
@@ -59,12 +63,15 @@ h2 {
     text-align: center;
   }
 }
+// =====прижатие футора=======
+.main{
+  flex: 1;
+}
 .movie-wrapper {
   // padding: 0 15px;
   margin: 0 auto;
   // // ====fottor==
-  // // min-height: 500px;
-  min-height: 50vh;
+  // min-height: 100vh;
   // // ======
   max-width: 480px;
   @media (min-width: 768px) {
