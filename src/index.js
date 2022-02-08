@@ -478,7 +478,9 @@ observer.observe(refs.sentinel);
 
 // =================================================
 
-const btnScrollToTop = document.getElementById('btnScrollToTop');
+// btn upward
+const btnScrollToTop = document.getElementById("btnScrollToTop");
+
 
 btnScrollToTop.addEventListener('click', function () {
   window.scrollTo({
@@ -497,3 +499,16 @@ window.addEventListener('scroll', e => {
     btnScrollToTop.classList.add('is-hidden');
   }
 });
+
+
+//spinner
+
+const spinner = document.querySelector("#fountainG");
+function show() {
+    spinner.classList.remove('invisible');
+  }
+
+function hide() {
+    spinner.classList.add('invisible');
+  }
+
