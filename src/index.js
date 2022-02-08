@@ -542,13 +542,9 @@ window.addEventListener('scroll', e => {
 
 //spinner
 
-const spinner = document.querySelector("#fountainG");
-function show() {
-  spinner.classList.remove('invisible');
+
+window.onload = function () {
+  let spinner = document.querySelector(".spinner");
+  spinner.style.display = 'none'
 }
-
-function hide() {
-    spinner.classList.add('invisible');
-  }
-
 
