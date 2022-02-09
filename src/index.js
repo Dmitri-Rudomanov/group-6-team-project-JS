@@ -443,16 +443,13 @@ refs.libPageBtn.addEventListener('click', addPhotoBackground);
 
 function addPhotoBackground (){
     if (WATCHED_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
-  document.querySelector(".movie-list").insertAdjacentHTML('afterend', '<p class="photo_bg">There are no movies added here yet</p>')};
-  if (WATCHED_FILMS_LIST.length !== 0 || document.querySelector(".movie-list").classList.contains("photo_bg")) 
-  {document.querySelector(".photo_bg").classList.add('hidden')};
+    document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
+
   }
 
   function addPhotoBackground2 (){
     if (QUEUE_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
-    document.querySelector(".movie-list").insertAdjacentHTML('afterend', '<p class="photo_bg">There are no movies added here yet</p>')};
-    if (QUEUE_FILMS_LIST.length !== 0) 
-    {document.querySelector(".photo_bg").classList.add('hidden')}
+    document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
     }
 
 // =================ADD-DELETE Modal Button==============
