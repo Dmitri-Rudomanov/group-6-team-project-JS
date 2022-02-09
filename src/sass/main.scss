@@ -8,6 +8,7 @@
 @import '../sass/layout/variables';
 @import '../sass/layout/header';
 @import '../sass/layout/modal';
+@import '../sass/layout/modal_team';
 @import '../sass/utils/hidden';
 @import '../sass/layout/upward-btn';
 @import '../sass/layout/spiner';
@@ -65,7 +66,7 @@ h2 {
   }
 }
 // =====прижатие футора=======
-.main{
+.main {
   flex: 1;
 }
 .movie-wrapper {

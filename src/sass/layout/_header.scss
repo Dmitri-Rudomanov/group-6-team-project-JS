@@ -47,9 +47,9 @@
   padding-right: 21px;
   padding-bottom: 0px;
   height: 230px;
-    // ===========
-    margin-bottom: 30px;
-    // ===========
+  // ===========
+  margin-bottom: 30px;
+  // ===========
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url(/images/background2/header_library_mob.jpg);
   background-repeat: no-repeat;
@@ -166,10 +166,7 @@
   justify-content: space-between;
   width: 280px;
   margin-bottom: 22px;
- 
-  @media screen and (min-width: 768px) {
-    width: 336px;
-  }
+
   @media screen and (min-width: 768px) {
     width: 336px;
   }
@@ -181,7 +178,7 @@
   border: none;
 }
 .search-form__input {
-   border-bottom: 0.5px solid #ffffff;
+  border-bottom: 0.5px solid #ffffff;
   &:focus {
     box-shadow: 0 5px 15px rgb(255, 107, 8);
     outline: none;
@@ -247,4 +244,37 @@
 
 .js-library__button--current {
   background: rgb(255, 107, 8);
+}
+
+/*фото заглушка в библиотеку*/
+
+.photo_bg {
+  display: block;
+  background-image: url(/images/movie.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  padding-top: 15px;
+  text-align: center;
+  height: 450px;
+  font-weight: normal;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.14;
+  color: #ff6b08;
+  text-shadow: #fc0 1px 0 10px;
+  @media screen and (min-width: 768px) {
+    height: 600px;
+    font-size: 30px;
+    padding-top: 15px;
+  }
+  @media screen and (min-width: 1200px) {
+    height: 800px;
+    font-size: 40px;
+    padding-top: 20px;
+  }
+}
+
+.hidden {
+  display: none;
 }
