@@ -418,6 +418,40 @@ const observer = new IntersectionObserver(onEntry, {
 });
 observer.observe(refs.sentinel);
 
+// ======================Открывает-Закрывает Модалку Команда========
+
+(() => {
+  const refs = {
+    openModalTeamBtn: document.querySelector('[data-modal-team-open]'),
+    closeModalTeamBtn: document.querySelector('[data-modal-team-close]'),
+    modalTeam: document.querySelector('[data-modal-team]'),
+  };
+
+  refs.openModalTeamBtn.addEventListener('click', toggleModalTeam);
+  refs.closeModalTeamBtn.addEventListener('click', toggleModalTeam);
+
+  function toggleModalTeam() {
+    refs.modalTeam.classList.toggle('is-hidden');
+  }
+})();
+
+
+/* ЗАГЛУШКА библиотека*/
+refs.libBtnWatched.addEventListener('click', addPhotoBackground);
+refs.libBtnQueue.addEventListener('click', addPhotoBackground2);
+refs.libPageBtn.addEventListener('click', addPhotoBackground);
+
+function addPhotoBackground (){
+    if (WATCHED_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
+    document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
+
+  }
+
+  function addPhotoBackground2 (){
+    if (QUEUE_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
+    document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
+    }
+
 // =================ADD-DELETE Modal Button==============
 
 // function onTextContenInBtnModalQueue(e) {
