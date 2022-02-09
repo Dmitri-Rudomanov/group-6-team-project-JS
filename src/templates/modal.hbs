@@ -58,8 +58,8 @@
                 <tr>
 
                     <td class="nomination last-child">Genre</td>
-                    <td class="data last-child">{{genres.[0].name}}  {{genres.[1].name}}  {{genres.[2].name}}  {{genres.[3].name}}</td>
-
+                    {{!-- <td class="data last-child">{{genres.[0].name}}  {{genres.[1].name}}  {{genres.[2].name}}  {{genres.[3].name}}</td> --}}
+                    <td class="nomination last-child">{{#each genres}}{{this.name}} {{/each}}</td>
                 </tr>
             </tbody>
         </table>
