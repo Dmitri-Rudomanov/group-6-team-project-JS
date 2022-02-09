@@ -58,9 +58,12 @@ function onEscKeyDown(e) {
 // =======================Рисует Модалку по ID===============================
 function modalMarkup(id) {
   fetchForID(id).then(results => {
-    console.log(WATCHED_FILMS_LIST);
-    console.log(QUEUE_FILMS_LIST);
-    console.log(id);
+    // console.log(WATCHED_FILMS_LIST);
+    // console.log(QUEUE_FILMS_LIST);
+    // console.log(id);
+    if (results.poster_path === null) {
+      results.poster_path = '/5QFzdUGc5lBn0VaS4RgfkNqjZEp.jpg'
+    }
     if (!QUEUE_FILMS_LIST.includes(id) && WATCHED_FILMS_LIST.includes(id)) {
       refs.movieModal.insertAdjacentHTML('beforeend', del(results));
     } else if (!WATCHED_FILMS_LIST.includes(id) && QUEUE_FILMS_LIST.includes(id)) {
