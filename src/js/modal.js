@@ -62,15 +62,20 @@ function onEscKeyDown(e) {
 }
 
 // =======================Рисует Модалку по ID===============================
-function modalMarkup(currentId, movieCard) {
-  if (!QUEUE_FILMS_LIST.includes(currentId) && WATCHED_FILMS_LIST.includes(currentId)) {
-    refs.movieModal.insertAdjacentHTML('beforeend', del(movieCard));
-  } else if (!WATCHED_FILMS_LIST.includes(currentId) && QUEUE_FILMS_LIST.includes(currentId)) {
-    refs.movieModal.insertAdjacentHTML('beforeend', delqueue(movieCard));
-  } else if (QUEUE_FILMS_LIST.includes(currentId) && WATCHED_FILMS_LIST.includes(currentId)) {
-    refs.movieModal.insertAdjacentHTML('beforeend', allbtn(movieCard));
-  } else {
-    refs.movieModal.insertAdjacentHTML('beforeend', modalMarkupHbs(movieCard));
-  }
+function modalMarkup(id) {
+  fetchForID(id).then(results => {
 
+    if (results.poster_path === null) {
+      results.poster_path = '/5QFzdUGc5lBn0VaS4RgfkNqjZEp.jpg'
+    }
+    if (!QUEUE_FILMS_LIST.includes(id) && WATCHED_FILMS_LIST.includes(id)) {
+      refs.movieModal.insertAdjacentHTML('beforeend', del(results));
+    } else if (!WATCHED_FILMS_LIST.includes(id) && QUEUE_FILMS_LIST.includes(id)) {
+      refs.movieModal.insertAdjacentHTML('beforeend', delqueue(results));
+    } else if (QUEUE_FILMS_LIST.includes(id) && WATCHED_FILMS_LIST.includes(id)) {
+      refs.movieModal.insertAdjacentHTML('beforeend', allbtn(results));
+    } else {
+      refs.movieModal.insertAdjacentHTML('beforeend', modalMarkupHbs(results));
+    }
+  });
 }
