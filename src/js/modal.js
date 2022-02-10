@@ -4,13 +4,11 @@ import del from '../templates/del.hbs';
 import delqueue from '../templates/delqueue.hbs';
 import allbtn from '../templates/allbtn.hbs';
 import getRefs from './get-refs';
-import { QUEUE_FILMS_LIST, WATCHED_FILMS_LIST, DATA_MOVIES_STORAGE } from '../index';
-import searchElement from '../components/search-movie';
-
-export { onClickInItem, onClickBackdrop, onOpenModal, currentId };
-
+import { QUEUE_FILMS_LIST, WATCHED_FILMS_LIST } from '../index';
 const refs = getRefs();
-let currentId = null;
+let id = null;
+
+export { onClickInItem, onClickBackdrop, onOpenModal };
 
 function onClickInItem(e) {
   if (
@@ -20,21 +18,16 @@ function onClickInItem(e) {
     e.target.className === 'movie-link__content' ||
     e.target.className === 'movie-item__genre'
   ) {
-    currentId = e.target.parentElement.id;
-
-    // console.log(`id выбранного фильма >>`, currentId);
-    onOpenModal(currentId);
+    id = e.target.parentElement.id;
+    onOpenModal(id);
   }
 }
 
-function onOpenModal(currentId) {
+function onOpenModal(id) {
   window.addEventListener('keydown', onEscKeyDown);
   refs.movieModal.classList.remove('is-hidden');
   refs.bodyHtml.classList.add('body-overflow');
-
-  // console.log(`выбранный фильм >>`, searchElement(currentId, DATA_MOVIES_STORAGE));
-
-  modalMarkup(currentId, searchElement(currentId, DATA_MOVIES_STORAGE));
+  modalMarkup(id);
 }
 
 function onCloseModal() {
@@ -79,3 +72,5 @@ function modalMarkup(id) {
     }
   });
 }
+
+// =======================Рисует жанры в модалке============================

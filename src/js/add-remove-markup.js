@@ -3,11 +3,11 @@ import getRefs from './get-refs';
 
 const refs = getRefs();
 
-export { appendMovieMarkup, clearMovieContainer, clearForm, fillForm };
+export { appendMovieMarkup, clearMovieContainer, clearForm,fillForm};
 
 // =======добавление разметки и отрисовка==============
-function appendMovieMarkup(data) {
-  refs.movieList.insertAdjacentHTML('beforeend', movieListMarkupHbs(data));
+function appendMovieMarkup(r) {
+  refs.movieList.insertAdjacentHTML('beforeend', movieListMarkupHbs(r));
 }
 // ========очистка страницы===========
 function clearMovieContainer() {
