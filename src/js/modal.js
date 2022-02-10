@@ -72,4 +72,5 @@ function modalMarkup(currentId, movieCard) {
   } else {
     refs.movieModal.insertAdjacentHTML('beforeend', modalMarkupHbs(movieCard));
   }
+
 }

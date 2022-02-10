@@ -1,11 +1,6 @@
 import './sass/main.scss';
-import {
-  fetchGenres,
-  fetchMovies,
-  fetchPopularity,
-  fetchLibrery,
-  fetchForID,
-} from './js/fetchMovies';
+import { fetchGenres, fetchMovies, fetchPopularity, fetchForID } from './js/fetchMovies';
+//import { fetchGenres } from './js/fetchMovies';
 import { GENRES_STORAGE } from './js/fetchMovies';
 import movieListMarkupHbs from './templates/movie-list.hbs';
 import modalMarkupHbs from './templates/modal.hbs';
@@ -198,10 +193,8 @@ function addWatchedFilm(e) {
     e.target.textContent = 'ADD TO WATCHED';
     e.target.className = 'btn-watched';
   }
-  if (
-    refs.homePageBtn.classList != 'navigation__button js-navigation__button--current' &&
-    refs.libBtnWatched.classList == 'library-button js-library__button--current'
-  ) {
+
+  if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnWatched.classList=="library-button js-library__button--current") {
     fetchForID(filmID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
@@ -222,10 +215,9 @@ function addQueueFilm(e) {
     e.target.textContent = 'ADD TO QUEUE';
     e.target.className = 'btn-queue';
   }
-  if (
-    refs.homePageBtn.classList != 'navigation__button js-navigation__button--current' &&
-    refs.libBtnQueue.classList == 'library-button js-library__button--current'
-  ) {
+
+    if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnQueue.classList=="library-button js-library__button--current") {
+
     fetchForID(filmID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
@@ -433,6 +425,44 @@ const observer = new IntersectionObserver(onEntry, {
   rootMargin: '150px',
 });
 observer.observe(refs.sentinel);
+
+
+// ======================Открывает-Закрывает Модалку Команда========
+
+(() => {
+  const refs = {
+    openModalTeamBtn: document.querySelector('[data-modal-team-open]'),
+    closeModalTeamBtn: document.querySelector('[data-modal-team-close]'),
+    modalTeam: document.querySelector('[data-modal-team]'),
+  };
+
+  refs.openModalTeamBtn.addEventListener('click', toggleModalTeam);
+  refs.closeModalTeamBtn.addEventListener('click', toggleModalTeam);
+
+  function toggleModalTeam() {
+    refs.modalTeam.classList.toggle('is-hidden');
+  }
+})();
+
+
+/* ЗАГЛУШКА библиотека*/
+refs.libBtnWatched.addEventListener('click', addPhotoBackground);
+refs.libBtnQueue.addEventListener('click', addPhotoBackground2);
+refs.libPageBtn.addEventListener('click', addPhotoBackground);
+
+function addPhotoBackground (){
+    if (WATCHED_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
+    document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
+
+  }
+
+  function addPhotoBackground2 (){
+    if (QUEUE_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
+    document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
+    }
+
+
+
 
 // =================================================
 
