@@ -45,7 +45,7 @@ refs.libBtnWatched.classList.add('js-library__button--current');
 refs.searchBox.addEventListener('input', debounce(onSearchInputs, DEBOUNCE_DELAY));
 refs.siteLogo.addEventListener('click', onHomePageLoading);
 refs.homePageBtn.addEventListener('click', onHomePageLoading);
- refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
+refs.libPageBtn.addEventListener('click', onLibraryPageLoading);
 //refs.libPageBtn.addEventListener('click', debounce(onLibraryPageLoading, DEBOUNCE_DELAY));
 refs.libBtnQueue.addEventListener('click', onQueuePageLoading);
 refs.libBtnWatched.addEventListener('click', onWatchedPageLoading);
@@ -132,7 +132,7 @@ refs.movieModal.addEventListener('mousedown', function (e) {
       if (liClick[i].matches('.btn-watched')) {
         liClick[i].removeEventListener('click', removeWatchedFilm);
         liClick[i].addEventListener('click', addWatchedFilm);
-        
+
       }
     }
   }
@@ -191,7 +191,7 @@ function addWatchedFilm(e) {
     e.target.textContent = 'ADD TO WATCHED';
     e.target.className = 'btn-watched';
   }
-  if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnWatched.classList=="library-button js-library__button--current") {
+  if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current' && refs.libBtnWatched.classList == "library-button js-library__button--current") {
     fetchForID(filmID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
@@ -213,7 +213,7 @@ function addQueueFilm(e) {
     e.target.textContent = 'ADD TO QUEUE';
     e.target.className = 'btn-queue';
   }
-    if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current'&&refs.libBtnQueue.classList=="library-button js-library__button--current") {
+  if (refs.homePageBtn.classList != 'navigation__button js-navigation__button--current' && refs.libBtnQueue.classList == "library-button js-library__button--current") {
     fetchForID(filmID).then(results => {
       watchedlifeLibrery.push(results);
       // console.log(results)
@@ -238,10 +238,10 @@ function removeWatchedFilm(e) {
     e.target.className = 'btn-watched_close';
   }
   // =========перезагрузка после удаления===========
-  if (refs.homePageBtn.classList=='navigation__button js-navigation__button--current') { 
+  if (refs.homePageBtn.classList == 'navigation__button js-navigation__button--current') {
     return
   }
-  if (refs.libBtnQueue.classList == 'library-button js-library__button--current') { 
+  if (refs.libBtnQueue.classList == 'library-button js-library__button--current') {
     return
   }
   watchedMyLibrery();
@@ -261,10 +261,10 @@ function removeQueueFilm(e) {
     e.target.className = 'btn-queue_close';
   }
   // =========перезагрузка после удаления========
-    if (refs.homePageBtn.classList=='navigation__button js-navigation__button--current') { 
+  if (refs.homePageBtn.classList == 'navigation__button js-navigation__button--current') {
     return
   }
-    if (refs.libBtnWatched.classList == 'library-button js-library__button--current') { 
+  if (refs.libBtnWatched.classList == 'library-button js-library__button--current') {
     return
   }
   queueMyLibrery();
@@ -329,7 +329,7 @@ function processGenres(response) {
     // console.log(readableGenres)
     if (readableGenres.length > 3) {
       readableGenres = readableGenres.slice(0, 2);
-      readableGenres.push('   Other');
+      readableGenres.push('  Other');
     }
     response.results[i].genres = readableGenres.join(', ');
   }
@@ -441,16 +441,18 @@ refs.libBtnWatched.addEventListener('click', addPhotoBackground);
 refs.libBtnQueue.addEventListener('click', addPhotoBackground2);
 refs.libPageBtn.addEventListener('click', addPhotoBackground);
 
-function addPhotoBackground (){
-    if (WATCHED_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
-    document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
+function addPhotoBackground() {
+  if (WATCHED_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
+    document.querySelector(".movie-list").innerHTML = '<li class="photo_bg">There are no movies added here yet</li>'
+  };
 
-  }
+}
 
-  function addPhotoBackground2 (){
-    if (QUEUE_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
-    document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
-    }
+function addPhotoBackground2() {
+  if (QUEUE_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
+    document.querySelector(".movie-list").innerHTML = '<li class="photo_bg">There are no movies added here yet</li>'
+  };
+}
 
 
 
