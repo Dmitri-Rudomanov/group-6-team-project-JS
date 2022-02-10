@@ -57,7 +57,14 @@ function onEscKeyDown(e) {
 // =======================Рисует Модалку по ID===============================
 function modalMarkup(id) {
   fetchForID(id).then(results => {
-
+    let genres = [];
+    // // ========================
+    for (let i = 0; i < results.genres.length; i++) {
+      genres.push(results.genres[i].name)
+      results.genres[i].name = genres.join(', ');
+    }
+    // console.log('genres', genres);
+    // console.log(results.genres.length)
     if (results.poster_path === null) {
       results.poster_path = '/5QFzdUGc5lBn0VaS4RgfkNqjZEp.jpg'
     }

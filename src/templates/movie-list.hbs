@@ -20,7 +20,7 @@
         <p class="movie-name">{{title}}</p>
         <div class="movie-item__genre" id="{{id}}" style="display: flex; align-items: baseline;">
 {{#if runtime}}
-<p class="genre" >{{genres.[0].name}}, {{genres.[1].name}}, {{genres.[2].name}}</p>
+<p class="genre" >{{genres.[0].name}} {{genres.[1].name}} {{genres.[2].name}}</p>
 {{else}}
 <p class="genre">{{genres}}</p>
 {{/if}}
