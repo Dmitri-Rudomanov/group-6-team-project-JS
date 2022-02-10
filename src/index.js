@@ -296,6 +296,7 @@ function watchedMyLibrery() {
       appendMovieMarkup([results]);
     });
   }
+  addPhotoBackground()
 }
 
 
@@ -312,6 +313,7 @@ function queueMyLibrery() {
       appendMovieMarkup([results]);
     });
   }
+  addPhotoBackground2()
 }
 
 export { queueMyLibrery };
