@@ -330,6 +330,7 @@ function processGenres(response) {
     }
     response.results[i].genres = readableGenres.join(', ');
   }
+
   // console.log(response);
   // =======из response используется genres при отрисовке=========
   return response;
