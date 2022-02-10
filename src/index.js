@@ -444,15 +444,12 @@ refs.libPageBtn.addEventListener('click', addPhotoBackground);
 function addPhotoBackground (){
     if (WATCHED_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
     document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
-
   }
 
   function addPhotoBackground2 (){
     if (QUEUE_FILMS_LIST.length === 0 && !document.querySelector(".movie-list").classList.contains("photo_bg")) {
     document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
     }
-
-
 
 // =================================================
 

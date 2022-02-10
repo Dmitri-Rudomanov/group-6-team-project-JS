@@ -36,6 +36,10 @@ function onCloseModal() {
   refs.movieModal.classList.add('is-hidden');
   refs.bodyHtml.classList.remove('body-overflow');
   refs.movieModal.innerHTML = '';
+      if (WATCHED_FILMS_LIST.length === 0 ) {
+    document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
+    if (QUEUE_FILMS_LIST.length === 0 ) {
+      document.querySelector(".movie-list").innerHTML= '<li class="photo_bg">There are no movies added here yet</li>'};
 }
 
 function onClickBackdrop(e) {
