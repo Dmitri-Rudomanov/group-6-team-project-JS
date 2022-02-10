@@ -245,7 +245,7 @@ td.last-child {
 
 .btn-watched,
 .btn-watched_close {
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 767px) {
     margin-left: auto;
     margin-right: auto;
   }
@@ -258,11 +258,11 @@ td.last-child {
   @media screen and (min-width: 1024px) {
     min-width: 140px;
   }
-  @media screen and (min-width: 320px) {
+  @media screen and (min-width: 768px) {
     margin-right: 15px;
   }
 
-  max-width: 112px;
+  // max-width: 112px;
   border: none;
   background-color: var(--action-color);
   border-radius: 5px;
@@ -278,10 +278,9 @@ td.last-child {
 }
 // ========================hover button watched===================
 
-
 .btn-queue,
 .btn-queue_close {
-  @media screen and (max-width: 304px) {
+  @media screen and (max-width: 767px) {
     margin-left: auto;
   }
 
@@ -293,8 +292,8 @@ td.last-child {
   }
   margin-right: auto;
   border: 1px solid var(--primary-text-color);
-  min-width: 104px;
-  max-width: 112px;
+  // min-width: 104px;
+  // max-width: 112px;
   background-color: var(--secondary-text-color);
   border-radius: 5px;
   cursor: pointer;
@@ -316,4 +315,3 @@ td.last-child {
     line-height: 1.2;
   }
 }
-
