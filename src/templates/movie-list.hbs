@@ -20,10 +20,14 @@
         <p class="movie-name">{{title}}</p>
         <div class="movie-item__genre" id="{{id}}" style="display: flex; align-items: baseline;">
 {{#if runtime}}
-<p class="genre" >{{genres.[0].name}} {{genres.[1].name}} {{genres.[2].name}}</p>
+{{!-- <p class="genre" >{{genres.[0].name}} {{genres.[1].name}} {{genres.[2].name}}</p> --}}
+{{!-- <p class="genre">{{#each genres}}{{name}},{{/each}}</p> --}}
+<p class="genre">{{#each genres}}{{#if @first}}{{this.name}}{{/if}}{{/each}}{{#if genres.[1].name}}, {{genres.[1].name}}{{/if}}{{#if genres.[2].name}}, {{genres.[2].name}}{{/if}}</p>
+{{!-- <p class="genre">{{genres.[0].name}}</p> --}}
 {{else}}
 <p class="genre">{{genres}}</p>
 {{/if}}
+
 {{#if genres}}
         <span class="movie-item__slash">|</span>
 {{else}}
