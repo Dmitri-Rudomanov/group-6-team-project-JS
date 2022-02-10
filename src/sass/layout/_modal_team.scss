@@ -19,18 +19,18 @@
   transform: translate(-50%, -50%);
   background-image: url(/images/modal_team22.png);
   background-color: transparent;
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  padding-top: 100px;
-  padding-left: 0px;
+  padding-top: 140px;
+  padding-left: 50px;
   @media screen and (min-width: 768px) {
-    padding-top: 175px;
+    padding-top: 290px;
     padding-left: 40px;
-    width: 500px;
-    height: 500px;
+    width: 800px;
+    height: 800px;
   }
   @media screen and (min-width: 1200px) {
     padding-top: 300px;
@@ -87,20 +87,21 @@
 
 .team_title {
   font-weight: bold;
-  font-size: 17px;
+  font-size: 22px;
   line-height: 23px;
-  padding-left: 55px;
+  padding-left: 25px;
   letter-spacing: 0.03em;
   color: #fff;
-  margin-bottom: 18px;
+  margin-bottom: 30px;
   text-shadow: 0 5px 15px rgb(255, 107, 8);
 
   @media screen and (min-width: 768px) {
-    padding-left: 70px;
-    margin-bottom: 25px;
-    font-size: 25px;
+    padding-left: 150px;
+    margin-bottom: 70px;
+    font-size: 40px;
   }
   @media screen and (min-width: 1200px) {
+    padding-left: 70px;
     margin-bottom: 65px;
     font-size: 45px;
   }
@@ -114,13 +115,13 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  width: 250px;
-  padding-left: 50px;
+  width: 300px;
+  padding-left: 0px;
   margin-left: -15px;
   margin-top: -15px;
   @media screen and (min-width: 768px) {
-    width: 400px;
-    padding-left: 50px;
+    width: 600px;
+    padding-left: 140px;
     margin-left: -10px;
     margin-top: -10px;
   }
@@ -136,11 +137,6 @@
   flex-basis: calc(100% / 3 - 15px);
   margin-left: 15px;
   margin-top: 15px;
-  @media screen and (min-width: 768px) {
-    flex-basis: calc(100% / 3 - 10px);
-    margin-left: 10px;
-    margin-top: 10px;
-  }
   @media screen and (min-width: 1200px) {
     flex-basis: calc(100% / 3 - 25px);
     margin-left: 25px;
@@ -149,6 +145,15 @@
 }
 .team_wrap_info {
   display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+    color: #fff;
+    padding-left: 30px;
+    padding-top: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 5px 15px rgb(255, 107, 8);
+  }
   @media screen and (min-width: 1200px) {
     display: block;
     color: #fff;
@@ -168,6 +173,8 @@
     padding-left: 0px;
     font-size: 13px;
     font-weight: bold;
+  }
+  @media screen and (min-width: 1200px) {
     text-align: center;
   }
 }
@@ -177,7 +184,7 @@
 
 .team_photo {
   margin-left: 13px;
-  width: 40px;
+  width: 60px;
   border-radius: 90px;
   &:hover {
     box-shadow: 0 5px 15px rgb(255, 107, 8);
@@ -186,7 +193,7 @@
 
   @media screen and (min-width: 768px) {
     margin-left: 23px;
-    width: 60px;
+    width: 80px;
   }
   @media screen and (min-width: 1200px) {
     margin-left: 13px;
