@@ -34,7 +34,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  @media screen and (min-width: 440px) and(max-width:768px) {
+  @media screen and (min-width: 440px) and(max-width:767px) {
     width: 350px;
     max-height: 850px;
     margin: 0 auto;
@@ -246,23 +246,28 @@ td.last-child {
 .btn-watched,
 .btn-watched_close {
   @media screen and (max-width: 767px) {
-    margin-left: auto;
+    // margin-left: auto;
     margin-right: auto;
   }
-  @media screen and (max-width: 280px) {
+  @media screen and (max-width: 304px) {
     margin-bottom: 10px;
+  }
+  @media screen and (max-width: 308px) {
+    margin-left: auto;
   }
   @media screen and (min-width: 440px) {
     min-width: 130px;
   }
   @media screen and (min-width: 1024px) {
-    min-width: 140px;
+    max-width: 200px;
+    max-height: 50px;
   }
   @media screen and (min-width: 768px) {
     margin-right: 15px;
   }
 
-  // max-width: 112px;
+  max-width: 120px;
+  max-height: 38px;
   border: none;
   background-color: var(--action-color);
   border-radius: 5px;
@@ -283,14 +288,18 @@ td.last-child {
   @media screen and (max-width: 767px) {
     margin-left: auto;
   }
-
-  @media screen and (min-width: 440px) {
-    max-width: 125px;
+  @media screen and (max-width: 308px) {
+    margin-right: auto;
+  }
+  @media screen and (min-width: 768px) {
+    margin-right: auto;
   }
   @media screen and (min-width: 1024px) {
-    max-width: 136px;
+    max-width: 200px;
+    max-height: 50px;
   }
-  margin-right: auto;
+  max-width: 120px;
+  max-height: 38px;
   border: 1px solid var(--primary-text-color);
   // min-width: 104px;
   // max-width: 112px;
@@ -309,9 +318,48 @@ td.last-child {
 }
 .btn-watched_close,
 .btn-queue_close {
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     font-size: 9px;
     font-weight: 700;
     line-height: 1.2;
+    // max-width: 123px;
+    // min-height: 41px;
   }
+}
+.btn-watched_close,
+.btn-queue_close {
+  @media screen and (max-width: 767px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.btn-watched_close {
+  @media screen and (max-width: 316px) {
+    margin-bottom: 10px;
+    min-width: 123px;
+  }
+}
+.btn-watched,
+.btn-queue {
+  @media screen and (max-width: 304px) {
+    min-width: 120px;
+  }
+}
+
+.btn-queue_close {
+  @media screen and (max-width: 316px) {
+    min-width: 123px;
+  }
+}
+.btn-watched,
+.btn-queue {
+  @media screen and (min-width: 330px) and (max-width: 767px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.btn-queue,
+.btn-watched {
+  max-height: 38px;
 }
