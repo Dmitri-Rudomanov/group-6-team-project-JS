@@ -65,7 +65,6 @@ function modalMarkup(id) {
       results.genres[i].name = genres.join(', ');
     }
     // console.log('genres', genres);
-    // // ========================
     // console.log(results.genres.length)
     if (results.poster_path === null) {
       results.poster_path = '/5QFzdUGc5lBn0VaS4RgfkNqjZEp.jpg'
